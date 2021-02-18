@@ -6,15 +6,15 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-// import TagContructorPage from './components/pages/TagConstructorPage';
-// import LoadingPage from './components/pages/LoadingPage';
-// import HomePage from './components/pages/HomePage';
-// import SignInRegisterPage from './components/pages/SignInRegisterPage';
+import TagContructorPage from './components/pages/TagConstructorPage';
+import LoadingPage from './components/pages/LoadingPage';
+import HomePage from './components/pages/HomePage';
+import SignInRegisterPage from './components/pages/SignInRegisterPage';
 
 import { ProvideAuth } from './helpers/use-auth.js';
 import { useAuth } from './helpers/use-auth.js';
 
-function App() {
+export default function App() {
   // Get auth state and re-render anytime it changes
   const auth = useAuth();
 
@@ -27,7 +27,43 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  return <ProvideAuth>Hello World</ProvideAuth>;
+  return (
+    <ProvideAuth className="container">
+      {loading ? (
+        <LoadingPage />
+      ) : (
+        <Router>
+          <Switch>
+            <Route path="/login">
+              {auth ? (
+                <Redirect
+                  to={{
+                    pathname: '/',
+                  }}
+                />
+              ) : (
+                <SignInRegisterPage />
+              )}
+            </Route>
+            <Route path="/login/register">
+              {auth ? (
+                <Redirect
+                  to={{
+                    pathname: '/',
+                  }}
+                />
+              ) : (
+                <SignInRegisterPage />
+              )}
+            </Route>
+            <Route path="/tag-constructor"><TagContructorPage /></Route>
+            <Route path="/contact-form">{/* <Register /> */}</Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        </Router>
+      )}
+    </ProvideAuth>
+  );
 }
-
-export default App;
