@@ -1,3 +1,5 @@
+I started to edit one project from scrath to keep only whats is necessary and start with firebase configurations and deployment from the begining
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
