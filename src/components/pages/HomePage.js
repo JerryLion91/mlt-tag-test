@@ -103,7 +103,6 @@ export default function HomePage() {
       <AppBody style={{ height: `${heights.appBody}vh` }}>
         <TagDisplay />
         <Button
-          classNames="btn purple darken-2"
           onClick={() => history.push('/tag-constructor')}
           icon={''}
           text={'Design your tag'}

@@ -1,16 +1,10 @@
 import React from 'react';
 
 export default function Button({ onClick, icon, text = '', classNames }) {
-  if (!classNames) classNames = 'btn-flat transparent';
-
   return (
-    <a
-      className={`waves-effect waves-purple ${classNames}`}
-      style={{ borderRadius: '6px' }}
-      onClick={onClick}
-    >
+    <a className={` ${classNames}`} style={styles.button} onClick={onClick}>
       {icon && (
-        <i style={styles.icon} className="material-icons left">
+        <i style={styles.icon} className="material-icons">
           {icon}
         </i>
       )}
@@ -24,5 +18,13 @@ const styles = {
   icon: {
     color: 'grey',
     fontSize: 'calc(15px + 1.5vmin)',
+  },
+  button: {
+    margin: '3px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    cursor: 'pointer',
   },
 };

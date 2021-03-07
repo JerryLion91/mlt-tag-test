@@ -10,7 +10,6 @@ export default function SignInRegisterPage() {
   return (
     <>
       <button
-        className="sign-in"
         onClick={() => auth.googleSignIn(() => history.push(from.pathname))}
       >
         Sign in with Google
