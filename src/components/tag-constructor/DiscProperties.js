@@ -1,5 +1,4 @@
 import React from 'react';
-import TextInput from './TextInput';
 
 export default function DiscProperties(props) {
   const {
@@ -8,6 +7,8 @@ export default function DiscProperties(props) {
     onPositionSelected,
     onSpaceSelected,
   } = props;
+
+  const [space, setSpace] = React.useState(0);
 
   const handleTypingName = ({ target }) => {
     onTypedName(target.value);
@@ -23,45 +24,37 @@ export default function DiscProperties(props) {
 
   const handleSpaceSelect = ({ target }) => {
     onSpaceSelected(target.valueAsNumber);
+    setSpace(target.valueAsNumber);
   };
 
   const { discProperties } = styles;
   return (
     <div style={discProperties}>
-      <TextInput onChange={handleTypingName} />
-      <div className="form__group field">
-        <select
-          defaultValue=""
-          className="browser-default form__field"
-          placeholder="Select font:"
-          name="font"
-          id="fontFamily"
-          onChange={handleSelectFont}
-        >
-          <option value="serif">Serif</option>
-          <option value="arial">Arial</option>
-          <option value="courierNew">Courier New</option>
-          <option value="cambria">Cambria</option>
-          <option value="American Captain">American Captain</option>
-          <option value="Bauhaus 93">Bauhaus 93</option>
-          <option value="Berlin Sans FB Demi">Berlin Sans FB Demi</option>
-          <option value="Cooper Black">Cooper Black</option>
-          <option value="Forte">Forte</option>
-          <option value="Gill Sans Ultra Bold Condensed">
-            Gill Sans Ultra Bold Condensed
-          </option>
-          <option value="Hobo Std">Hobo Std</option>
-          <option value="Nyam Regular">Nyam Regular</option>
-          <option value="Showcard Gothic">Showcard Gothic</option>
-          <option value="Stencil">Stencil</option>
-          <option value="Tekton Pro">Tekton Pro</option>
-          <option value="monospace">Monospace</option>
-        </select>
-        <label htmlFor="name" className="form__label">
-          Select font:
-        </label>
-      </div>
-      <label>
+      <label htmlFor="desiredName"> Tag Name:</label>
+      <input
+        type="text"
+        name="name"
+        id="desiredName"
+        onChange={handleTypingName}
+      />
+      <label htmlFor="name">Font Type:</label>
+      <select
+        defaultValue=""
+        name="font"
+        id="fontFamily"
+        onChange={handleSelectFont}
+      >
+        <option value="serif">Serif</option>
+        <option value="arial">Arial</option>
+        <option value="monospace">Monospace</option>
+
+        <option value="Chicle">Chicle</option>
+        <option value="Fredoka One">Fredoka One</option>
+        <option value="Kavoon">Kavoon</option>
+        <option value="Lemon">Lemon</option>
+        <option value="Salsa">Salsa</option>
+      </select>
+      {/* <label>
         Select starting point:
         <input
           type="range"
@@ -71,18 +64,19 @@ export default function DiscProperties(props) {
           step="1"
           onChange={handlePositionSelect}
         />
-      </label>
-      <label>
+      </label>*/}
+      {/* <label>
         Select space betwewn:
         <input
           type="range"
           name="space"
           min="0"
           max="1"
-          step="0.0001"
+          step="0.001"
           onChange={handleSpaceSelect}
         />
       </label>
+      <span>{space}</span> */}
     </div>
   );
 }
@@ -91,5 +85,6 @@ const styles = {
   discProperties: {
     display: 'flex',
     flexDirection: 'column',
+    color: '#520369',
   },
 };

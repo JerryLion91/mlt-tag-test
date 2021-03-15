@@ -1,8 +1,18 @@
 import React from 'react';
 
-export default function Button({ onClick, icon, text = '', classNames }) {
+export default function Button({
+  onClick,
+  icon,
+  text = '',
+  classNames,
+  style,
+}) {
   return (
-    <a className={` ${classNames}`} style={styles.button} onClick={onClick}>
+    <a
+      className={` ${classNames}`}
+      style={{ ...styles.button, ...style }}
+      onClick={onClick}
+    >
       {icon && (
         <i style={styles.icon} className="material-icons">
           {icon}

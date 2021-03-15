@@ -13,6 +13,11 @@ import SignInRegisterPage from './components/pages/SignInRegisterPage';
 
 import { ProvideAuth } from './helpers/use-auth.js';
 import { useAuth } from './helpers/use-auth.js';
+import UserProfilePage from './components/pages/UserProfilePage';
+import UserPaymentsPage from './components/pages/UserPaymentsPage';
+import UserAddressesPage from './components/pages/UserAddressesPage';
+import UserOrdersPage from './components/pages/UserOrdersPage';
+import TagSumaryPage from './components/pages/TagSumaryPage';
 
 export default function App() {
   // Get auth state and re-render anytime it changes
@@ -28,23 +33,12 @@ export default function App() {
   }, []);
 
   return (
-    <ProvideAuth className="container">
+    <ProvideAuth>
       {loading ? (
         <LoadingPage />
       ) : (
         <Router>
           <Switch>
-            <Route path="/login">
-              {auth ? (
-                <Redirect
-                  to={{
-                    pathname: '/',
-                  }}
-                />
-              ) : (
-                <SignInRegisterPage />
-              )}
-            </Route>
             <Route path="/login/register">
               {auth ? (
                 <Redirect
@@ -56,8 +50,36 @@ export default function App() {
                 <SignInRegisterPage />
               )}
             </Route>
-            <Route path="/tag-constructor"><TagContructorPage /></Route>
+            <Route path="/login">
+              {auth ? (
+                <Redirect
+                  to={{
+                    pathname: '/',
+                  }}
+                />
+              ) : (
+                <SignInRegisterPage />
+              )}
+            </Route>
+            <Route path="/tag-constructor/sumary">
+              <TagSumaryPage />
+            </Route>
+            <Route path="/tag-constructor">
+              <TagContructorPage />
+            </Route>
             <Route path="/contact-form">{/* <Register /> */}</Route>
+            <Route path="/user/payments">
+              <UserPaymentsPage />
+            </Route>
+            <Route path="/user/addresses">
+              <UserAddressesPage />
+            </Route>
+            <Route path="/user/orders">
+              <UserOrdersPage />
+            </Route>
+            <Route path="/user">
+              <UserProfilePage />
+            </Route>
             <Route path="/">
               <HomePage />
             </Route>

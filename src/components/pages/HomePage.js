@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useAuth } from '../../helpers/use-auth';
+import { useHistory } from 'react-router-dom';
 
 import AppBody from '../AppBody';
 import Footer from '../Footer';
@@ -9,106 +8,29 @@ import Header from '../Header';
 import Button from '../Button';
 
 import 'react-responsive-modal/styles.css';
-import { Modal } from 'react-responsive-modal';
 import TagDisplay from '../TagDisplay';
+import ExampleDisplay from '../ExampleDisplay';
+import SettingsButton from '../SettingsButton';
 
 export default function HomePage() {
-  const auth = useAuth();
-  const user = auth.user;
-  let location = useLocation();
   let history = useHistory();
-  const [showModal, setShowModal] = React.useState(false);
-
-  const heights = {
-    header: 21,
-    appBody: 64,
-    footer: 15,
-  };
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const onSignOut = () => {
-    auth.signout(() => history.push('/'));
-    handleCloseModal();
-  };
 
   return (
     <>
-      <Header style={{ height: `${heights.header}vh` }}>
-        <Button onClick={handleOpenModal} icon={'settings'} text={''} />
-        <Modal
-          styles={{
-            modal: { position: 'absolute', right: '30%', top: '0px' },
-          }}
-          open={showModal}
-          onClose={handleCloseModal}
-          showCloseIcon={false}
-        >
-          {user ? (
-            <div style={styles.modalFlexColumn}>
-              {user.displayName && (
-                <p>
-                  Hello <br />
-                  {user.displayName}!
-                </p>
-              )}
-              <Button
-                onClick={() => history.push('/user')}
-                icon={'account_box'}
-                text={'Profile'}
-              />
-              <Button
-                onClick={() => history.push('/user/payments')}
-                icon={'account_balance_wallet'}
-                text={'Payments'}
-              />
-              <Button
-                onClick={() => history.push('/user/addresses')}
-                icon={'location_on'}
-                text={'Addresses'}
-              />
-              <Button
-                onClick={() => history.push('/user/orders')}
-                icon={'local_mall'}
-                text={'Orders'}
-              />
-              <Button
-                onClick={onSignOut}
-                icon={'chevron_left'}
-                text={'Logout'}
-              />
-            </div>
-          ) : (
-            <div style={styles.modalFlexColumn}>
-              <Button
-                onClick={() => history.push('/login')}
-                icon={'account_circle'}
-                text={'Login'}
-              />
-              <Button
-                onClick={() => history.push('/register')}
-                icon={'person_add'}
-                text={'Register'}
-              />
-            </div>
-          )}
-        </Modal>
+      <Header>
+        <SettingsButton />
       </Header>
-      <AppBody style={{ height: `${heights.appBody}vh` }}>
+      <AppBody>
         <TagDisplay />
         <Button
+          style={styles.button}
           onClick={() => history.push('/tag-constructor')}
           icon={''}
           text={'Design your tag'}
         />
+        <ExampleDisplay />
       </AppBody>
-      <Footer style={{ height: `${heights.footer}vh` }}>
+      <Footer>
         <Button onClick={() => history.push('/')} text={'Home'} />
         <Button
           onClick={() => history.push('/tag-constructor')}
@@ -128,6 +50,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+  },
+  button: {
+    margin: '50px',
+    padding: '12px',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: '500',
+    fontFamily: 'Asap , sans-serif',
+    backgroundColor: '#882aa2',
   },
 };
 

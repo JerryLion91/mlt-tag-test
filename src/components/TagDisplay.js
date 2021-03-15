@@ -14,30 +14,27 @@ export default function TagDisplay() {
   ];
   const [selectedTagIndex, setSelectedTagIndex] = React.useState(0);
 
+  const toggleIndex = () => {
+    if (selectedTagIndex === 0) setSelectedTagIndex(1);
+    if (selectedTagIndex === 1) setSelectedTagIndex(0);
+  };
+
   return (
     <div style={styles.divFlexRow}>
-      <Button
-        onClick={() => setSelectedTagIndex(1)}
-        icon={'keyboard_arrow_left'}
-        text={''}
-      />
+      <Button onClick={toggleIndex} icon={'keyboard_arrow_left'} text={''} />
       <img
-        style={{ margin: 'auto', width: '20vw', maxWidth: '200px' }}
+        style={{ margin: 'auto', width: '75vw', maxWidth: '350px' }}
         src={TAGS[selectedTagIndex].src}
         alt={TAGS[selectedTagIndex].description}
       />
-      <Button
-        onClick={() => setSelectedTagIndex(0)}
-        icon={'keyboard_arrow_right'}
-        text={''}
-      />
+      <Button onClick={toggleIndex} icon={'keyboard_arrow_right'} text={''} />
     </div>
   );
 }
 
 const styles = {
   divFlexRow: {
-    margin: '25px',
+    margin: '20px',
     minWidth: '270px',
     maxWidth: '520px',
     width: '36vw',

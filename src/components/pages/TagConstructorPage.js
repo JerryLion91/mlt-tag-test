@@ -10,12 +10,6 @@ import { useHistory } from 'react-router-dom';
 export default function TagConstructorPage() {
   let history = useHistory();
 
-  const heights = {
-    header: 21,
-    appBody: 73,
-    footer: 6,
-  };
-
   const [typedName, setTypedName] = useState('');
   const handleNameInput = (newName) => {
     setTypedName(newName);
@@ -38,7 +32,7 @@ export default function TagConstructorPage() {
 
   return (
     <>
-      <Header style={{ height: `${heights.header}vh` }}>
+      <Header>
         <Button onClick={() => {}} icon={'history'} text={''} />
         <Button
           onClick={() => history.push('/')}
@@ -46,7 +40,7 @@ export default function TagConstructorPage() {
           text={''}
         />
       </Header>
-      <AppBody style={{ height: `${heights.appBody}vh` }}>
+      <AppBody>
         <Tag
           typedName={typedName}
           fontFamily={fontFamily}
@@ -59,8 +53,27 @@ export default function TagConstructorPage() {
           onPositionSelected={handleStartInput}
           onSpaceSelected={handleSpaceInput}
         />
+        <Button
+          style={styles.button}
+          onClick={() => history.push('/tag-constructor/sumary')}
+          icon={''}
+          text={'Finish Design'}
+        />
       </AppBody>
-      <Footer style={{ height: `${heights.footer}vh` }} />
+      <Footer />
     </>
   );
 }
+
+const styles = {
+  button: {
+    margin: '50px',
+    padding: '8px',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: '500',
+    fontFamily: 'Asap , sans-serif',
+    fontSize: 'calc(5px + 1.3vmin)',
+    backgroundColor: '#882aa2',
+  },
+};

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Footer({ children, style = {} }) {
+export default function Footer({ children }) {
   return (
-    <footer style={{ ...style, ...styles.footer }}>
+    <footer style={styles.footer}>
       <div style={styles.divFlexColumn}>{children}</div>
       <div style={styles.divFlexRow}>
         <img
@@ -19,6 +19,8 @@ export default function Footer({ children, style = {} }) {
 
 const styles = {
   footer: {
+    flexShrink: 0,
+    textAlign: 'center',
     backgroundColor: '#e5e8ea',
     display: 'flex',
     flexDirection: 'column',
@@ -52,6 +54,5 @@ const styles = {
 };
 
 Footer.propTypes = {
-  style: PropTypes.object,
   children: PropTypes.node,
 };

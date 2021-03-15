@@ -5,18 +5,10 @@ export default function Header({
   title = 'M.L.T. Designs',
   subtitle = '',
   children,
-  style,
 }) {
-  const headerHeight = parseInt(style.height.slice(0, -2), 10);
   const { h1heading, lineStyle, h3heading } = styles;
   return (
-    <header
-      style={{
-        height: `${headerHeight * 0.8}vh`,
-        marginTop: `${headerHeight * 0.2}vh`,
-        ...styles.header,
-      }}
-    >
+    <header style={styles.header}>
       <div style={styles.divFlexRow}>{children}</div>
       <div style={styles.divFlexColumn}>
         <h1 style={h1heading}>{title}</h1>
@@ -28,7 +20,6 @@ export default function Header({
 }
 
 Header.propTypes = {
-  headerHeight: PropTypes.object,
   title: PropTypes.string,
   subtitle: PropTypes.string,
   children: PropTypes.node,
@@ -51,6 +42,8 @@ const styles = {
     flexDirection: 'row-reverse',
   },
   header: {
+    flex: '0 0 auto',
+    marginTop: '15px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
