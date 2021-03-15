@@ -27,6 +27,42 @@ export default function SettingsButton() {
     handleCloseModal();
   };
 
+  const handleUserButton = () => {
+    const userLocation = {
+      pathname: '/user',
+      state: { from: location.pathname },
+    };
+    history.push(userLocation);
+    handleCloseModal();
+  };
+
+  const handlePaymentsButton = () => {
+    const userLocation = {
+      pathname: '/user/payments',
+      state: { from: location.pathname },
+    };
+    history.push(userLocation);
+    handleCloseModal();
+  };
+
+  const handleAdressesButton = () => {
+    const userLocation = {
+      pathname: '/user/addresses',
+      state: { from: location.pathname },
+    };
+    history.push(userLocation);
+    handleCloseModal();
+  };
+
+  const handleOrdersButton = () => {
+    const userLocation = {
+      pathname: '/user/orders',
+      state: { from: location.pathname },
+    };
+    history.push(userLocation);
+    handleCloseModal();
+  };
+
   return (
     <>
       <Button onClick={handleOpenModal} icon={'settings'} text={''} />
@@ -47,34 +83,22 @@ export default function SettingsButton() {
               </p>
             )}
             <Button
-              onClick={() => {
-                history.push('/user');
-                handleCloseModal();
-              }}
+              onClick={handleUserButton}
               icon={'account_box'}
               text={'Profile'}
             />
             <Button
-              onClick={() => {
-                history.push('/user/payments');
-                handleCloseModal();
-              }}
+              onClick={handlePaymentsButton}
               icon={'account_balance_wallet'}
               text={'Payments'}
             />
             <Button
-              onClick={() => {
-                history.push('/user/addresses');
-                handleCloseModal();
-              }}
+              onClick={handleAdressesButton}
               icon={'location_on'}
               text={'Addresses'}
             />
             <Button
-              onClick={() => {
-                history.push('/user/orders');
-                handleCloseModal();
-              }}
+              onClick={handleOrdersButton}
               icon={'local_mall'}
               text={'Orders'}
             />

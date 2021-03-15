@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
 import Button from '../Button';
+import Footer from '../Footer';
+import Input from '../Input';
 
 export default function SignInRegisterPage() {
   const auth = useAuth();
@@ -13,25 +15,19 @@ export default function SignInRegisterPage() {
     <>
       <header style={styles.header}>
         <img
-          src={'logo.svg'}
+          src={'logoLogin.svg'}
           alt={''}
-          style={{ height: '80vh', maxHeight: '150px' }}
+          style={{ height: '60vh', maxHeight: '120px' }}
         />
-        <span style={{ fontSize: 'calc(25px + 2vmin)', margin: '10px' }}>
+        <span style={{ fontSize: 'calc(20px + 1.8vmin)', margin: '10px' }}>
           M.L.T. Designs
         </span>
       </header>
       <div style={styles.divFlexColumn}>
-        <span style={{ fontSize: 'calc(10px + 1.8vmin)', margin: '10px 0px' }}>
-          Login
-        </span>
-        <span style={{ fontSize: 'calc(5px + 1.8vmin)', margin: '10px 0px' }}>
-          Hi there! Nice to see you again
-        </span>
-        <label htmlFor="email">Email:</label>
-        <input type="email" name="email" id="email" />
-        <label htmlFor="pwd">Password:</label>
-        <input type="password" name="pwd" id="pwd" />
+        <span style={styles.heading1}>Login</span>
+        <span style={styles.heading2}>Hi there! Nice to see you again</span>
+        <Input type="email" label="Email" />
+        <Input type="password" label="Password" />
         <Button
           style={styles.button}
           onClick={() => console.log('login clicked')}
@@ -55,24 +51,15 @@ export default function SignInRegisterPage() {
           text={'sign in with Google'}
         />
       </div>
+      <Footer />
     </>
   );
 }
 
 const styles = {
-  button: {
-    margin: '30px 0px 0px 0px',
-    padding: '12px',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    backgroundColor: '#882aa2',
-    alignSelf: 'stretch',
-  },
   header: {
     flex: '0 0 auto',
-    marginTop: '10vh',
+    marginTop: '5vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -80,18 +67,44 @@ const styles = {
     color: '#520369',
     fontFamily: "'Quicksand', sans-serif",
   },
+  button: {
+    margin: '25px 0px 0px 0px',
+    padding: '10px',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: '500',
+    fontFamily: 'Asap , sans-serif',
+    backgroundColor: '#882aa2',
+    alignSelf: 'stretch',
+  },
+  heading1: {
+    color: '#37474f',
+    fontFamily: 'Quicksand',
+    fontWeight: 700,
+    margin: '10px 0px',
+    fontSize: 'calc(23px + 1vmin)',
+    textAlign: 'left',
+  },
+  heading2: {
+    color: '#7a7a7a',
+    fontfamily: 'Asap',
+    fontWeight: 400,
+    fontSize: '16px',
+    fontSize: 'calc(10px + 1vmin)',
+    textAlign: 'left',
+    margin: '10px 0px',
+  },
   divFlexColumn: {
     minWidth: '150px',
     maxWidth: '350px',
     width: '70vw',
-    margin: 'auto',
+    margin: '5vh auto',
     display: 'flex',
     flexDirection: 'column',
-    fontSize: 'calc(10px + 1.5vmin)',
   },
   divFlexRow: {
-    minWidth: '270px',
-    maxWidth: '520px',
+    minWidth: '150px',
+    maxWidth: '350px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'stretch',
