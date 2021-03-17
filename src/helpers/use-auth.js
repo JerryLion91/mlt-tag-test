@@ -35,7 +35,7 @@ function useProvideAuth() {
 
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
-  const googleSignIn = async (cb) => {
+  const signInWithGooglePopup = async (cb) => {
     const provider = new firebase.auth.GoogleAuthProvider();
     return firebase
       .auth()
@@ -63,7 +63,7 @@ function useProvideAuth() {
         // ...
       });
   };
-  const signin = async (email, password) => {
+  const signInWithEmailAndPassword = async (email, password) => {
     return firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -131,8 +131,8 @@ function useProvideAuth() {
   // Return the user object and auth methods
   return {
     user,
-    googleSignIn,
-    signin,
+    signInWithGooglePopup,
+    signInWithEmailAndPassword,
     signup,
     signout,
     sendPasswordResetEmail,

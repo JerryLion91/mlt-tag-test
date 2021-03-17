@@ -11,6 +11,41 @@ export default function SignInRegisterPage() {
   let history = useHistory();
   let { from } = location.state || { from: { pathname: '/' } };
 
+  const [userEmail, setUserEmail] = React.useState('');
+  const handleEmailChange = (newEmail) => setUserEmail(newEmail);
+
+  const [userPassword, setuserPassword] = React.useState('');
+  const handlePasswordChange = (newPassword) => setuserPassword(newPassword);
+
+  const signInWithEmail = () => {
+    console.log(userEmail);
+    console.log(userPassword);
+
+    auth
+      .signInWithEmailAndPassword(userEmail, userPassword)
+      .then((user) => {
+        // Signed in
+        // ...
+        console.log(user);
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.error(error);
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+    // if user not found redirect to the register page
+  };
+
+  const signInWithGoogle = () => {
+    auth.signInWithGooglePopup(() => history.push(from.pathname));
+  };
+
+  const handleForgotPassword = () => {
+    auth.sendPasswordResetEmail(userEmail);
+  };
+
   return (
     <>
       <header style={styles.header}>
@@ -26,27 +61,39 @@ export default function SignInRegisterPage() {
       <div style={styles.divFlexColumn}>
         <span style={styles.heading1}>Login</span>
         <span style={styles.heading2}>Hi there! Nice to see you again</span>
-        <Input type="email" label="Email" />
-        <Input type="password" label="Password" />
+        <Input
+          type="email"
+          label="Email"
+          value={userEmail}
+          onChange={handleEmailChange}
+        />
+        <Input
+          type="password"
+          label="Password"
+          value={userPassword}
+          onChange={handlePasswordChange}
+        />
         <Button
           style={styles.button}
-          onClick={() => console.log('login clicked')}
+          onClick={signInWithEmail}
           icon={''}
           text={'Login'}
         />
         <div style={styles.divFlexRow}>
           <Button
-            onClick={() => console.log('fogeted clicked')}
+            style={styles.forgotBtn}
+            onClick={handleForgotPassword}
             text={'Forgot Password?'}
           />
           <Button
+            style={styles.registerBtn}
             onClick={() => console.log('register clicked')}
             text={'Register'}
           />
         </div>
         <Button
           style={styles.button}
-          onClick={() => auth.googleSignIn(() => history.push(from.pathname))}
+          onClick={signInWithGoogle}
           icon={''}
           text={'sign in with Google'}
         />
@@ -68,7 +115,7 @@ const styles = {
     fontFamily: "'Quicksand', sans-serif",
   },
   button: {
-    margin: '25px 0px 0px 0px',
+    margin: '25px 0px 5px 0px',
     padding: '10px',
     borderRadius: '5px',
     color: 'white',
@@ -94,12 +141,22 @@ const styles = {
     textAlign: 'left',
     margin: '10px 0px',
   },
+  forgotBtn: {
+    color: '#7a7a7a',
+    fontFamily: 'Asap',
+  },
+  registerBtn: {
+    color: '#882aa2',
+    fontFamily: 'Asap',
+    fontWeight: '700',
+  },
   divFlexColumn: {
     minWidth: '150px',
     maxWidth: '350px',
     width: '70vw',
     margin: '5vh auto',
     display: 'flex',
+    flex: '1 0 auto',
     flexDirection: 'column',
   },
   divFlexRow: {
