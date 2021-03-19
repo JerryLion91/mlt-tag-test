@@ -22,17 +22,25 @@ export default function TagSumaryPage({ TAGs }) {
       <AppBody>
         {TAGs.map((tag, index) => {
           return (
-            <div key={index}>
-              <Tag tag={tag} spaceBetween={0} startPosition={0} />
+            <div key={index} style={{ fontSize: '15px' }}>
+              {/* <Tag tag={tag} spaceBetween={0} startPosition={0} /> */}
+              <p>Tag Name: {tag.typedName}</p>
+              <p>Font Family: {tag.fontFamily}</p>
             </div>
           );
         })}
-        <Button
-          style={styles.button}
-          onClick={() => {}}
-          icon={''}
-          text={'Finish Design'}
-        />
+        <div style={styles.divFlexRow}>
+          <Button
+            style={styles.button}
+            onClick={() => history.push('/tag-constructor')}
+            text={'Design Another'}
+          />
+          <Button
+            style={styles.button}
+            onClick={() => console.log('register clicked')}
+            text={'Purchase'}
+          />
+        </div>
       </AppBody>
       <Footer />
     </>
@@ -49,5 +57,12 @@ const styles = {
     fontFamily: 'Asap , sans-serif',
     fontSize: 'calc(5px + 1.3vmin)',
     backgroundColor: '#882aa2',
+  },
+  divFlexRow: {
+    minWidth: '150px',
+    maxWidth: '350px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
   },
 };
