@@ -5,32 +5,24 @@ import Button from '../Button';
 
 export default function DiscProperties(props) {
   const {
-    onFontSelected,
-    onTypedName,
+    tag,
+    onChange,
     onPositionSelected,
     onSpaceSelected,
     spaceBetween,
     startPosition,
   } = props;
+
   const { typedName, fontFamily } = props.tag;
 
   const [space, setSpace] = React.useState(0);
-  const [showModal, setShowModal] = React.useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
 
   const handleTypingName = (newName) => {
-    onTypedName(newName);
+    onChange({ ...tag, typedName: newName });
   };
 
   const handleSelectFont = ({ target }) => {
-    onFontSelected(target.value);
+    onChange({ ...tag, fontFamily: target.value });
   };
 
   const handlePositionSelect = ({ target }) => {

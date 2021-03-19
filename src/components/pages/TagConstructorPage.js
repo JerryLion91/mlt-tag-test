@@ -7,7 +7,7 @@ import AppBody from '../AppBody';
 import Button from '../Button';
 import { useHistory } from 'react-router-dom';
 
-export default function TagConstructorPage() {
+export default function TagConstructorPage({ TAGs, onAddTag }) {
   let history = useHistory();
 
   const [tag, setTag] = React.useState({
@@ -17,13 +17,7 @@ export default function TagConstructorPage() {
     outsideColor: '',
   });
 
-  const handleNameInput = (newName) => {
-    setTag({ ...tag, name: newName });
-  };
-
-  const handleFontInput = (newFont) => {
-    setTag({ ...tag, fontFamily: newFont });
-  };
+  const handleTagChange = (newTag) => setTag(newTag);
 
   const [startPosition, setStartPosition] = React.useState(0);
   const handleStartInput = (newPosition) => {
@@ -36,13 +30,16 @@ export default function TagConstructorPage() {
   };
 
   const handleHistoryClick = () => {
-    // setTypedName('');
-    // setFontFamily('');
+    setTag({
+      typedName: '',
+      fontFamily: 'serif',
+      insideColor: '',
+      outsideColor: '',
+    });
   };
 
   const handleFinishClick = () => {
-    console.log(tag);
-    return;
+    onAddTag(tag);
     history.push('/tag-constructor/sumary');
   };
 
@@ -66,8 +63,7 @@ export default function TagConstructorPage() {
           tag={tag}
           spaceBetween={spaceBetween}
           startPosition={startPosition}
-          onTypedName={handleNameInput}
-          onFontSelected={handleFontInput}
+          onChange={handleTagChange}
           onPositionSelected={handleStartInput}
           onSpaceSelected={handleSpaceInput}
         />

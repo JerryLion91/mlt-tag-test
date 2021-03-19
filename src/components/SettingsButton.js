@@ -29,7 +29,7 @@ export default function SettingsButton() {
 
   const handleUserButton = () => {
     const userLocation = {
-      pathname: '/user',
+      pathname: '/user/profile',
       state: { from: location.pathname },
     };
     history.push(userLocation);
