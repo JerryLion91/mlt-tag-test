@@ -18,6 +18,7 @@ import UserPaymentsPage from './components/pages/UserPaymentsPage';
 import UserAddressesPage from './components/pages/UserAddressesPage';
 import UserOrdersPage from './components/pages/UserOrdersPage';
 import TagSumaryPage from './components/pages/TagSumaryPage';
+import HomeContactForm from './components/pages/HomeContactForm';
 
 export default function App() {
   // Get auth state and re-render anytime it changes
@@ -67,7 +68,9 @@ export default function App() {
             <Route path="/tag-constructor">
               <TagContructorPage />
             </Route>
-            <Route path="/contact-form">{/* <Register /> */}</Route>
+            <Route path="/contact-form">
+              <HomeContactForm />
+            </Route>
             <Route path="/user/payments">
               <UserPaymentsPage />
             </Route>

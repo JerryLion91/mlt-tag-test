@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function TagSumaryPage() {
   let history = useHistory();
+
   return (
     <>
       <Header subtitle="Designed Tags">

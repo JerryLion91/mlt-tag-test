@@ -1,4 +1,7 @@
 import React from 'react';
+import Input from '../Input';
+import Modal from 'react-responsive-modal';
+import Button from '../Button';
 
 export default function DiscProperties(props) {
   const {
@@ -6,12 +9,24 @@ export default function DiscProperties(props) {
     onTypedName,
     onPositionSelected,
     onSpaceSelected,
+    spaceBetween,
+    startPosition,
   } = props;
+  const { typedName, fontFamily } = props.tag;
 
   const [space, setSpace] = React.useState(0);
+  const [showModal, setShowModal] = React.useState(false);
 
-  const handleTypingName = ({ target }) => {
-    onTypedName(target.value);
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleTypingName = (newName) => {
+    onTypedName(newName);
   };
 
   const handleSelectFont = ({ target }) => {
@@ -27,14 +42,12 @@ export default function DiscProperties(props) {
     setSpace(target.valueAsNumber);
   };
 
-  const { discProperties } = styles;
   return (
-    <div style={discProperties}>
-      <label htmlFor="desiredName"> Tag Name:</label>
-      <input
+    <div style={styles.discProperties}>
+      <Input
         type="text"
-        name="name"
-        id="desiredName"
+        label={'Tag Name:'}
+        value={typedName}
         onChange={handleTypingName}
       />
       <label htmlFor="name">Font Type:</label>

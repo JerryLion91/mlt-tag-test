@@ -6,12 +6,22 @@ import Header from '../Header';
 import SettingsButton from '../SettingsButton';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
+import { useFirestore } from '../../helpers/use-firestore';
+import Input from '../Input';
 
 export default function ProfilePage() {
-  const auth = useAuth();
   let location = useLocation();
   let history = useHistory();
   let { from } = location.state || { from: '/' };
+
+  const auth = useAuth();
+  const { displayName, email, photoURL, uid } = auth.user;
+
+  const [userName, setUserName] = React.useState(displayName);
+  const handleUsernameChange = (newName) => setUserName(newName);
+
+  const [userEmail, setUserEmail] = React.useState(email);
+  const handleUserEmailChange = (newEmail) => setUserEmail(newEmail);
 
   return (
     <>
@@ -23,7 +33,29 @@ export default function ProfilePage() {
           text={''}
         />
       </Header>
-      <AppBody>ProfilePage</AppBody>
+      <AppBody>
+        <img
+          src={photoURL}
+          style={{ borderRadius: '50%', height: '10vh', margin: '40px' }}
+        />
+        <Input
+          type="text"
+          label="Username"
+          value={userName}
+          onChange={handleUsernameChange}
+        />
+        <Input
+          type="email"
+          label="Email"
+          value={userEmail}
+          onChange={handleUserEmailChange}
+        />
+        <Button
+          style={styles.button}
+          onClick={() => alert('update clicked')}
+          text={'Update Password'}
+        />
+      </AppBody>
       <Footer>
         <Button onClick={() => history.push('/')} text={'Home'} />
         <Button
@@ -38,3 +70,15 @@ export default function ProfilePage() {
     </>
   );
 }
+
+const styles = {
+  button: {
+    margin: '25px 0px 5px 0px',
+    padding: '10px',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: '500',
+    fontFamily: 'Asap , sans-serif',
+    backgroundColor: '#882aa2',
+  },
+};

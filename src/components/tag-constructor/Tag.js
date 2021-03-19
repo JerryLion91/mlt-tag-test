@@ -15,7 +15,9 @@ const getPixelRatio = (context) => {
 };
 
 export default function Tag(props) {
-  const { typedName, fontFamily, spaceBetween } = props;
+  const { typedName, fontFamily } = props.tag;
+  const { spaceBetween } = props;
+
   let startPosition = 0;
 
   if (props.startPosition) {
@@ -72,8 +74,7 @@ export default function Tag(props) {
 }
 
 Tag.propTypes = {
-  typedName: PropTypes.string.isRequired,
-  fontFamily: PropTypes.string.isRequired,
+  tag: PropTypes.object.isRequired,
   spaceBetween: PropTypes.number.isRequired,
   startPosition: PropTypes.number,
 };
