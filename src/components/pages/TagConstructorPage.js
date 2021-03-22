@@ -55,6 +55,7 @@ export default function TagConstructorPage({ onAddTag }) {
         <Tag
           size={200}
           tag={tag}
+          styles={{ margin: '20px' }}
           spaceBetween={spaceBetween}
           startPosition={startPosition}
         />

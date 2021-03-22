@@ -7,21 +7,22 @@ import AppBody from '../AppBody';
 import Footer from '../Footer';
 import Input from '../Input';
 
-export default function TagSumaryPage({ TAGs, onChange }) {
+export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
   let history = useHistory();
 
-  const [localTAGs, setLocalTAGs] = React.useState(TAGs);
-
   const handleChange = (newQuantity, index) => {
-    setLocalTAGs((prevState) => {
-      prevState[index].quantity = newQuantity;
-      onChange(prevState);
-      return [...prevState];
-    });
+    const newTag = {
+      typedName: TAGs[index].typedName,
+      fontFamily: TAGs[index].fontFamily,
+      insideColor: TAGs[index].insideColor,
+      outsideColor: TAGs[index].outsideColor,
+      quantity: newQuantity,
+    };
+    onChange(index, newTag);
   };
 
-  const handleDelete = () => {
-    console.log('delete forever');
+  const handleDelete = (index) => {
+    onRemove(index);
   };
 
   return (
@@ -34,7 +35,7 @@ export default function TagSumaryPage({ TAGs, onChange }) {
         />
       </Header>
       <AppBody>
-        {localTAGs.map((tag, index) => {
+        {TAGs.map((tag, index) => {
           const {
             typedName,
             fontFamily,
@@ -68,7 +69,10 @@ export default function TagSumaryPage({ TAGs, onChange }) {
                   value={quantity}
                   onChange={(newNumber) => handleChange(newNumber, index)}
                 />
-                <Button onClick={handleDelete} icon={'delete_forever'} />
+                <Button
+                  onClick={() => handleDelete(index)}
+                  icon={'delete_forever'}
+                />
               </div>
             </div>
           );

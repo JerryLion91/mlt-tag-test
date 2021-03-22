@@ -16,7 +16,7 @@ const getPixelRatio = (context) => {
 
 export default function Tag(props) {
   const { typedName, fontFamily } = props.tag;
-  const { spaceBetween, size } = props;
+  const { spaceBetween, size, styles } = props;
 
   let startPosition = 0;
 
@@ -71,7 +71,10 @@ export default function Tag(props) {
 
   // JSX canvas Element with the '2d' draw
   return (
-    <canvas ref={ref} style={{ width: `${size}px`, height: `${size}px` }} />
+    <canvas
+      ref={ref}
+      style={{ ...styles, width: `${size}px`, height: `${size}px` }}
+    />
   );
 }
 
