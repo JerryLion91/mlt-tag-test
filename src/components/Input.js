@@ -1,7 +1,14 @@
 import React from 'react';
 import './input.css';
 
-export default function Input({ type, label, value, onChange, onFocus }) {
+export default function Input({
+  type,
+  label,
+  value,
+  onChange,
+  onFocus,
+  width,
+}) {
   const handleChange = ({ target }) => {
     onChange(target.value);
   };
@@ -9,7 +16,7 @@ export default function Input({ type, label, value, onChange, onFocus }) {
     if (onFocus) onFocus();
   };
   return (
-    <div className="input-container">
+    <div className="input-container" style={{ width: width }}>
       <input
         type={type}
         value={value}

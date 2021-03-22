@@ -45,8 +45,8 @@ export default function Tag(props) {
     canvas.style.height = `${height}px`;
 
     // setting params
-    const radius = 40;
-    const fontSize = 45;
+    const radius = size * 0.2;
+    const fontSize = size * 0.22;
 
     ctx.font = `bold ${fontSize}px ${fontFamily}`;
 
@@ -70,7 +70,9 @@ export default function Tag(props) {
   });
 
   // JSX canvas Element with the '2d' draw
-  return <canvas ref={ref} style={{ width: `200px`, height: `200px` }} />;
+  return (
+    <canvas ref={ref} style={{ width: `${size}px`, height: `${size}px` }} />
+  );
 }
 
 Tag.propTypes = {

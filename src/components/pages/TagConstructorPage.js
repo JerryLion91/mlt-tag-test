@@ -7,14 +7,15 @@ import AppBody from '../AppBody';
 import Button from '../Button';
 import { useHistory } from 'react-router-dom';
 
-export default function TagConstructorPage({ TAGs, onAddTag }) {
+export default function TagConstructorPage({ onAddTag }) {
   let history = useHistory();
 
   const [tag, setTag] = React.useState({
     typedName: '',
     fontFamily: 'serif',
-    insideColor: '',
-    outsideColor: '',
+    insideColor: 'any',
+    outsideColor: 'any',
+    quantity: 1,
   });
 
   const handleTagChange = (newTag) => setTag(newTag);
@@ -33,8 +34,9 @@ export default function TagConstructorPage({ TAGs, onAddTag }) {
     setTag({
       typedName: '',
       fontFamily: 'serif',
-      insideColor: '',
-      outsideColor: '',
+      insideColor: 'any',
+      outsideColor: 'any',
+      quantity: 1,
     });
   };
 
@@ -55,6 +57,7 @@ export default function TagConstructorPage({ TAGs, onAddTag }) {
       </Header>
       <AppBody>
         <Tag
+          size={200}
           tag={tag}
           spaceBetween={spaceBetween}
           startPosition={startPosition}

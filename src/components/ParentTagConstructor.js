@@ -6,11 +6,6 @@ import TagSumaryPage from './pages/TagSumaryPage';
 export default function TagConstructorParent() {
   const [TAGs, setTAGs] = React.useState([]);
 
-  React.useEffect(() => {
-    console.log(TAGs);
-    return () => {};
-  }, [TAGs]);
-
   const handleAddTag = (tag) => {
     let currentIndex = 0;
     if (TAGs.length > 0) {
@@ -21,10 +16,15 @@ export default function TagConstructorParent() {
       ...prevState,
     ]);
   };
+
+  const handleChangeTAGs = (TAGs) => {
+    console.log(TAGs);
+  };
+
   return (
     <Switch>
       <Route path="/tag-constructor/sumary">
-        <TagSumaryPage TAGs={TAGs} />
+        <TagSumaryPage TAGs={TAGs} onChange={handleChangeTAGs} />
       </Route>
       <Route path="/tag-constructor">
         <TagContructorPage TAGs={TAGs} onAddTag={handleAddTag} />

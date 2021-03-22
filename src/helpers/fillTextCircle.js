@@ -20,7 +20,7 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
   // move the origin to the canvas center
   this.translate(x, y);
 
-  this.lineWidth = 4;
+  this.lineWidth = radius / 10;
   this.beginPath();
 
   // rotate to match the startRotation
