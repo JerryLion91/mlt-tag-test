@@ -27,11 +27,10 @@ export default function TagSumaryPage({ TAGs, onChange }) {
   return (
     <>
       <Header subtitle="Designed Tags">
-        <Button onClick={() => history.push('/')} icon={'home'} text={''} />
+        <Button onClick={() => history.push('/')} icon={'home'} />
         <Button
           onClick={() => history.push('/tag-constructor')}
           icon={'navigate_before'}
-          text={''}
         />
       </Header>
       <AppBody>
@@ -69,11 +68,7 @@ export default function TagSumaryPage({ TAGs, onChange }) {
                   value={quantity}
                   onChange={(newNumber) => handleChange(newNumber, index)}
                 />
-                <Button
-                  onClick={handleDelete}
-                  icon={'delete_forever'}
-                  text={''}
-                />
+                <Button onClick={handleDelete} icon={'delete_forever'} />
               </div>
             </div>
           );
@@ -82,13 +77,15 @@ export default function TagSumaryPage({ TAGs, onChange }) {
           <Button
             style={styles.button}
             onClick={() => history.push('/tag-constructor')}
-            text={'Design Another'}
-          />
+          >
+            Design Another
+          </Button>
           <Button
             style={styles.button}
             onClick={() => console.log('purchase clicked')}
-            text={'Purchase'}
-          />
+          >
+            Purchase
+          </Button>
         </div>
       </AppBody>
       <Footer />

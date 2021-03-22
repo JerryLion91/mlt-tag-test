@@ -65,7 +65,7 @@ export default function SettingsButton() {
 
   return (
     <>
-      <Button onClick={handleOpenModal} icon={'settings'} text={''} />
+      <Button onClick={handleOpenModal} icon={'settings'} />
       <Modal
         styles={{
           modal: { position: 'absolute', right: '30%', top: '0px' },
@@ -82,40 +82,39 @@ export default function SettingsButton() {
                 {user.displayName}!
               </p>
             )}
-            <Button
-              onClick={handleUserButton}
-              icon={'account_box'}
-              text={'Profile'}
-            />
+            <Button onClick={handleUserButton} icon={'account_box'}>
+              Profile
+            </Button>
             <Button
               onClick={handlePaymentsButton}
               icon={'account_balance_wallet'}
-              text={'Payments'}
-            />
-            <Button
-              onClick={handleAdressesButton}
-              icon={'location_on'}
-              text={'Addresses'}
-            />
-            <Button
-              onClick={handleOrdersButton}
-              icon={'local_mall'}
-              text={'Orders'}
-            />
-            <Button onClick={onSignOut} icon={'chevron_left'} text={'Logout'} />
+            >
+              Payments
+            </Button>
+            <Button onClick={handleAdressesButton} icon={'location_on'}>
+              Addresses
+            </Button>
+            <Button onClick={handleOrdersButton} icon={'local_mall'}>
+              Orders
+            </Button>
+            <Button onClick={onSignOut} icon={'chevron_left'}>
+              Logout
+            </Button>
           </div>
         ) : (
           <div style={styles.modalFlexColumn}>
             <Button
               onClick={() => history.push('/login')}
               icon={'account_circle'}
-              text={'Login'}
-            />
+            >
+              Login
+            </Button>
             <Button
               onClick={() => history.push('/register')}
               icon={'person_add'}
-              text={'Register'}
-            />
+            >
+              Register
+            </Button>
           </div>
         )}
       </Modal>

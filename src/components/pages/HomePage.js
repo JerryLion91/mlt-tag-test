@@ -27,19 +27,19 @@ export default function HomePage() {
           onClick={() => history.push('/tag-constructor')}
           icon={''}
           text={'Design your tag'}
-        />
+        >
+          Design your tag
+        </Button>
         <ExampleDisplay />
       </AppBody>
       <Footer>
-        <Button onClick={() => history.push('/')} text={'Home'} />
-        <Button
-          onClick={() => history.push('/tag-constructor')}
-          text={'Tag Designer'}
-        />
-        <Button
-          onClick={() => history.push('/contact-form')}
-          text={'Contact Us'}
-        />
+        <Button onClick={() => history.push('/')}>Home</Button>
+        <Button onClick={() => history.push('/tag-constructor')}>
+          Tag Designer
+        </Button>
+        <Button onClick={() => history.push('/contact-form')}>
+          Contact Us
+        </Button>
       </Footer>
     </>
   );

@@ -48,12 +48,8 @@ export default function TagConstructorPage({ onAddTag }) {
   return (
     <>
       <Header>
-        <Button onClick={handleHistoryClick} icon={'history'} text={''} />
-        <Button
-          onClick={() => history.push('/')}
-          icon={'navigate_before'}
-          text={''}
-        />
+        <Button onClick={handleHistoryClick} icon={'history'} />
+        <Button onClick={() => history.push('/')} icon={'navigate_before'} />
       </Header>
       <AppBody>
         <Tag
@@ -70,12 +66,9 @@ export default function TagConstructorPage({ onAddTag }) {
           onPositionSelected={handleStartInput}
           onSpaceSelected={handleSpaceInput}
         />
-        <Button
-          style={styles.button}
-          onClick={handleFinishClick}
-          icon={''}
-          text={'Finish Design'}
-        />
+        <Button style={styles.button} onClick={handleFinishClick} icon={''}>
+          Finish Design
+        </Button>
       </AppBody>
       <Footer />
     </>

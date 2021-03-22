@@ -73,23 +73,19 @@ export default function SignInRegisterPage() {
           value={userPassword}
           onChange={handlePasswordChange}
         />
-        <Button
-          style={styles.button}
-          onClick={signInWithEmail}
-          icon={''}
-          text={'Login'}
-        />
+        <Button style={styles.button} onClick={signInWithEmail} icon={''}>
+          Login
+        </Button>
         <div style={styles.divFlexRow}>
-          <Button
-            style={styles.forgotBtn}
-            onClick={handleForgotPassword}
-            text={'Forgot Password?'}
-          />
+          <Button style={styles.forgotBtn} onClick={handleForgotPassword}>
+            Forgot Password?
+          </Button>
           <Button
             style={styles.registerBtn}
             onClick={() => console.log('register clicked')}
-            text={'Register'}
-          />
+          >
+            Register
+          </Button>
         </div>
         <div style={{ position: 'relative' }}>
           <img
@@ -106,12 +102,9 @@ export default function SignInRegisterPage() {
               borderRadius: '5px',
             }}
           />
-          <Button
-            style={styles.button}
-            onClick={signInWithGoogle}
-            icon={''}
-            text={'sign in with Google'}
-          />
+          <Button style={styles.button} onClick={signInWithGoogle} icon={''}>
+            sign in with Google
+          </Button>
         </div>
       </div>
       <Footer />

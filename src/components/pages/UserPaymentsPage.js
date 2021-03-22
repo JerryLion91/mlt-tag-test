@@ -17,23 +17,17 @@ export default function PaymentsPage() {
     <>
       <Header>
         <SettingsButton />
-        <Button
-          onClick={() => history.push(from)}
-          icon={'navigate_before'}
-          text={''}
-        />
+        <Button onClick={() => history.push(from)} icon={'navigate_before'} />
       </Header>
       <AppBody>PaymentsPage</AppBody>
       <Footer>
-        <Button onClick={() => history.push('/')} text={'Home'} />
-        <Button
-          onClick={() => history.push('/tag-constructor')}
-          text={'Tag Designer'}
-        />
-        <Button
-          onClick={() => history.push('/contact-form')}
-          text={'Contact Us'}
-        />
+        <Button onClick={() => history.push('/')}>Home</Button>
+        <Button onClick={() => history.push('/tag-constructor')}>
+          Tag Designer
+        </Button>
+        <Button onClick={() => history.push('/contact-form')}>
+          Contact Us
+        </Button>
       </Footer>
     </>
   );

@@ -3,10 +3,12 @@ import React from 'react';
 export default function Button({
   onClick,
   icon,
-  text = '',
   classNames,
   style,
+  children
 }) {
+  
+  const text = children || ''
   return (
     <a
       className={` ${classNames}`}
