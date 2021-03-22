@@ -53,7 +53,7 @@ const styles = {
   },
   button: {
     margin: '50px',
-    padding: '12px',
+    padding: '8px 40px',
     borderRadius: '5px',
     color: 'white',
     fontWeight: '500',

@@ -53,7 +53,7 @@ const styles = {
   },
   h1heading: {
     margin: '0.4em',
-    fontWeight: '500',
+    fontWeight: '550',
     fontSize: 'calc(25px + 2vmin)',
   },
   h3heading: {

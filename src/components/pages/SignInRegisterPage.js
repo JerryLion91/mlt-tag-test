@@ -26,7 +26,7 @@ export default function SignInRegisterPage() {
       .then((user) => {
         // Signed in
         // ...
-        console.log(user);
+        // console.log(user);
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -91,12 +91,28 @@ export default function SignInRegisterPage() {
             text={'Register'}
           />
         </div>
-        <Button
-          style={styles.button}
-          onClick={signInWithGoogle}
-          icon={''}
-          text={'sign in with Google'}
-        />
+        <div style={{ position: 'relative' }}>
+          <img
+            src={'google.jpg'}
+            alt={''}
+            style={{
+              height: '36px',
+              width: '36px',
+              position: 'absolute',
+              left: '0',
+              bottom: '0',
+              margin: '25px 0px 5px 0px',
+              border: 'solid 1px #520369',
+              borderRadius: '5px',
+            }}
+          />
+          <Button
+            style={styles.button}
+            onClick={signInWithGoogle}
+            icon={''}
+            text={'sign in with Google'}
+          />
+        </div>
       </div>
       <Footer />
     </>
@@ -127,7 +143,7 @@ const styles = {
   heading1: {
     color: '#37474f',
     fontFamily: 'Quicksand',
-    fontWeight: 700,
+    fontWeight: 650,
     margin: '10px 0px',
     fontSize: 'calc(23px + 1vmin)',
     textAlign: 'left',
@@ -139,7 +155,7 @@ const styles = {
     fontSize: '16px',
     fontSize: 'calc(10px + 1vmin)',
     textAlign: 'left',
-    margin: '10px 0px',
+    margin: '10px 0px 50px 0px',
   },
   forgotBtn: {
     color: '#7a7a7a',

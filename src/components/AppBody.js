@@ -13,7 +13,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    fontSize: 'calc(15px + 1vmin)',
+    fontSize: 'calc(10px + 1vmin)',
     color: 'rgb(241, 226, 13)',
   },
 };

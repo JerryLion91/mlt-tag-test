@@ -31,6 +31,7 @@ const styles = {
   },
   button: {
     margin: '3px',
+    padding: '3px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

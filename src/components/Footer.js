@@ -11,7 +11,7 @@ export default function Footer({ children }) {
           alt={''}
           style={{ height: '25px', marginRight: '5px' }}
         />
-        <span style={{ fontWeight: 'bolder' }}>M.L.T. Designs</span>
+        <span style={{ fontWeight: '500' }}>M.L.T. Designs</span>
       </div>
     </footer>
   );
@@ -35,6 +35,7 @@ const styles = {
     flexFlow: 'column wrap',
   },
   divFlexRow: {
+    margin: '10px 0px 0px 0px',
     padding: '15px',
     display: 'flex',
     justifyContent: 'center',
