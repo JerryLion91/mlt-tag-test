@@ -6,7 +6,7 @@ import Header from '../Header';
 import SettingsButton from '../SettingsButton';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
-import AdressCard from '../AdressCard';
+import CardAdress from '../CardAdress';
 
 export default function AddressesPage() {
   const auth = useAuth();
@@ -26,7 +26,7 @@ export default function AddressesPage() {
     {
       firstName: 'Lucas',
       lastName: 'Santos',
-      street: 'Somwhere, 843',
+      street: 'Somewhere, 843',
       country: 'Cayman Island',
       city: 'Island 1',
       postalCode: '00000-000',
@@ -46,7 +46,7 @@ export default function AddressesPage() {
       <AppBody>
         {addresses.map((address, index) => {
           return (
-            <AdressCard
+            <CardAdress
               address={address}
               index={index}
               handleDelete={handleDelete}

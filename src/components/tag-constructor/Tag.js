@@ -81,5 +81,6 @@ export default function Tag(props) {
 Tag.propTypes = {
   tag: PropTypes.object.isRequired,
   spaceBetween: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
   startPosition: PropTypes.number,
 };
