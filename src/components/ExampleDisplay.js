@@ -39,6 +39,7 @@ const styles = {
     alignItems: 'center',
     flexDirection: 'column',
     color: '#520369',
+    fontWeight: '500',
     width: '60vw',
     maxWidth: '280px',
   },

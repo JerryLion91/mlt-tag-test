@@ -68,7 +68,11 @@ export default function SettingsButton() {
       <Button onClick={handleOpenModal} icon={'settings'} />
       <Modal
         styles={{
-          modal: { position: 'absolute', right: '30%', top: '0px' },
+          modal: {
+            position: 'absolute',
+            right: '30%',
+            top: '0px',
+          },
         }}
         open={showModal}
         onClose={handleCloseModal}
@@ -77,7 +81,7 @@ export default function SettingsButton() {
         {user ? (
           <div style={styles.modalFlexColumn}>
             {user.displayName && (
-              <p>
+              <p style={{ color: '#37474f' }}>
                 Hello <br />
                 {user.displayName}!
               </p>
@@ -127,6 +131,9 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+    color: '#882aa2',
+    fontFamily: 'Asap',
+    fontWeight: '600',
   },
   button: {
     margin: '50px',

@@ -16,7 +16,10 @@ export default function Input({
     if (onFocus) onFocus();
   };
   return (
-    <div className="input-container" style={{ width: width }}>
+    <div
+      className="input-container"
+      style={{ width: width, margin: '30px 0px' }}
+    >
       <input
         type={type}
         value={value}

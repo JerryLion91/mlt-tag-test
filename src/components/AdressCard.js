@@ -1,0 +1,91 @@
+import React from 'react';
+import Input from './Input';
+import Button from './Button';
+
+export default function AdressCard({ address, index, handleDelete }) {
+  const { firstName, lastName, street, country, city, postalCode } = address;
+  return (
+    <div style={styles.cardParent}>
+      <div style={styles.divFlexRow}>
+        <span style={{ alignSelf: 'center' }}>Address {index + 1}</span>
+        <Button onClick={() => handleDelete(index)} icon={'delete_forever'} />
+      </div>
+      <div style={styles.card}>
+        <Input
+          type="text"
+          label="First Name:"
+          value={firstName}
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+        <Input
+          type="text"
+          label="Last Name:"
+          value={lastName}
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+        <Input
+          type="text"
+          label="Street:"
+          value={street}
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+        <Input
+          type="text"
+          label="City:"
+          value={city}
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+        <Input
+          type="text"
+          label="Country:"
+          value={country}
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+        <Input
+          type="text"
+          label="Postal Code:"
+          value={postalCode}
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  cardParent: {
+    minWidth: '150px',
+    maxWidth: '400px',
+    width: '40vw',
+    padding: '20px',
+    margin: '15px',
+    border: 'solid 2px #DCDCDC',
+    borderRadius: '5px',
+    color: '#882aa2',
+    fontWeight: '500',
+  },
+  card: {
+    width: '80%',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '15px',
+    margin: '15px',
+  },
+  divFlexRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+  },
+};

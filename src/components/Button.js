@@ -1,14 +1,7 @@
 import React from 'react';
 
-export default function Button({
-  onClick,
-  icon,
-  classNames,
-  style,
-  children
-}) {
-  
-  const text = children || ''
+export default function Button({ onClick, icon, classNames, style, children }) {
+  const text = children || '';
   return (
     <a
       className={` ${classNames}`}
@@ -30,6 +23,7 @@ const styles = {
   icon: {
     color: 'grey',
     fontSize: 'calc(15px + 1.5vmin)',
+    margin: '3px',
   },
   button: {
     margin: '3px',
