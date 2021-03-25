@@ -25,7 +25,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <Header>
+      <Header subtitle="My Profile">
         <SettingsButton />
         <Button onClick={() => history.push(from)} icon={'navigate_before'} />
       </Header>

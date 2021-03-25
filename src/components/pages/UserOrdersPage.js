@@ -15,7 +15,7 @@ export default function OrdersPage() {
 
   return (
     <>
-      <Header>
+      <Header subtitle="My Orders">
         <SettingsButton />
         <Button onClick={() => history.push(from)} icon={'navigate_before'} />
       </Header>

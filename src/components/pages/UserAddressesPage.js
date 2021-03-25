@@ -15,7 +15,7 @@ export default function AddressesPage() {
 
   return (
     <>
-      <Header>
+      <Header subtitle="My Addresses">
         <SettingsButton />
         <Button onClick={() => history.push(from)} icon={'navigate_before'} />
       </Header>

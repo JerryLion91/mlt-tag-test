@@ -15,7 +15,7 @@ export default function PaymentsPage() {
 
   return (
     <>
-      <Header>
+      <Header subtitle="My Payments Options">
         <SettingsButton />
         <Button onClick={() => history.push(from)} icon={'navigate_before'} />
       </Header>
