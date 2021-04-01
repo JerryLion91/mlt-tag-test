@@ -6,12 +6,14 @@ import Header from '../Header';
 import SettingsButton from '../SettingsButton';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
-import { useFirestore } from '../../helpers/use-firestore';
 import Input from '../Input';
+import { useFirestore } from '../../helpers/use-firestore';
 
 export default function ProfilePage() {
   let location = useLocation();
   let history = useHistory();
+  const { userColectionRef } = useFirestore();
+
   let { from } = location.state || { from: '/' };
 
   const auth = useAuth();
@@ -23,32 +25,188 @@ export default function ProfilePage() {
   const [userEmail, setUserEmail] = React.useState(email);
   const handleUserEmailChange = (newEmail) => setUserEmail(newEmail);
 
+  const [userOldPwd, setUserOldPwd] = React.useState('');
+  const handleUserOldPwdChange = (tipedOldPwd) => setUserOldPwd(tipedOldPwd);
+
+  const [userNewPwd, setUserNewPwd] = React.useState('');
+  const handleUserNewPwdChange = (tipedNewPwd) => setUserNewPwd(tipedNewPwd);
+
+  const [userNewPwd2, setUserNewPwd2] = React.useState('');
+  const handleUserNewPwdChange2 = (tipedNewPwd) => setUserNewPwd2(tipedNewPwd);
+
+  const [pwdInput, setPwdInput] = React.useState(false);
+  const handleUpdatePassword = () => setPwdInput(false);
+
+  const handleForgotPassword = () => {
+    // auth.sendPasswordResetEmail(userEmail);
+    setPwdInput(false);
+  };
+
+  const goBack = () => {
+    if (userName !== displayName) {
+      alert('Confirm the name change first');
+      return;
+    }
+    if (userEmail !== email) {
+      alert('Confirm the email change first');
+      return;
+    }
+    if (pwdInput) {
+      alert('Confirm the password change first');
+      return;
+    }
+    history.push(from);
+  };
+
+  React.useEffect(() => {
+    let users = [];
+    userColectionRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          users.push({ id: doc.id, ...doc.data() });
+        });
+        console.log(users);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const clickHere = () => {};
+
   return (
     <>
       <Header subtitle="My Profile">
         <SettingsButton />
-        <Button onClick={() => history.push(from)} icon={'navigate_before'} />
+        <Button onClick={goBack} icon={'navigate_before'} />
       </Header>
       <AppBody>
         <img
           src={photoURL}
           style={{ borderRadius: '50%', height: '10vh', margin: '40px' }}
         />
-        <Input
-          type="text"
-          label="Username"
-          value={userName}
-          onChange={handleUsernameChange}
-        />
-        <Input
-          type="email"
-          label="Email"
-          value={userEmail}
-          onChange={handleUserEmailChange}
-        />
-        <Button style={styles.button} onClick={() => alert('update clicked')}>
-          Update Password
-        </Button>
+        <div style={{ position: 'relative' }}>
+          <Button
+            style={{
+              border: 'solid 1px black',
+              fontSize: '20px',
+            }}
+            onClick={clickHere}
+            icon={'trash'}
+          >
+            Click Here
+          </Button>
+
+          <Input
+            type="text"
+            label="Username"
+            value={userName}
+            onChange={handleUsernameChange}
+          />
+          {userName !== displayName ? (
+            <Button
+              style={{
+                color: 'grey',
+                fontSize: 'calc(15px + 1.5vmin)',
+                position: 'absolute',
+                right: '0',
+                bottom: '0',
+                margin: '0px 0px 35px 0px',
+              }}
+              onClick={() => console.log('NameUpdated')}
+              icon={'sync'}
+            />
+          ) : (
+            <i
+              style={{
+                width: '30px',
+                color: 'grey',
+                fontSize: 'calc(15px + 1.5vmin)',
+                position: 'absolute',
+                right: '0',
+                bottom: '0',
+                margin: '0px 0px 35px 0px',
+              }}
+              className="material-icons"
+            >
+              checked
+            </i>
+          )}
+        </div>
+        <div style={{ position: 'relative' }}>
+          <Input
+            type="email"
+            label="Email"
+            value={userEmail}
+            onChange={handleUserEmailChange}
+          />
+          {userEmail !== email ? (
+            <Button
+              style={{
+                color: 'grey',
+                fontSize: 'calc(15px + 1.5vmin)',
+                position: 'absolute',
+                right: '0',
+                bottom: '0',
+                margin: '0px 0px 35px 0px',
+              }}
+              onClick={() => console.log('EmailUpdated')}
+              icon={'sync'}
+            />
+          ) : (
+            <i
+              style={{
+                width: '30px',
+                color: 'grey',
+                fontSize: 'calc(15px + 1.5vmin)',
+                position: 'absolute',
+                right: '0',
+                bottom: '0',
+                margin: '0px 0px 35px 0px',
+              }}
+              className="material-icons"
+            >
+              checked
+            </i>
+          )}
+        </div>
+        {pwdInput ? (
+          <div>
+            <Input
+              type="password"
+              label="Current Password"
+              value={userOldPwd}
+              onChange={handleUserOldPwdChange}
+            />
+            <Input
+              type="password"
+              label="New Password"
+              value={userNewPwd}
+              onChange={handleUserNewPwdChange}
+            />
+            <Input
+              type="password"
+              label="Repeat the Password"
+              value={userNewPwd2}
+              onChange={handleUserNewPwdChange2}
+            />
+
+            <Button style={styles.button} onClick={handleUpdatePassword}>
+              Update
+            </Button>
+
+            <Button style={styles.forgotBtn} onClick={handleForgotPassword}>
+              Update password via email
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <Button style={styles.button} onClick={() => setPwdInput(true)}>
+              Change my Password
+            </Button>
+          </div>
+        )}
       </AppBody>
       <Footer>
         <Button onClick={() => history.push('/')}>Home</Button>
@@ -72,5 +230,10 @@ const styles = {
     fontWeight: '500',
     fontFamily: 'Asap , sans-serif',
     backgroundColor: '#882aa2',
+  },
+  forgotBtn: {
+    color: '#7a7a7a',
+    fontFamily: 'Asap',
+    margin: '25px 0px 25px 0px',
   },
 };

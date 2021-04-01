@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import firebase from 'firebase/app';
+import { useFirestore } from './use-firestore';
 import 'firebase/auth';
 
 // Add your Firebase credentials
@@ -33,6 +34,8 @@ export const useAuth = () => {
 function useProvideAuth() {
   const [user, setUser] = useState(null);
 
+  const firestore = useFirestore();
+
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
   const signInWithGooglePopup = async (cb) => {
@@ -50,6 +53,29 @@ function useProvideAuth() {
         var user = response.user;
         // ...
         setUser(user);
+        let users = [];
+        firestore.userColectionRef
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              users.push(doc.data());
+            });
+            if (
+              users.findIndex((element) => {
+                return user.uid === element.uid;
+              }) === -1
+            ) {
+              firestore.addUserDoc({
+                uid: user.uid,
+                displayName: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+              });
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
         cb();
       })
       .catch((error) => {

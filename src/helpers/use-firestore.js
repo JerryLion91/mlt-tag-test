@@ -6,14 +6,13 @@ import 'firebase/firestore';
 
 export const useFirestore = () => {
   const db = firebase.firestore();
-  const userColRef = db.collection('users');
+  const userColectionRef = db.collection('users');
 
   const addUserDoc = async (user) => {
-    userColRef
+    userColectionRef
       .add(user)
       .then((docRef) => {
         console.log(docRef.path);
-        return docRef;
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
@@ -21,7 +20,7 @@ export const useFirestore = () => {
   };
 
   const getUsers = () => {
-    userColRef
+    userColectionRef
       .get()
       .then((col) => {
         return col.docs;
@@ -35,7 +34,38 @@ export const useFirestore = () => {
   };
 
   return {
+    userColectionRef,
     addUserDoc,
     getUsers,
   };
 };
+
+// const thingsList = document.getElementById('thingsList');
+// const createThing = document.getElementById('createThing');
+
+// let thingsRef;
+// let unsubscribe;
+
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     const { serverTimestamp } = firebase.firestore.FieldValue;
+//     thingsRef = db.collection('things');
+//     createThing.onclick = () => {
+//       thingsRef.add({
+//         uid: user.uid,
+//         name: 'random name',
+//         createdAt: serverTimestamp(),
+//       });
+//     };
+//     unsubscribe = thingsRef
+//       .where('uid', '==', user.uid)
+//       .onSnapshot((querySnapshot) => {
+//         const itens = querySnapshot.docs.map((doc) => {
+//           return `<li>${doc.data().name}</li>`;
+//         });
+//         thingsList.innerHTML = itens.join('');
+//       });
+//   } else {
+//     unsubscribe && unsubscribe();
+//   }
+// });
