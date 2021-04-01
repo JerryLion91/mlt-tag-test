@@ -73,8 +73,6 @@ export default function ProfilePage() {
       });
   }, []);
 
-  const clickHere = () => {};
-
   return (
     <>
       <Header subtitle="My Profile">
@@ -87,17 +85,6 @@ export default function ProfilePage() {
           style={{ borderRadius: '50%', height: '10vh', margin: '40px' }}
         />
         <div style={{ position: 'relative' }}>
-          <Button
-            style={{
-              border: 'solid 1px black',
-              fontSize: '20px',
-            }}
-            onClick={clickHere}
-            icon={'trash'}
-          >
-            Click Here
-          </Button>
-
           <Input
             type="text"
             label="Username"
