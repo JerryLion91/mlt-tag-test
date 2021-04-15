@@ -14,7 +14,7 @@ export default function AddressesPage() {
   let history = useHistory();
   let { from } = location.state || { from: '/' };
 
-  const addresses = [
+  const [addresses, setAddresses] = React.useState([
     {
       firstName: 'Jerry',
       lastName: 'Lion',
@@ -22,6 +22,7 @@ export default function AddressesPage() {
       country: 'Brazil',
       city: 'Varzea',
       postalCode: '13222-005',
+      saved: true,
     },
     {
       firstName: 'Lucas',
@@ -30,11 +31,32 @@ export default function AddressesPage() {
       country: 'Cayman Island',
       city: 'Island 1',
       postalCode: '00000-000',
+      saved: true,
     },
-  ];
+  ]);
+
+  const addNewAddress = () => {
+    setAddresses((prevState) => {
+      const blank = {
+        firstName: '',
+        lastName: '',
+        street: '',
+        country: '',
+        city: '',
+        postalCode: '',
+        saved: false,
+      };
+      return [...prevState, blank];
+    });
+    console.log('object');
+  };
 
   const handleDelete = (index) => {
     console.log(`${index}: address index delete button clicked`);
+  };
+
+  const handleChange = (index) => {
+    console.log(`${index}: address index change button clicked`);
   };
 
   return (
@@ -47,15 +69,17 @@ export default function AddressesPage() {
         {addresses.map((address, index) => {
           return (
             <CardAdress
+              key={index}
               address={address}
               index={index}
               handleDelete={handleDelete}
+              handleChange={handleChange}
             />
           );
         })}
         <div style={styles.divStyle}>
           <Button
-            onClick={() => history.push('/register')}
+            onClick={addNewAddress}
             icon={'add_location'}
             style={styles.addNewButton}
           >

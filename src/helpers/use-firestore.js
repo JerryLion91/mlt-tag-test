@@ -24,9 +24,6 @@ export const useFirestore = () => {
       .get()
       .then((col) => {
         return col.docs;
-        if (col.size > 0) {
-          return col.docs;
-        }
       })
       .catch((error) => {
         console.error('Error getting users: ', error);

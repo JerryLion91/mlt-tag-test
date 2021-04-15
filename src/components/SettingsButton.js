@@ -88,12 +88,12 @@ export default function SettingsButton() {
             <Button onClick={handleUserButton} icon={'account_box'}>
               Profile
             </Button>
-            <Button
+            {/* <Button
               onClick={handlePaymentsButton}
               icon={'account_balance_wallet'}
             >
               Payments
-            </Button>
+            </Button> */}
             <Button onClick={handleAdressesButton} icon={'location_on'}>
               Addresses
             </Button>

@@ -2,13 +2,31 @@ import React from 'react';
 import Input from './Input';
 import Button from './Button';
 
-export default function AdressCard({ address, index, handleDelete }) {
-  const { firstName, lastName, street, country, city, postalCode } = address;
+export default function AdressCard({
+  address,
+  index,
+  handleDelete,
+  handleChange,
+}) {
+  const {
+    firstName,
+    lastName,
+    street,
+    country,
+    city,
+    postalCode,
+    saved,
+  } = address;
+
   return (
     <div style={styles.cardParent}>
       <div style={styles.divFlexRow}>
         <span style={{ alignSelf: 'center' }}>Address {index + 1}</span>
-        <Button onClick={() => handleDelete(index)} icon={'delete_forever'} />
+        {saved ? (
+          <Button onClick={() => handleDelete(index)} icon={'delete_forever'} />
+        ) : (
+          <Button onClick={() => handleChange(index)} icon={'sync'} />
+        )}
       </div>
       <div style={styles.card}>
         <Input
