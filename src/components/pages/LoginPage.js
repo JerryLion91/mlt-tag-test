@@ -5,7 +5,7 @@ import Button from '../Button';
 import Footer from '../Footer';
 import Input from '../Input';
 
-export default function SignInRegisterPage() {
+export default function LoginPage() {
   const auth = useAuth();
   let location = useLocation();
   let history = useHistory();
@@ -14,28 +14,32 @@ export default function SignInRegisterPage() {
   const [userEmail, setUserEmail] = React.useState('');
   const handleEmailChange = (newEmail) => setUserEmail(newEmail);
 
-  const [userPassword, setuserPassword] = React.useState('');
-  const handlePasswordChange = (newPassword) => setuserPassword(newPassword);
+  const [userPassword, setUserPassword] = React.useState('');
+  const handlePasswordChange = (newPassword) => setUserPassword(newPassword);
 
   const signInWithEmail = () => {
-    console.log(userEmail);
-    console.log(userPassword);
-
     auth
       .signInWithEmailAndPassword(userEmail, userPassword)
       .then((user) => {
         // Signed in
         // ...
         // console.log(user);
+        history.push(from.pathname);
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.error(error);
+        if (errorCode === 'auth/user-not-found') {
+          alert(
+            errorMessage +
+              'DEVELOPER IDEIA: MESSAGE BOX ASKING TO REGISTER: IN CASE YES GO TO REGISTER, IN CASE NOT GO TO HOMEPAGE'
+          );
+          history.push('/login/register');
+        }
         console.log(errorCode);
+
         console.log(errorMessage);
       });
-    // if user not found redirect to the register page
   };
 
   const signInWithGoogle = () => {
@@ -44,6 +48,7 @@ export default function SignInRegisterPage() {
 
   const handleForgotPassword = () => {
     auth.sendPasswordResetEmail(userEmail);
+    alert('We will send you an email to change the password');
   };
 
   return (
@@ -82,7 +87,7 @@ export default function SignInRegisterPage() {
           </Button>
           <Button
             style={styles.registerBtn}
-            onClick={() => console.log('register clicked')}
+            onClick={() => history.push('/login/register')}
           >
             Register
           </Button>

@@ -11,7 +11,6 @@ export default function SettingsButton() {
   const user = auth.user;
   let location = useLocation();
   let history = useHistory();
-
   const [showModal, setShowModal] = React.useState(false);
 
   const handleOpenModal = () => {
@@ -114,7 +113,7 @@ export default function SettingsButton() {
               Login
             </Button>
             <Button
-              onClick={() => history.push('/register')}
+              onClick={() => history.push('/login/register')}
               icon={'person_add'}
             >
               Register

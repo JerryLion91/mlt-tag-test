@@ -99,12 +99,33 @@ function useProvideAuth() {
       });
   };
 
-  const signup = async (email, password) => {
+  const signup = async (email, password, username) => {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         setUser(response.user);
+        const user = firebase.auth().currentUser;
+        user
+          .updateProfile({
+            displayName: username,
+          })
+          .then(() => {
+            // Update successful.
+          })
+          .catch((error) => {
+            // An error happened.
+          });
+        user
+          .sendEmailVerification()
+          .then(() => {
+            // Email sent.
+          })
+          .catch((error) => {
+            // An error happened.
+            console.log(error.code);
+            console.log(error.message);
+          });
         return response.user;
       });
   };
@@ -116,6 +137,37 @@ function useProvideAuth() {
       .then(() => {
         setUser(false);
         cb();
+      });
+  };
+
+  const updateUserName = async (userName) => {
+    return firebase
+      .auth()
+      .currentUser.updateProfile({
+        displayName: userName,
+      })
+      .then(() => {
+        setUser(firebase.auth().currentUser);
+      });
+  };
+
+  const updateUserEmail = async (userEmail) => {
+    return firebase
+      .auth()
+      .currentUser.updateEmail(userEmail)
+      .then(() => {
+        firebase
+          .auth()
+          .currentUser.sendEmailVerification()
+          .then(() => {
+            // Email sent.
+          })
+          .catch((error) => {
+            // An error happened.
+            console.log(error.code);
+            console.log(error.message);
+          });
+        setUser(firebase.auth().currentUser);
       });
   };
 
@@ -161,6 +213,8 @@ function useProvideAuth() {
     signInWithEmailAndPassword,
     signup,
     signout,
+    updateUserName,
+    updateUserEmail,
     sendPasswordResetEmail,
     confirmPasswordReset,
   };

@@ -12,7 +12,6 @@ import { useFirestore } from '../../helpers/use-firestore';
 export default function ProfilePage() {
   let location = useLocation();
   let history = useHistory();
-  const { userColectionRef } = useFirestore();
 
   let { from } = location.state || { from: '/' };
 
@@ -38,12 +37,17 @@ export default function ProfilePage() {
   const handleUpdatePassword = () => setPwdInput(false);
 
   const handleForgotPassword = () => {
-    // auth.sendPasswordResetEmail(userEmail);
     setPwdInput(false);
+    if (auth.user.emailVerified === false) {
+      alert('EMAIL NOT VERIFIED');
+    }
+    auth.sendPasswordResetEmail(userEmail);
+    alert('We will send you an email to change the password');
   };
 
   const goBack = () => {
     if (userName !== displayName) {
+      console.log(displayName);
       alert('Confirm the name change first');
       return;
     }
@@ -58,21 +62,31 @@ export default function ProfilePage() {
     history.push(from);
   };
 
-  React.useEffect(() => {
-    let users = [];
-    userColectionRef
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          users.push({ id: doc.id, ...doc.data() });
-        });
-        console.log(users);
+  const handleUpdateUserName = () => {
+    auth.updateUserName(userName).then(() => {
+      setUserName('');
+      setUserName(auth.user.displayName);
+    });
+  };
+
+  const handleUpdateEmail = () => {
+    auth
+      .updateUserEmail(userEmail)
+      .then(() => {
+        setUserEmail('');
+        setUserEmail(auth.user.email);
       })
       .catch((error) => {
-        console.error(error);
+        if (error.code === 'auth/requires-recent-login') {
+          alert(error.message + 'DEVELOPER IDEA: REDIRECT TO LOGIN PAGE');
+        }
+        if (error.com === 'auth/invalid-email') {
+          alert(error.message);
+        }
+        console.log(error);
       });
-  }, []);
-
+    console.log('EmailUpdated');
+  };
   return (
     <>
       <Header subtitle="My Profile">
@@ -80,10 +94,12 @@ export default function ProfilePage() {
         <Button onClick={goBack} icon={'navigate_before'} />
       </Header>
       <AppBody>
-        <img
-          src={photoURL}
-          style={{ borderRadius: '50%', height: '10vh', margin: '40px' }}
-        />
+        {photoURL && (
+          <img
+            src={photoURL}
+            style={{ borderRadius: '50%', height: '10vh', margin: '20px' }}
+          />
+        )}
         <div style={{ position: 'relative' }}>
           <Input
             type="text"
@@ -101,7 +117,7 @@ export default function ProfilePage() {
                 bottom: '0',
                 margin: '0px 0px 35px 0px',
               }}
-              onClick={() => console.log('NameUpdated')}
+              onClick={handleUpdateUserName}
               icon={'sync'}
             />
           ) : (
@@ -138,7 +154,7 @@ export default function ProfilePage() {
                 bottom: '0',
                 margin: '0px 0px 35px 0px',
               }}
-              onClick={() => console.log('EmailUpdated')}
+              onClick={handleUpdateEmail}
               icon={'sync'}
             />
           ) : (
@@ -178,11 +194,9 @@ export default function ProfilePage() {
               value={userNewPwd2}
               onChange={handleUserNewPwdChange2}
             />
-
             <Button style={styles.button} onClick={handleUpdatePassword}>
               Update
             </Button>
-
             <Button style={styles.forgotBtn} onClick={handleForgotPassword}>
               Update password via email
             </Button>
@@ -213,13 +227,15 @@ const styles = {
     margin: '25px 0px 5px 0px',
     padding: '10px',
     borderRadius: '5px',
+
     color: 'white',
     fontWeight: '500',
     fontFamily: 'Asap , sans-serif',
     backgroundColor: '#882aa2',
   },
   forgotBtn: {
-    color: '#7a7a7a',
+    color: '#882aa2',
+    fontWeight: '500',
     fontFamily: 'Asap',
     margin: '25px 0px 25px 0px',
   },

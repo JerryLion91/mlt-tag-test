@@ -11,7 +11,8 @@ import ParentUser from './components/ParentUser';
 
 import LoadingPage from './components/pages/LoadingPage';
 import HomePage from './components/pages/HomePage';
-import SignInRegisterPage from './components/pages/SignInRegisterPage';
+import LoginPage from './components/pages/LoginPage';
+import RegisterPage from './components/pages/RegisterPage';
 
 import { ProvideAuth } from './helpers/use-auth.js';
 import { useAuth } from './helpers/use-auth.js';
@@ -46,7 +47,7 @@ export default function App() {
                   }}
                 />
               ) : (
-                <SignInRegisterPage />
+                <RegisterPage />
               )}
             </Route>
             <Route path="/login">
@@ -57,7 +58,7 @@ export default function App() {
                   }}
                 />
               ) : (
-                <SignInRegisterPage />
+                <LoginPage />
               )}
             </Route>
             <Route path="/tag-constructor">

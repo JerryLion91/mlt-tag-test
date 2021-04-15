@@ -12,7 +12,7 @@ export const useFirestore = () => {
     userColectionRef
       .add(user)
       .then((docRef) => {
-        console.log(docRef.path);
+        // console.log(docRef.path);
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
