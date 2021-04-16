@@ -37,7 +37,7 @@ export default function AddressesPage() {
 
   const addNewAddress = () => {
     setAddresses((prevState) => {
-      const blank = {
+      const blankAddress = {
         firstName: '',
         lastName: '',
         street: '',
@@ -46,7 +46,7 @@ export default function AddressesPage() {
         postalCode: '',
         saved: false,
       };
-      return [...prevState, blank];
+      return [...prevState, blankAddress];
     });
     console.log('object');
   };

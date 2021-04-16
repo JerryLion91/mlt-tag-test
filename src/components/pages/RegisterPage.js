@@ -4,6 +4,7 @@ import { useAuth } from '../../helpers/use-auth';
 import Button from '../Button';
 import Footer from '../Footer';
 import Input from '../Input';
+import CardAdress from '../CardAdress';
 
 import { useFirestore } from '../../helpers/use-firestore';
 
@@ -26,6 +27,24 @@ export default function RegisterPage() {
 
   const [userEmail, setUserEmail] = React.useState('');
   const handleEmailChange = (newEmail) => setUserEmail(newEmail);
+
+  const [addressInput, setAddressInput] = React.useState(false);
+  const handleDeleteAddress = () => {
+    setAddressInput(false);
+  };
+  const handleChangeAddress = () => {
+    setAddressInput(false);
+  };
+
+  const blankAddress = {
+    firstName: '',
+    lastName: '',
+    street: '',
+    country: '',
+    city: '',
+    postalCode: '',
+    saved: false,
+  };
 
   const handleRegister = () => {
     if (userPassword !== userRepeatedPassword) {
@@ -95,6 +114,25 @@ export default function RegisterPage() {
           value={userEmail}
           onChange={handleEmailChange}
         />
+        {addressInput ? (
+          <CardAdress
+            address={blankAddress}
+            index={0}
+            handleDelete={handleDeleteAddress}
+            handleChange={handleChangeAddress}
+          />
+        ) : (
+          <div style={styles.divStyle}>
+            <Button
+              onClick={() => setAddressInput(true)}
+              icon={'add_location'}
+              style={styles.addNewButton}
+            >
+              Add New Address
+            </Button>
+          </div>
+        )}
+
         <Button style={styles.button} onClick={handleRegister} icon={''}>
           Register
         </Button>
@@ -166,5 +204,15 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'stretch',
+  },
+  addNewButton: {
+    alignSelf: 'flex-start',
+    color: '#882aa2',
+  },
+  divStyle: {
+    display: 'flex',
+    minWidth: '150px',
+    maxWidth: '400px',
+    width: '40vw',
   },
 };

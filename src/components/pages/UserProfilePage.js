@@ -7,7 +7,6 @@ import SettingsButton from '../SettingsButton';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
 import Input from '../Input';
-import { useFirestore } from '../../helpers/use-firestore';
 
 export default function ProfilePage() {
   let location = useLocation();
