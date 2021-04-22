@@ -18,7 +18,7 @@ export default function Tag(props) {
   const { typedName, fontFamily } = props.tag;
   const { spaceBetween, size, styles } = props;
 
-  let startPosition = 0;
+  let startPosition = 150;
 
   if (props.startPosition) {
     startPosition = props.startPosition;

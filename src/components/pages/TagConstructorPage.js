@@ -7,6 +7,8 @@ import AppBody from '../AppBody';
 import Button from '../Button';
 import { useHistory } from 'react-router-dom';
 
+import styles from '../../styles/styles';
+
 export default function TagConstructorPage({ onAddTag }) {
   let history = useHistory();
 
@@ -20,7 +22,7 @@ export default function TagConstructorPage({ onAddTag }) {
 
   const handleTagChange = (newTag) => setTag(newTag);
 
-  const [startPosition, setStartPosition] = React.useState(0);
+  const [startPosition, setStartPosition] = React.useState(150);
   const handleStartInput = (newPosition) => {
     setStartPosition(newPosition);
   };
@@ -67,7 +69,15 @@ export default function TagConstructorPage({ onAddTag }) {
           onPositionSelected={handleStartInput}
           onSpaceSelected={handleSpaceInput}
         />
-        <Button style={styles.button} onClick={handleFinishClick} icon={''}>
+        <Button
+          style={{
+            ...styles.btnFilledPurple,
+            // this btn inst in a parent div with width, alignSelf is solution
+            alignSelf: 'center',
+          }}
+          onClick={handleFinishClick}
+          icon={''}
+        >
           Finish Design
         </Button>
       </AppBody>
@@ -75,16 +85,3 @@ export default function TagConstructorPage({ onAddTag }) {
     </>
   );
 }
-
-const styles = {
-  button: {
-    margin: '50px',
-    padding: '8px',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    fontSize: 'calc(5px + 1.3vmin)',
-    backgroundColor: '#882aa2',
-  },
-};
