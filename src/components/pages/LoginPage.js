@@ -5,6 +5,8 @@ import Button from '../Button';
 import Footer from '../Footer';
 import Input from '../Input';
 
+import styles from '../../styles/styles';
+
 export default function LoginPage() {
   const auth = useAuth();
   let location = useLocation();
@@ -53,7 +55,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <header style={styles.header}>
+      <header style={styles.loginHeader}>
         <img
           src={'logoLogin.svg'}
           alt={''}
@@ -64,8 +66,10 @@ export default function LoginPage() {
         </span>
       </header>
       <div style={styles.divFlexColumn}>
-        <span style={styles.heading1}>Login</span>
-        <span style={styles.heading2}>Hi there! Nice to see you again</span>
+        <span style={styles.loginHeading1}>Login</span>
+        <span style={styles.loginHeading2}>
+          Hi there! Nice to see you again
+        </span>
         <Input
           type="email"
           label="Email"
@@ -78,15 +82,19 @@ export default function LoginPage() {
           value={userPassword}
           onChange={handlePasswordChange}
         />
-        <Button style={styles.button} onClick={signInWithEmail} icon={''}>
+        <Button
+          style={styles.btnFilledPurple}
+          onClick={signInWithEmail}
+          icon={''}
+        >
           Login
         </Button>
         <div style={styles.divFlexRow}>
-          <Button style={styles.forgotBtn} onClick={handleForgotPassword}>
+          <Button style={styles.btnUnfilledGray} onClick={handleForgotPassword}>
             Forgot Password?
           </Button>
           <Button
-            style={styles.registerBtn}
+            style={styles.btnUnfilledColor}
             onClick={() => history.push('/login/register')}
           >
             Register
@@ -107,7 +115,11 @@ export default function LoginPage() {
               borderRadius: '5px',
             }}
           />
-          <Button style={styles.button} onClick={signInWithGoogle} icon={''}>
+          <Button
+            style={styles.btnFilledPurple}
+            onClick={signInWithGoogle}
+            icon={''}
+          >
             sign in with Google
           </Button>
         </div>
@@ -116,68 +128,3 @@ export default function LoginPage() {
     </>
   );
 }
-
-const styles = {
-  header: {
-    flex: '0 0 auto',
-    marginTop: '5vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    color: '#520369',
-    fontFamily: "'Quicksand', sans-serif",
-  },
-  button: {
-    margin: '25px 0px 5px 0px',
-    padding: '10px',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    backgroundColor: '#882aa2',
-    alignSelf: 'stretch',
-  },
-  heading1: {
-    color: '#37474f',
-    fontFamily: 'Quicksand',
-    fontWeight: 650,
-    margin: '10px 0px',
-    fontSize: 'calc(23px + 1vmin)',
-    textAlign: 'left',
-  },
-  heading2: {
-    color: '#7a7a7a',
-    fontfamily: 'Asap',
-    fontWeight: 400,
-    fontSize: '16px',
-    fontSize: 'calc(10px + 1vmin)',
-    textAlign: 'left',
-    margin: '10px 0px 50px 0px',
-  },
-  forgotBtn: {
-    color: '#7a7a7a',
-    fontFamily: 'Asap',
-  },
-  registerBtn: {
-    color: '#882aa2',
-    fontFamily: 'Asap',
-    fontWeight: '700',
-  },
-  divFlexColumn: {
-    minWidth: '150px',
-    maxWidth: '350px',
-    width: '70vw',
-    margin: '5vh auto',
-    display: 'flex',
-    flex: '1 0 auto',
-    flexDirection: 'column',
-  },
-  divFlexRow: {
-    minWidth: '150px',
-    maxWidth: '350px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-  },
-};

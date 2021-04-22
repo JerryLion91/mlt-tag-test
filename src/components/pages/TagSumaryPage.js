@@ -7,6 +7,8 @@ import AppBody from '../AppBody';
 import Footer from '../Footer';
 import Input from '../Input';
 
+import styles from '../../styles/styles';
+
 export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
   let history = useHistory();
 
@@ -44,9 +46,15 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
             quantity,
           } = tag;
           return (
-            <div key={index} style={styles.divLabel}>
+            <div
+              key={index}
+              style={{
+                ...styles.divFlexRow,
+                ...styles.cardParent,
+              }}
+            >
               <Tag size={90} tag={tag} spaceBetween={0} startPosition={0} />
-              <div style={{ margin: '0px 20px', width: '80%' }}>
+              <div style={styles.card}>
                 <p>
                   Tag Name:{' '}
                   <span style={{ color: '#25292b' }}>{typedName}</span>
@@ -62,9 +70,10 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
                   </span>
                 </p>
               </div>
-              <div style={styles.divFlexColumn}>
+              <div>
                 <Input
-                  width={50}
+                  width={40}
+                  label={'Qtd'}
                   type={'number'}
                   value={quantity}
                   onChange={(newNumber) => handleChange(newNumber, index)}
@@ -79,13 +88,13 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
         })}
         <div style={styles.divFlexRow}>
           <Button
-            style={styles.button}
+            style={styles.btnFilledPurple}
             onClick={() => history.push('/tag-constructor')}
           >
             Design Another
           </Button>
           <Button
-            style={styles.button}
+            style={styles.btnFilledPurple}
             onClick={() => console.log('purchase clicked')}
           >
             Purchase
@@ -96,47 +105,3 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
     </>
   );
 }
-
-const styles = {
-  button: {
-    margin: '50px',
-    padding: '8px',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    fontSize: 'calc(5px + 1vmin)',
-    backgroundColor: '#882aa2',
-  },
-  divFlexRow: {
-    minWidth: '150px',
-    maxWidth: '350px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-  },
-  divLabel: {
-    fontSize: 'calc(7px + 1vmin)',
-    display: 'flex',
-    minWidth: '150px',
-    maxWidth: '350px',
-    justifyContent: 'space-between',
-    width: '80vw',
-    color: '#882aa2',
-    fontFamily: 'Asap',
-    fontWeight: '600',
-  },
-  divIcons: {
-    fontSize: 'calc(5px + 1vmin)',
-    display: 'flex',
-    fontFamily: 'Asap',
-    minWidth: '50px',
-    maxWidth: '80px',
-  },
-  divFlexColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-};

@@ -8,6 +8,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
 import CardAdress from '../CardAdress';
 
+import styles from '../../styles/styles';
+
 export default function AddressesPage() {
   const auth = useAuth();
   let location = useLocation();
@@ -77,11 +79,11 @@ export default function AddressesPage() {
             />
           );
         })}
-        <div style={styles.divStyle}>
+        <div style={styles.divFlexRow}>
           <Button
             onClick={addNewAddress}
             icon={'add_location'}
-            style={styles.addNewButton}
+            style={styles.btnUnfilledColor}
           >
             Add New Address
           </Button>
@@ -99,18 +101,3 @@ export default function AddressesPage() {
     </>
   );
 }
-
-const styles = {
-  addNewButton: {
-    alignSelf: 'flex-start',
-    color: '#882aa2',
-  },
-  divStyle: {
-    display: 'flex',
-    minWidth: '150px',
-    maxWidth: '400px',
-    width: '40vw',
-    padding: '20px',
-    margin: '15px',
-  },
-};

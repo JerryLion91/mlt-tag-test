@@ -9,6 +9,8 @@ import { useAuth } from '../../helpers/use-auth';
 import Tag from '../tag-constructor/Tag';
 import Status from '../Status';
 
+import styles from '../../styles/styles';
+
 export default function OrdersPage() {
   const auth = useAuth();
   let location = useLocation();
@@ -61,6 +63,13 @@ export default function OrdersPage() {
           outsideColor: 'any',
           quantity: 40,
         },
+        {
+          typedName: 'Francis',
+          fontFamily: 'serif',
+          insideColor: 'any',
+          outsideColor: 'any',
+          quantity: 40,
+        },
       ],
       orderStatus: 'Received',
     },
@@ -77,12 +86,48 @@ export default function OrdersPage() {
           return (
             <div key={index} style={styles.cardParent}>
               <div>
+                {/* 
+
+                      <div>
+                        <Input
+                          width={40}
+                          label={'Qtd'}
+                          type={'number'}
+                          value={quantity}
+                          onChange={(newNumber) =>
+                            handleChange(newNumber, index)
+                          }
+                        />
+                        <Button
+                          onClick={() => handleDelete(index)}
+                          icon={'delete_forever'}
+                        />
+                      </div>
+                    </div>
+                  );
+                })} */}
                 {order.tags.map((tag, index) => {
+                  const { typedName, quantity } = tag;
                   return (
-                    <div key={index} style={styles.divFlexRow}>
-                      <Tag tag={tag} size={50} spaceBetween={0} />
-                      <div>Tag Name: {tag.typedName}</div>
-                      <div>Quantity: {tag.quantity}</div>
+                    <div
+                      key={index}
+                      style={{
+                        ...styles.divFlexRow,
+                        ...styles.card,
+                      }}
+                    >
+                      <Tag tag={tag} size={60} spaceBetween={0} />
+                      <div style={styles.card}>
+                        <span>
+                          Tag Name:{' '}
+                          <span style={{ color: '#25292b' }}>{typedName}</span>
+                        </span>
+                        <br />
+                        <span>
+                          Quantity:{' '}
+                          <span style={{ color: '#25292b' }}>{quantity}</span>
+                        </span>
+                      </div>
                     </div>
                   );
                 })}
@@ -104,29 +149,3 @@ export default function OrdersPage() {
     </>
   );
 }
-
-const styles = {
-  cardParent: {
-    minWidth: '150px',
-    maxWidth: '400px',
-    width: '40vw',
-    padding: '20px',
-    margin: '15px',
-    border: 'solid 2px #DCDCDC',
-    borderRadius: '5px',
-    color: '#882aa2',
-    fontWeight: '500',
-  },
-  card: {
-    width: '80%',
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '15px',
-    margin: '15px',
-  },
-  divFlexRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-  },
-};

@@ -12,6 +12,8 @@ import TagDisplay from '../TagDisplay';
 import ExampleDisplay from '../ExampleDisplay';
 import SettingsButton from '../SettingsButton';
 
+import styles from '../../styles/styles';
+
 export default function HomePage() {
   let history = useHistory();
 
@@ -23,7 +25,11 @@ export default function HomePage() {
       <AppBody>
         <TagDisplay />
         <Button
-          style={styles.button}
+          style={{
+            ...styles.btnFilledPurple,
+            // this btn inst in a parent div with width, alignSelf is solution
+            alignSelf: 'center',
+          }}
           onClick={() => history.push('/tag-constructor')}
           icon={''}
           text={'Design your tag'}
@@ -44,23 +50,6 @@ export default function HomePage() {
     </>
   );
 }
-
-const styles = {
-  modalFlexColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  button: {
-    margin: '50px',
-    padding: '8px 40px',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    backgroundColor: '#882aa2',
-  },
-};
 
 /**
  * ModalReference

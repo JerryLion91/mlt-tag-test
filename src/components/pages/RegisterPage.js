@@ -6,6 +6,8 @@ import Footer from '../Footer';
 import Input from '../Input';
 import CardAdress from '../CardAdress';
 
+import styles from '../../styles/styles';
+
 import { useFirestore } from '../../helpers/use-firestore';
 
 export default function RegisterPage() {
@@ -77,7 +79,7 @@ export default function RegisterPage() {
 
   return (
     <>
-      <header style={styles.header}>
+      <header style={styles.loginHeader}>
         <img
           src={'../logoLogin.svg'}
           alt={''}
@@ -88,8 +90,8 @@ export default function RegisterPage() {
         </span>
       </header>
       <div style={styles.divFlexColumn}>
-        <span style={styles.heading1}>Register</span>
-        <span style={styles.heading2}>Hello! Please to meet you.</span>
+        <span style={styles.loginHeading1}>Register</span>
+        <span style={styles.loginHeading2}>Hello! Please to meet you.</span>
         <Input
           type="text"
           label="Username"
@@ -126,14 +128,18 @@ export default function RegisterPage() {
             <Button
               onClick={() => setAddressInput(true)}
               icon={'add_location'}
-              style={styles.addNewButton}
+              style={styles.btnUnfilledColor}
             >
               Add New Address
             </Button>
           </div>
         )}
 
-        <Button style={styles.button} onClick={handleRegister} icon={''}>
+        <Button
+          style={styles.btnFilledPurple}
+          onClick={handleRegister}
+          icon={''}
+        >
           Register
         </Button>
       </div>
@@ -141,78 +147,3 @@ export default function RegisterPage() {
     </>
   );
 }
-
-const styles = {
-  header: {
-    flex: '0 0 auto',
-    marginTop: '5vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    color: '#520369',
-    fontFamily: "'Quicksand', sans-serif",
-  },
-  button: {
-    margin: '25px 0px 5px 0px',
-    padding: '10px',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    backgroundColor: '#882aa2',
-    alignSelf: 'stretch',
-  },
-  heading1: {
-    color: '#37474f',
-    fontFamily: 'Quicksand',
-    fontWeight: 650,
-    margin: '10px 0px',
-    fontSize: 'calc(23px + 1vmin)',
-    textAlign: 'left',
-  },
-  heading2: {
-    color: '#7a7a7a',
-    fontfamily: 'Asap',
-    fontWeight: 400,
-    fontSize: '16px',
-    fontSize: 'calc(10px + 1vmin)',
-    textAlign: 'left',
-    margin: '10px 0px 50px 0px',
-  },
-  forgotBtn: {
-    color: '#7a7a7a',
-    fontFamily: 'Asap',
-  },
-  registerBtn: {
-    color: '#882aa2',
-    fontFamily: 'Asap',
-    fontWeight: '700',
-  },
-  divFlexColumn: {
-    minWidth: '150px',
-    maxWidth: '350px',
-    width: '70vw',
-    margin: '5vh auto',
-    display: 'flex',
-    flex: '1 0 auto',
-    flexDirection: 'column',
-  },
-  divFlexRow: {
-    minWidth: '150px',
-    maxWidth: '350px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-  },
-  addNewButton: {
-    alignSelf: 'flex-start',
-    color: '#882aa2',
-  },
-  divStyle: {
-    display: 'flex',
-    minWidth: '150px',
-    maxWidth: '400px',
-    width: '40vw',
-  },
-};

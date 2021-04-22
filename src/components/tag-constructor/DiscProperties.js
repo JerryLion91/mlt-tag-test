@@ -3,6 +3,8 @@ import Input from '../Input';
 import Modal from 'react-responsive-modal';
 import Button from '../Button';
 
+import styles from '../../styles/styles';
+
 export default function DiscProperties(props) {
   const {
     tag,
@@ -35,14 +37,28 @@ export default function DiscProperties(props) {
   };
 
   return (
-    <div style={styles.discProperties}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Input
         type="text"
         label={'Tag Name:'}
         value={typedName}
         onChange={handleTypingName}
       />
-      <label htmlFor="name">Font Type:</label>
+      <label
+        htmlFor="name"
+        style={{
+          color: '#882aa2',
+          fontWeight: '600',
+          fontSize: 'calc(8px + 1vmin)',
+        }}
+      >
+        Font Type:
+      </label>
       <select
         defaultValue=""
         name="font"
@@ -85,11 +101,3 @@ export default function DiscProperties(props) {
     </div>
   );
 }
-
-const styles = {
-  discProperties: {
-    display: 'flex',
-    flexDirection: 'column',
-    color: '#520369',
-  },
-};

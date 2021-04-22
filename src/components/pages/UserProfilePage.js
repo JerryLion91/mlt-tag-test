@@ -8,6 +8,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
 import Input from '../Input';
 
+import styles from '../../styles/styles';
+
 export default function ProfilePage() {
   let location = useLocation();
   let history = useHistory();
@@ -193,16 +195,25 @@ export default function ProfilePage() {
               value={userNewPwd2}
               onChange={handleUserNewPwdChange2}
             />
-            <Button style={styles.button} onClick={handleUpdatePassword}>
+            <Button
+              style={styles.btnFilledPurple}
+              onClick={handleUpdatePassword}
+            >
               Update
             </Button>
-            <Button style={styles.forgotBtn} onClick={handleForgotPassword}>
+            <Button
+              style={styles.btnUnfilledGray}
+              onClick={handleForgotPassword}
+            >
               Update password via email
             </Button>
           </div>
         ) : (
           <div>
-            <Button style={styles.button} onClick={() => setPwdInput(true)}>
+            <Button
+              style={styles.btnFilledPurple}
+              onClick={() => setPwdInput(true)}
+            >
               Change my Password
             </Button>
           </div>
@@ -220,22 +231,3 @@ export default function ProfilePage() {
     </>
   );
 }
-
-const styles = {
-  button: {
-    margin: '25px 0px 5px 0px',
-    padding: '10px',
-    borderRadius: '5px',
-
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    backgroundColor: '#882aa2',
-  },
-  forgotBtn: {
-    color: '#882aa2',
-    fontWeight: '500',
-    fontFamily: 'Asap',
-    margin: '25px 0px 25px 0px',
-  },
-};

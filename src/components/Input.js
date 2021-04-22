@@ -1,5 +1,5 @@
 import React from 'react';
-import './input.css';
+import '../styles/input.css';
 
 export default function Input({
   type,
@@ -18,7 +18,7 @@ export default function Input({
   return (
     <div
       className="input-container"
-      style={{ width: width, margin: '30px 0px' }}
+      style={{ width: width, margin: '30px 0px 10px 0px' }}
     >
       <input
         type={type}
