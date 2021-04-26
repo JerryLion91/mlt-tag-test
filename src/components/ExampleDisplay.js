@@ -3,13 +3,13 @@ import React from 'react';
 export default function ExampleDisplay() {
   const IMGs = [
     {
-      description: 'The tag attached a piece of cloth',
-      src: 'Example_image.png',
+      description: "It's a simple plastic tag",
+      src: 'ExampleTag.jpg',
       alt: 'example',
     },
     {
-      description: 'Holding the tag with the hand',
-      src: 'Example_image.png',
+      description: 'With this solution, never miss who own it',
+      src: 'ExampleTag3.jpg',
       alt: 'example',
     },
   ];
@@ -17,10 +17,15 @@ export default function ExampleDisplay() {
     <div style={styles.divFlexColumn}>
       {IMGs.map((img, index) => {
         return (
-          <div key={index}>
-            <label style={{ margin: '30px', ...styles.divFlexColumn }}>
+          <div key={index} style={{ margin: '20px' }}>
+            <label>
               <img
-                style={{ margin: 'auto', width: '60vw', maxWidth: '280px' }}
+                style={{
+                  margin: 'auto',
+                  borderRadius: '5px',
+                  width: '60vw',
+                  maxWidth: '275px',
+                }}
                 src={img.src}
                 alt={img.alt}
               />
@@ -42,5 +47,6 @@ const styles = {
     fontWeight: '500',
     width: '60vw',
     maxWidth: '280px',
+    margin: '70px',
   },
 };
