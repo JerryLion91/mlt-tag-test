@@ -70,8 +70,9 @@ export default function Tag(props) {
     const ctx = canvas.getContext('2d');
 
     // set width and height
-    const ratio = getPixelRatio(ctx);
-    // const ratio = 1; I don`t remember why i put this line
+    // const ratio = getPixelRatio(ctx);
+    // fixe the ratio to 1 to fix a bug in IOSyarn
+    const ratio = 1;
     const width = getComputedStyle(canvas)
       .getPropertyValue('width')
       .slice(0, -2);
