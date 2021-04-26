@@ -16,7 +16,7 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
   minSpacing
 ) {
   // (π = perímetro / diâmetro)
-
+  // minSpacing = 0;
   // move the origin to the canvas center
   this.translate(x, y);
 

@@ -22,16 +22,6 @@ export default function TagConstructorPage({ onAddTag }) {
 
   const handleTagChange = (newTag) => setTag(newTag);
 
-  const [startPosition, setStartPosition] = React.useState(150);
-  const handleStartInput = (newPosition) => {
-    setStartPosition(newPosition);
-  };
-
-  const [spaceBetween, setSpaceBetween] = React.useState(0);
-  const handleSpaceInput = (newValue) => {
-    setSpaceBetween(newValue);
-  };
-
   const handleHistoryClick = () => {
     setTag({
       typedName: '',
@@ -54,21 +44,8 @@ export default function TagConstructorPage({ onAddTag }) {
         <Button onClick={() => history.push('/')} icon={'navigate_before'} />
       </Header>
       <AppBody>
-        <Tag
-          size={200}
-          tag={tag}
-          styles={{ margin: '20px' }}
-          spaceBetween={spaceBetween}
-          startPosition={startPosition}
-        />
-        <DiscProperties
-          tag={tag}
-          spaceBetween={spaceBetween}
-          startPosition={startPosition}
-          onChange={handleTagChange}
-          onPositionSelected={handleStartInput}
-          onSpaceSelected={handleSpaceInput}
-        />
+        <Tag size={200} tag={tag} styles={{ margin: '20px' }} />
+        <DiscProperties tag={tag} onChange={handleTagChange} />
         <Button
           style={{
             ...styles.btnFilledPurple,
@@ -81,6 +58,14 @@ export default function TagConstructorPage({ onAddTag }) {
           Finish Design
         </Button>
       </AppBody>
+      {/* This empity <p> will load the fonts */}
+      <p style={{ fontFamily: 'Serif' }}></p>
+      <p style={{ fontFamily: 'Arial' }}></p>
+      <p style={{ fontFamily: 'Monospace' }}></p>
+      <p style={{ fontFamily: 'Chicle' }}></p>
+      <p style={{ fontFamily: 'Fredoka One' }}></p>
+      <p style={{ fontFamily: 'Lemon' }}></p>
+      <p style={{ fontFamily: 'Salsa' }}></p>
       <Footer />
     </>
   );

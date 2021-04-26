@@ -14,10 +14,49 @@ const getPixelRatio = (context) => {
   return (window.devicePixelRatio || 1) / backingStore;
 };
 
+const FONTS = {
+  serif: {
+    spaceBetween: 0.07,
+    sizeFactor: 1.1,
+    bold: true,
+  },
+  arial: {
+    spaceBetween: 0.07,
+    sizeFactor: 1,
+    bold: true,
+  },
+  monospace: {
+    spaceBetween: 0.06,
+    sizeFactor: 1,
+    bold: true,
+  },
+  Chicle: {
+    spaceBetween: 0.16,
+    sizeFactor: 1.1,
+    bold: true,
+  },
+  'Fredoka One': {
+    spaceBetween: 0.05,
+    sizeFactor: 1,
+    bold: false,
+  },
+  Lemon: {
+    spaceBetween: 0.05,
+    sizeFactor: 0.85,
+    bold: false,
+  },
+  Salsa: {
+    spaceBetween: 0.08,
+    sizeFactor: 1,
+    bold: true,
+  },
+};
+
 export default function Tag(props) {
   const { typedName, fontFamily } = props.tag;
-  const { spaceBetween, size, styles } = props;
+  const { size, styles } = props;
 
+  let spaceBetween = FONTS[fontFamily].spaceBetween;
   let startPosition = 150;
 
   if (props.startPosition) {
@@ -31,8 +70,8 @@ export default function Tag(props) {
     const ctx = canvas.getContext('2d');
 
     // set width and height
-    // const ratio = getPixelRatio(ctx);
-    const ratio = 1;
+    const ratio = getPixelRatio(ctx);
+    // const ratio = 1; I don`t remember why i put this line
     const width = getComputedStyle(canvas)
       .getPropertyValue('width')
       .slice(0, -2);
@@ -46,9 +85,13 @@ export default function Tag(props) {
 
     // setting params
     const radius = size * 0.2;
-    const fontSize = size * 0.22;
+    const fontSize = size * 0.2 * FONTS[fontFamily].sizeFactor;
 
-    ctx.font = `bold ${fontSize}px ${fontFamily}`;
+    ctx.font = `${
+      FONTS[fontFamily].bold ? 'bold' : ''
+    } ${fontSize}px ${fontFamily}`;
+
+    ctx.save();
 
     const rotationDone = ctx.fillTextCircle(
       typedName,
@@ -60,13 +103,13 @@ export default function Tag(props) {
     );
 
     if (rotationDone > 330) {
-      console.log('more than i can take');
+      ctx.restore();
+      ctx.moveTo(0, 0);
+      ctx.clearRect(0, 0, width, height);
+      ctx.font = `bold ${fontSize / 2}px ${fontFamily}`;
+      ctx.fillText('Tag name', size / 5.5, size / 2.3);
+      ctx.fillText('too large', size / 5, size / 1.5);
     }
-
-    // var dataURL = canvas.toDataURL();
-    // console.log(`${dataURL}`);
-    // let imageData = ctx.getImageData(0, 0, 200, 200);
-    // console.log(JSON.stringify(imageData));
   });
 
   // JSX canvas Element with the '2d' draw
@@ -80,7 +123,6 @@ export default function Tag(props) {
 
 Tag.propTypes = {
   tag: PropTypes.object.isRequired,
-  spaceBetween: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
   startPosition: PropTypes.number,
 };

@@ -6,18 +6,9 @@ import Button from '../Button';
 import styles from '../../styles/styles';
 
 export default function DiscProperties(props) {
-  const {
-    tag,
-    onChange,
-    onPositionSelected,
-    onSpaceSelected,
-    spaceBetween,
-    startPosition,
-  } = props;
+  const { tag, onChange } = props;
 
   const { typedName, fontFamily } = props.tag;
-
-  const [space, setSpace] = React.useState(0);
 
   const handleTypingName = (newName) => {
     onChange({ ...tag, typedName: newName });
@@ -25,15 +16,6 @@ export default function DiscProperties(props) {
 
   const handleSelectFont = ({ target }) => {
     onChange({ ...tag, fontFamily: target.value });
-  };
-
-  const handlePositionSelect = ({ target }) => {
-    onPositionSelected(target.valueAsNumber);
-  };
-
-  const handleSpaceSelect = ({ target }) => {
-    onSpaceSelected(target.valueAsNumber);
-    setSpace(target.valueAsNumber);
   };
 
   return (
@@ -71,33 +53,9 @@ export default function DiscProperties(props) {
 
         <option value="Chicle">Chicle</option>
         <option value="Fredoka One">Fredoka One</option>
-        <option value="Kavoon">Kavoon</option>
         <option value="Lemon">Lemon</option>
         <option value="Salsa">Salsa</option>
       </select>
-      {/* <label>
-        Select starting point:
-        <input
-          type="range"
-          name="start"
-          min="0"
-          max="360"
-          step="1"
-          onChange={handlePositionSelect}
-        />
-      </label>*/}
-      {/* <label>
-        Select space betwewn:
-        <input
-          type="range"
-          name="space"
-          min="0"
-          max="1"
-          step="0.001"
-          onChange={handleSpaceSelect}
-        />
-      </label>
-      <span>{space}</span> */}
     </div>
   );
 }
