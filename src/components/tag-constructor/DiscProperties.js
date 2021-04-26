@@ -8,7 +8,7 @@ import styles from '../../styles/styles';
 export default function DiscProperties(props) {
   const { tag, onChange } = props;
 
-  const { typedName, fontFamily } = props.tag;
+  const { typedName, fontFamily, insideColor, outsideColor } = props.tag;
 
   const handleTypingName = (newName) => {
     onChange({ ...tag, typedName: newName });
@@ -16,6 +16,14 @@ export default function DiscProperties(props) {
 
   const handleSelectFont = ({ target }) => {
     onChange({ ...tag, fontFamily: target.value });
+  };
+
+  const handleSelectInsideColor = ({ target }) => {
+    onChange({ ...tag, insideColor: target.value });
+  };
+
+  const handleSelectOutsideColor = ({ target }) => {
+    onChange({ ...tag, outsideColor: target.value });
   };
 
   return (
@@ -32,7 +40,7 @@ export default function DiscProperties(props) {
         onChange={handleTypingName}
       />
       <label
-        htmlFor="name"
+        htmlFor="fontFamily"
         style={{
           color: '#882aa2',
           fontWeight: '600',
@@ -55,6 +63,50 @@ export default function DiscProperties(props) {
         <option value="Fredoka One">Fredoka One</option>
         <option value="Lemon">Lemon</option>
         <option value="Salsa">Salsa</option>
+      </select>
+
+      <br />
+      <label
+        htmlFor="insideColor"
+        style={{
+          color: '#882aa2',
+          fontWeight: '600',
+          fontSize: 'calc(8px + 1vmin)',
+        }}
+      >
+        Inside Color:
+      </label>
+      <select
+        defaultValue="black"
+        name="insideColor"
+        id="insideColor"
+        onChange={handleSelectInsideColor}
+      >
+        <option value="black">Black</option>
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
+      </select>
+
+      <br />
+      <label
+        htmlFor="outsideColor"
+        style={{
+          color: '#882aa2',
+          fontWeight: '600',
+          fontSize: 'calc(8px + 1vmin)',
+        }}
+      >
+        Outside Color:
+      </label>
+      <select
+        defaultValue="white"
+        name="outsideColor"
+        id="outsideColor"
+        onChange={handleSelectOutsideColor}
+      >
+        <option value="white">White</option>
+        <option value="Yellow">Yellow</option>
+        <option value="gray">Gray</option>
       </select>
     </div>
   );

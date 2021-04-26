@@ -13,14 +13,16 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
   y,
   radius,
   startRotation,
-  minSpacing
+  minSpacing,
+  fontColor = 'black',
+  tagColor = 'white'
 ) {
   // (π = perímetro / diâmetro)
-  // minSpacing = 0;
+
+  console.log(fontColor);
   // move the origin to the canvas center
   this.translate(x, y);
 
-  this.lineWidth = radius / 10;
   this.beginPath();
 
   // rotate to match the startRotation
@@ -29,10 +31,26 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
   /**
    * reference drawing:
    */
+  this.arc(0, 0, radius * 2, 0, 2 * Math.PI);
+  this.arc(0, 0, radius / 2, 0, degreesInRadians(30), true);
+  this.arc(0, 0, radius / 2, 0, degreesInRadians(360));
+  this.fillStyle = tagColor;
+  this.fill();
+  this.closePath();
+
+  this.beginPath();
+  this.fillStyle = 'white';
+  this.arc(0, 0, radius / 2, 0, degreesInRadians(360));
+  this.fill();
+  this.closePath();
+
+  this.beginPath();
+  this.lineWidth = radius / 10;
   this.arc(0, 0, radius / 2, 0, degreesInRadians(360));
   this.arc(0, 0, radius / 2, 0, degreesInRadians(30), true);
   this.arc(0, 0, radius * 2, 0, 2 * Math.PI);
   this.stroke();
+  this.closePath();
 
   this.rotate(degreesInRadians(-100));
 
@@ -70,6 +88,7 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
     // rotate half actual char width
     this.rotate(radiansToRotate * -0.5);
     // print character centered in the x axis and moved radius value in the y axis
+    this.fillStyle = fontColor;
     this.fillText(text[i], (letters[i].width * -1) / 2, radius * 1.6);
     // rotate another half
     this.rotate(radiansToRotate * -0.5);

@@ -53,7 +53,7 @@ const FONTS = {
 };
 
 export default function Tag(props) {
-  const { typedName, fontFamily } = props.tag;
+  const { typedName, fontFamily, insideColor, outsideColor } = props.tag;
   const { size, styles } = props;
 
   let spaceBetween = FONTS[fontFamily].spaceBetween;
@@ -71,7 +71,7 @@ export default function Tag(props) {
 
     // set width and height
     // const ratio = getPixelRatio(ctx);
-    // fixe the ratio to 1 to fix a bug in IOSyarn
+    // fixe the ratio to 1 to fix a bug in IOS
     const ratio = 1;
     const width = getComputedStyle(canvas)
       .getPropertyValue('width')
@@ -100,7 +100,9 @@ export default function Tag(props) {
       height / 2,
       radius,
       startPosition,
-      parseFloat(spaceBetween)
+      parseFloat(spaceBetween),
+      insideColor,
+      outsideColor
     );
 
     if (rotationDone > 330) {

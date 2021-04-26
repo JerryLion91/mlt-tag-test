@@ -15,8 +15,8 @@ export default function TagConstructorPage({ onAddTag }) {
   const [tag, setTag] = React.useState({
     typedName: '',
     fontFamily: 'serif',
-    insideColor: 'any',
-    outsideColor: 'any',
+    insideColor: 'black',
+    outsideColor: 'white',
     quantity: 1,
   });
 
@@ -26,8 +26,8 @@ export default function TagConstructorPage({ onAddTag }) {
     setTag({
       typedName: '',
       fontFamily: 'serif',
-      insideColor: 'any',
-      outsideColor: 'any',
+      insideColor: 'black',
+      outsideColor: 'white',
       quantity: 1,
     });
   };
