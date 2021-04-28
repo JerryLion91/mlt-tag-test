@@ -1,3 +1,5 @@
+import { isColor } from './colorChecker';
+
 /**
  * @param {string} text - The name provided from input
  * @param {number} x - x position in the canvas
@@ -14,10 +16,19 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
   radius,
   startRotation,
   minSpacing,
-  fontColor = 'black',
-  tagColor = 'white'
+  insideColor,
+  outsideColor
 ) {
   // (π = perímetro / diâmetro)
+
+  let fontColor = 'black';
+  if (isColor(insideColor)) {
+    fontColor = insideColor;
+  }
+  let tagColor = 'white';
+  if (isColor(outsideColor)) {
+    tagColor = outsideColor;
+  }
 
   // move the origin to the canvas center
   this.translate(x, y);
