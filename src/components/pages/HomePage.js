@@ -12,10 +12,15 @@ import TagDisplay from '../TagDisplay';
 import ExampleDisplay from '../ExampleDisplay';
 import SettingsButton from '../SettingsButton';
 
+import { useKeypress } from '../../helpers/use-keypress';
+
 import styles from '../../styles/styles';
 
 export default function HomePage() {
-  let history = useHistory();
+  const history = useHistory();
+
+  // Shortcut to 'Design your tag' Button
+  useKeypress('Enter', () => history.push('/tag-constructor'));
 
   return (
     <>
