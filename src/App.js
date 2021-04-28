@@ -6,8 +6,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import ParentTagContructor from './components/ParentTagConstructor';
-import ParentUser from './components/ParentUser';
+import ParentTagContructor from './components/Parents/ParentTagConstructor';
+import ParentUser from './components/Parents/ParentUser';
 
 import LoadingPage from './components/pages/LoadingPage';
 import HomePage from './components/pages/HomePage';

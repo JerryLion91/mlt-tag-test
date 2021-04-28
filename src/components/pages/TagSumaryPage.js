@@ -9,6 +9,8 @@ import Input from '../Input';
 
 import styles from '../../styles/styles';
 
+import PropTypes from 'prop-types';
+
 export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
   let history = useHistory();
 
@@ -105,3 +107,9 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
     </>
   );
 }
+
+TagSumaryPage.propTypes = {
+  TAGs: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
+};

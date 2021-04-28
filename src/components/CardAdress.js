@@ -2,6 +2,8 @@ import React from 'react';
 import Input from './Input';
 import Button from './Button';
 
+import PropTypes from 'prop-types';
+
 export default function AdressCard({
   address,
   index,
@@ -81,6 +83,13 @@ export default function AdressCard({
     </div>
   );
 }
+
+AdressCard.propTypes = {
+  address: PropTypes.object,
+  index: PropTypes.number,
+  handleDelete: PropTypes.func,
+  handleChange: PropTypes.func,
+};
 
 const styles = {
   cardParent: {

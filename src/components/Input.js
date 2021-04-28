@@ -1,4 +1,7 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import '../styles/input.css';
 
 export default function Input({
@@ -31,3 +34,12 @@ export default function Input({
     </div>
   );
 }
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.string,
+  width: PropTypes.number,
+};

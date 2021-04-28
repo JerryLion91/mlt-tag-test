@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import UserProfilePage from './pages/UserProfilePage';
-import UserPaymentsPage from './pages/UserPaymentsPage';
-import UserAddressesPage from './pages/UserAddressesPage';
-import UserOrdersPage from './pages/UserOrdersPage';
+import UserProfilePage from '../pages/UserProfilePage';
+import UserPaymentsPage from '../pages/UserPaymentsPage';
+import UserAddressesPage from '../pages/UserAddressesPage';
+import UserOrdersPage from '../pages/UserOrdersPage';
 
 export default function UserParent() {
   return (

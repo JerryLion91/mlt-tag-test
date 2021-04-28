@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import TagContructorPage from './pages/TagConstructorPage';
-import TagSumaryPage from './pages/TagSumaryPage';
+import TagContructorPage from '../pages/TagConstructorPage';
+import TagSumaryPage from '../pages/TagSumaryPage';
 
 export default function TagConstructorParent() {
   const [TAGs, setTAGs] = React.useState([]);

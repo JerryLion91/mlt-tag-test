@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 export default function Button({ onClick, icon, classNames, style, children }) {
   const text = children || '';
   return (
@@ -18,6 +20,14 @@ export default function Button({ onClick, icon, classNames, style, children }) {
     </a>
   );
 }
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  icon: PropTypes.string,
+  classNames: PropTypes.string,
+  style: PropTypes.object,
+  children: PropTypes.string,
+};
 
 const styles = {
   icon: {

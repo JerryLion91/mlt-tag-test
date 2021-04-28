@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import '../../helpers/fillTextCircle.js';
+
+import PropTypes from 'prop-types';
 
 /**
  * the getPixelRatio produce a error in IOS
@@ -116,6 +117,12 @@ export default function Tag(props) {
       ctx.fillText('Tag name', size / 5.5, size / 2.3);
       ctx.fillText('too large', size / 5, size / 1.5);
     }
+    // log dataURL =>
+    // const dataURL = canvas.toDataURL();
+    // console.log(`${dataURL}`);
+    // log imageData =>
+    // const imageData = ctx.getImageData(0, 0, 200, 200);
+    // console.log(JSON.stringify(imageData));
   });
 
   // JSX canvas Element with the '2d' draw

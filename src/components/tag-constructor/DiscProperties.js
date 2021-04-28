@@ -7,6 +7,8 @@ import Button from '../Button';
 import styles from '../../styles/styles';
 */
 
+import PropTypes from 'prop-types';
+
 export default function DiscProperties({ tag, onChange }) {
   // const { typedName, fontFamily, insideColor, outsideColor } = props.tag;
 
@@ -111,3 +113,8 @@ export default function DiscProperties({ tag, onChange }) {
     </div>
   );
 }
+
+DiscProperties.propTypes = {
+  tag: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+};

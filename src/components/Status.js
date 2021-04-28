@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 export default function Status({ status }) {
   return (
     <div>
@@ -104,6 +106,10 @@ export default function Status({ status }) {
     </div>
   );
 }
+
+Status.propTypes = {
+  status: PropTypes.string.isRequired,
+};
 
 const styles = {
   icon: {

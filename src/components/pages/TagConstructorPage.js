@@ -7,6 +7,8 @@ import AppBody from '../AppBody';
 import Button from '../Button';
 import { useHistory } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+
 import styles from '../../styles/styles';
 
 export default function TagConstructorPage({ onAddTag }) {
@@ -70,3 +72,7 @@ export default function TagConstructorPage({ onAddTag }) {
     </>
   );
 }
+
+TagConstructorPage.propTypes = {
+  onAddTag: PropTypes.func.isRequired,
+};
