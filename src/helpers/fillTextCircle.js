@@ -19,7 +19,6 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
 ) {
   // (π = perímetro / diâmetro)
 
-  console.log(fontColor);
   // move the origin to the canvas center
   this.translate(x, y);
 

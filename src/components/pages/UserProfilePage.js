@@ -17,7 +17,8 @@ export default function ProfilePage() {
   let { from } = location.state || { from: '/' };
 
   const auth = useAuth();
-  const { displayName, email, photoURL, uid } = auth.user;
+  const { displayName, email, photoURL } = auth.user;
+  // const { uid } = auth.user;
 
   const [userName, setUserName] = React.useState(displayName);
   const handleUsernameChange = (newName) => setUserName(newName);
@@ -99,6 +100,7 @@ export default function ProfilePage() {
           <img
             src={photoURL}
             style={{ borderRadius: '50%', height: '10vh', margin: '20px' }}
+            alt=""
           />
         )}
         <div style={{ position: 'relative' }}>

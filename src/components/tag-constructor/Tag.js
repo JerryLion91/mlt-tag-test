@@ -2,17 +2,20 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../../helpers/fillTextCircle.js';
 
-const getPixelRatio = (context) => {
-  var backingStore =
-    context.backingStorePixelRatio ||
-    context.webkitBackingStorePixelRatio ||
-    context.mozBackingStorePixelRatio ||
-    context.msBackingStorePixelRatio ||
-    context.oBackingStorePixelRatio ||
-    context.backingStorePixelRatio ||
-    1;
-  return (window.devicePixelRatio || 1) / backingStore;
-};
+/**
+ * the getPixelRatio produce a error in IOS
+ */
+// const getPixelRatio = (context) => {
+//   var backingStore =
+//     context.backingStorePixelRatio ||
+//     context.webkitBackingStorePixelRatio ||
+//     context.mozBackingStorePixelRatio ||
+//     context.msBackingStorePixelRatio ||
+//     context.oBackingStorePixelRatio ||
+//     context.backingStorePixelRatio ||
+//     1;
+//   return (window.devicePixelRatio || 1) / backingStore;
+// };
 
 const FONTS = {
   serif: {

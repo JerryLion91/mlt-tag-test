@@ -52,8 +52,8 @@ export default function HomePage() {
 }
 
 /**
- * ModalReference
- */
+ *   ModalReference
+
 const ModalProperties = {
   open: {
     type: 'Boolean',
@@ -120,3 +120,5 @@ const ModalProperties = {
     description: 'Animation duration in milliseconds',
   },
 };
+
+*/

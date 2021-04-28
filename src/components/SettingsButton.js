@@ -35,14 +35,14 @@ export default function SettingsButton() {
     handleCloseModal();
   };
 
-  const handlePaymentsButton = () => {
-    const userLocation = {
-      pathname: '/user/payments',
-      state: { from: location.pathname },
-    };
-    history.push(userLocation);
-    handleCloseModal();
-  };
+  // const handlePaymentsButton = () => {
+  //   const userLocation = {
+  //     pathname: '/user/payments',
+  //     state: { from: location.pathname },
+  //   };
+  //   history.push(userLocation);
+  //   handleCloseModal();
+  // };
 
   const handleAdressesButton = () => {
     const userLocation = {

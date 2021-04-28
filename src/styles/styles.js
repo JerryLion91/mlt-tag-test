@@ -65,7 +65,6 @@ const styles = {
     color: '#7a7a7a',
     fontfamily: 'Asap',
     fontWeight: 400,
-    fontSize: '16px',
     fontSize: 'calc(10px + 1vmin)',
     textAlign: 'left',
     margin: '10px 0px 50px 0px',

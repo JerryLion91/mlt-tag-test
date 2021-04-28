@@ -1,14 +1,14 @@
 import React from 'react';
 import Input from '../Input';
+/*
 import Modal from 'react-responsive-modal';
 import Button from '../Button';
 
 import styles from '../../styles/styles';
+*/
 
-export default function DiscProperties(props) {
-  const { tag, onChange } = props;
-
-  const { typedName, fontFamily, insideColor, outsideColor } = props.tag;
+export default function DiscProperties({ tag, onChange }) {
+  // const { typedName, fontFamily, insideColor, outsideColor } = props.tag;
 
   const handleTypingName = (newName) => {
     onChange({ ...tag, typedName: newName });
@@ -36,7 +36,7 @@ export default function DiscProperties(props) {
       <Input
         type="text"
         label={'Tag Name:'}
-        value={typedName}
+        value={tag.typedName}
         onChange={handleTypingName}
       />
       <label
