@@ -96,6 +96,7 @@ const styles = {
     minWidth: '150px',
     maxWidth: '400px',
     width: '70vw',
+    margin: '10px',
     padding: '5px',
     border: 'solid 2px #DCDCDC',
     borderRadius: '5px',
