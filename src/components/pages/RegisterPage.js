@@ -4,7 +4,7 @@ import { useAuth } from '../../helpers/use-auth';
 import Button from '../Button';
 import Footer from '../Footer';
 import Input from '../Input';
-import CardAdress from '../CardAdress';
+import AdressCard from '../AdressCard';
 
 import styles from '../../styles/styles';
 
@@ -117,7 +117,7 @@ export default function RegisterPage() {
           onChange={handleEmailChange}
         />
         {addressInput ? (
-          <CardAdress
+          <AdressCard
             address={blankAddress}
             index={0}
             handleDelete={handleDeleteAddress}

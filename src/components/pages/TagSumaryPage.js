@@ -97,7 +97,7 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
           </Button>
           <Button
             style={styles.btnFilledPurple}
-            onClick={() => console.log('purchase clicked')}
+            onClick={() => history.push('/tag-constructor/shipping')}
           >
             Purchase
           </Button>

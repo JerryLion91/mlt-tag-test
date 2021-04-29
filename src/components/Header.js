@@ -34,8 +34,8 @@ const styles = {
   },
   divFlexRow: {
     minWidth: '270px',
-    maxWidth: '520px',
-    width: '36vw',
+    maxWidth: '450px',
+    width: '80vw',
     height: '2vh',
     display: 'flex',
     justifyContent: 'space-between',

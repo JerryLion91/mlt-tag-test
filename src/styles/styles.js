@@ -22,7 +22,7 @@ const styles = {
   divFlexColumn: {
     minWidth: '150px',
     maxWidth: '400px',
-    width: '70vw',
+    width: '80vw',
     margin: '5vh auto',
     display: 'flex',
     flex: '1 0 auto',
@@ -31,7 +31,7 @@ const styles = {
   divFlexRow: {
     minWidth: '150px',
     maxWidth: '400px',
-    width: '70vw',
+    width: '80vw',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'stretch',
@@ -39,7 +39,7 @@ const styles = {
   lineStyle: {
     minWidth: '300px',
     maxWidth: '600px',
-    width: '40vw',
+    width: '50vw',
     height: '2px',
     backgroundColor: '#e5e8ea',
   },

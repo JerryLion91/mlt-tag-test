@@ -6,7 +6,7 @@ import Header from '../Header';
 import SettingsButton from '../SettingsButton';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
-import CardAdress from '../CardAdress';
+import AdressCard from '../AdressCard';
 
 import styles from '../../styles/styles';
 
@@ -105,7 +105,7 @@ export default function AddressesPage() {
       <AppBody>
         {addresses.map((address, index) => {
           return (
-            <CardAdress
+            <AdressCard
               key={index}
               address={address}
               index={index}

@@ -57,7 +57,11 @@ export default function AdressCard({
   return (
     <div style={styles.cardParent}>
       <div style={styles.divFlexRow}>
-        {index === 0 ? (
+        {index === undefined ? (
+          <span style={{ alignSelf: 'center', margin: '10px' }}>
+            Address Details
+          </span>
+        ) : index === 0 ? (
           <span style={{ alignSelf: 'center', margin: '10px' }}>
             Default Address
           </span>
@@ -66,28 +70,44 @@ export default function AdressCard({
             <span style={{ alignSelf: 'center', margin: '10px' }}>
               Address {index + 1}
             </span>
-            <Button
-              onClick={() => setDefault(index)}
-              icon={''}
-              style={{
-                ...styles.btnUnfilledGray,
-                border: '1px solid #7a7a7a',
-                borderRadius: '5px',
-                padding: '0px 5px',
-                fontSize: 'calc(7px + 0.8vmin)',
-              }}
-            >
-              Set Default
-            </Button>
+            {setDefault !== undefined ? (
+              <Button
+                onClick={() => setDefault(index)}
+                icon={''}
+                style={{
+                  ...styles.btnUnfilledGray,
+                  border: '1px solid #7a7a7a',
+                  borderRadius: '5px',
+                  padding: '0px 5px',
+                  fontSize: 'calc(7px + 0.8vmin)',
+                }}
+              >
+                Set Default
+              </Button>
+            ) : (
+              ''
+            )}
           </div>
         )}
         {saved ? (
-          <Button
-            onClick={() => handleDeleteClick(index)}
-            icon={'delete_forever'}
-          />
+          <>
+            {handleDeleteClick !== undefined ? (
+              <Button
+                onClick={() => handleDeleteClick(index)}
+                icon={'delete_forever'}
+              />
+            ) : (
+              ''
+            )}
+          </>
         ) : (
-          <Button onClick={() => handleSaveClick(index)} icon={'sync'} />
+          <>
+            {handleSaveClick !== undefined ? (
+              <Button onClick={() => handleSaveClick(index)} icon={'sync'} />
+            ) : (
+              ''
+            )}
+          </>
         )}
       </div>
       <div style={styles.card}>
@@ -133,10 +153,10 @@ export default function AdressCard({
 }
 
 AdressCard.propTypes = {
-  address: PropTypes.object,
+  address: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
   index: PropTypes.number,
   handleDeleteClick: PropTypes.func,
   handleSaveClick: PropTypes.func,
-  handleChange: PropTypes.func,
   setDefault: PropTypes.func,
 };

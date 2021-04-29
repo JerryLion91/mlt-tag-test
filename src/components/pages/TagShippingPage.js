@@ -3,23 +3,63 @@ import AppBody from '../AppBody';
 import Button from '../Button';
 import Footer from '../Footer';
 import Header from '../Header';
-import SettingsButton from '../SettingsButton';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
 
-export default function TagShippingPage() {
+import styles from '../../styles/styles';
+import AdressCard from '../AdressCard';
+
+export default function TagShippingPage({
+  addressToShip,
+  handleChangeAddress,
+}) {
   const auth = useAuth();
-  let location = useLocation();
   let history = useHistory();
-  let { from } = location.state || { from: '/' };
+
+  const handleChange = (newAddress, index) => {
+    handleChangeAddress(newAddress);
+  };
 
   return (
     <>
-      <Header>
-        <SettingsButton />
-        <Button onClick={() => history.push(from)} icon={'navigate_before'} />
+      <Header subtitle={'Shipping Details'}>
+        <Button onClick={() => history.push('/')} icon={'home'} />
+        <Button
+          onClick={() => history.push('/tag-constructor/sumary')}
+          icon={'navigate_before'}
+        />
       </Header>
-      <AppBody>HomeContactForm</AppBody>
+      <AppBody>
+        <div style={styles.divFlexRow}>
+          <Button
+            onClick={() => {
+              console.log('saved addresses clicked');
+            }}
+            icon={'cloud_download'}
+            style={styles.btnUnfilledGray}
+          >
+            Use my saved address
+          </Button>
+        </div>
+        <AdressCard address={addressToShip} handleChange={handleChange} />
+        <div style={styles.divFlexRow}>
+          <Button
+            style={styles.btnFilledPurple}
+            onClick={() => history.push('/tag-constructor/sumary')}
+          >
+            Back
+          </Button>
+          <Button
+            style={styles.btnFilledPurple}
+            onClick={() => {
+              console.log('ADDRESS VALIDATION');
+              history.push('/tag-constructor/payment');
+            }}
+          >
+            Payment
+          </Button>
+        </div>
+      </AppBody>
       <Footer>
         <Button onClick={() => history.push('/')}>Home</Button>
         <Button onClick={() => history.push('/tag-constructor')}>

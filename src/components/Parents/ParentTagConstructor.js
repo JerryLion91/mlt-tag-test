@@ -7,6 +7,22 @@ import TagSubmitedPage from '../pages/TagSubmitedPage';
 import TagSumaryPage from '../pages/TagSumaryPage';
 
 export default function TagConstructorParent() {
+  const blankAddress = {
+    firstName: '',
+    lastName: '',
+    street: '',
+    country: '',
+    city: '',
+    postalCode: '',
+    saved: false,
+  };
+
+  const [addressToShip, setAddressToShip] = React.useState(blankAddress);
+
+  const handleChangeAddress = (newAddress) => {
+    setAddressToShip(newAddress);
+  };
+
   const [TAGs, setTAGs] = React.useState([]);
 
   const handleAddTag = (tag) => {
@@ -53,8 +69,12 @@ export default function TagConstructorParent() {
           />
         )}
       </Route>
-      <Route path="/tag-constructor/shiping">
-        <TagShippingPage TAGs={TAGs} />
+      <Route path="/tag-constructor/shipping">
+        <TagShippingPage
+          TAGs={TAGs}
+          addressToShip={addressToShip}
+          handleChangeAddress={handleChangeAddress}
+        />
       </Route>
       <Route path="/tag-constructor/payment">
         <TagPaymentPage TAGs={TAGs} />
