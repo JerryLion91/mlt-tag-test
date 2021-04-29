@@ -13,7 +13,7 @@ export default function Header({
       <div style={styles.divFlexRow}>{children}</div>
       <div style={styles.divFlexColumn}>
         <h1 style={h1heading}>{title}</h1>
-        <div style={lineStyle}></div>
+        <div style={styles.lineStyle}></div>
         {subtitle && <h3 style={h3heading}>{subtitle}</h3>}
       </div>
     </header>
@@ -61,12 +61,5 @@ const styles = {
     margin: '0.4em',
     fontWeight: '450',
     fontSize: 'calc(13px + 1.8vmin)',
-  },
-  lineStyle: {
-    minWidth: '300px',
-    maxWidth: '600px',
-    width: '40vw',
-    height: '2px',
-    backgroundColor: '#e5e8ea',
   },
 };

@@ -11,6 +11,7 @@ export default function Input({
   onChange,
   onFocus,
   width,
+  readOnly = false,
 }) {
   const handleChange = ({ target }) => {
     onChange(target.value);
@@ -29,6 +30,7 @@ export default function Input({
         onClick={handleFocus}
         onChange={handleChange}
         required
+        readOnly={readOnly}
       />
       <label>{label}</label>
     </div>
@@ -38,8 +40,9 @@ export default function Input({
 Input.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.string,
+  onFocus: PropTypes.func,
   width: PropTypes.number,
+  readOnly: PropTypes.bool,
 };

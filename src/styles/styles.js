@@ -36,6 +36,13 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'stretch',
   },
+  lineStyle: {
+    minWidth: '300px',
+    maxWidth: '600px',
+    width: '40vw',
+    height: '2px',
+    backgroundColor: '#e5e8ea',
+  },
   // loadind page styles
   loadingGif: {
     margin: 'auto',

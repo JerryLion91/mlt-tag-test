@@ -35,8 +35,8 @@ export default function OrdersPage() {
         {
           typedName: 'Leonardo',
           fontFamily: 'arial',
-          insideColor: 'any',
-          outsideColor: 'any',
+          insideColor: 'blue',
+          outsideColor: 'grey',
           quantity: 8,
         },
       ],
@@ -86,26 +86,6 @@ export default function OrdersPage() {
           return (
             <div key={index} style={styles.cardParent}>
               <div>
-                {/* 
-
-                      <div>
-                        <Input
-                          width={40}
-                          label={'Qtd'}
-                          type={'number'}
-                          value={quantity}
-                          onChange={(newNumber) =>
-                            handleChange(newNumber, index)
-                          }
-                        />
-                        <Button
-                          onClick={() => handleDelete(index)}
-                          icon={'delete_forever'}
-                        />
-                      </div>
-                    </div>
-                  );
-                })} */}
                 {order.tags.map((tag, index) => {
                   const { typedName, quantity } = tag;
                   return (
