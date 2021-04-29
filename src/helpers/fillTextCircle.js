@@ -85,7 +85,8 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function (
   const radLimit = 5.7;
   const spaceAvailable = radLimit - minimalRads;
   if (text) {
-    aditionalSpace = (spaceAvailable / text.length) * (text.length / 20);
+    // Calculation to add space when available
+    aditionalSpace = (spaceAvailable / text.length) * (text.length / 12);
   }
 
   let rotationDone = 0;
