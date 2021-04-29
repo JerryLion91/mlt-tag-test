@@ -2,13 +2,17 @@ import React from 'react';
 import Input from './Input';
 import Button from './Button';
 
+import styles from '../styles/styles';
+
 import PropTypes from 'prop-types';
 
 export default function AdressCard({
   address,
   index,
-  handleDelete,
+  handleDeleteClick,
+  handleSaveClick,
   handleChange,
+  setDefault,
 }) {
   const {
     firstName,
@@ -20,14 +24,70 @@ export default function AdressCard({
     saved,
   } = address;
 
+  const handleFirstNameChange = (newValue) => {
+    // Validation
+    handleChange({ ...address, firstName: newValue, saved: false }, index);
+  };
+
+  const handleLastNameChange = (newValue) => {
+    // Validation
+    handleChange({ ...address, lastName: newValue, saved: false }, index);
+  };
+
+  const handleStreetChange = (newValue) => {
+    // Validation
+    handleChange({ ...address, street: newValue, saved: false }, index);
+  };
+
+  const handleCountryChange = (newValue) => {
+    // Validation
+    handleChange({ ...address, country: newValue, saved: false }, index);
+  };
+
+  const handleCityChange = (newValue) => {
+    // Validation
+    handleChange({ ...address, city: newValue, saved: false }, index);
+  };
+
+  const handlePostalCodeChange = (newValue) => {
+    // Validation
+    handleChange({ ...address, postalCode: newValue, saved: false }, index);
+  };
+
   return (
     <div style={styles.cardParent}>
       <div style={styles.divFlexRow}>
-        <span style={{ alignSelf: 'center' }}>Address {index + 1}</span>
-        {saved ? (
-          <Button onClick={() => handleDelete(index)} icon={'delete_forever'} />
+        {index === 0 ? (
+          <span style={{ alignSelf: 'center', margin: '10px' }}>
+            Default Address
+          </span>
         ) : (
-          <Button onClick={() => handleChange(index)} icon={'sync'} />
+          <div style={styles.divFlexRow}>
+            <span style={{ alignSelf: 'center', margin: '10px' }}>
+              Address {index + 1}
+            </span>
+            <Button
+              onClick={() => setDefault(index)}
+              icon={''}
+              style={{
+                ...styles.btnUnfilledGray,
+                border: '1px solid #7a7a7a',
+                borderRadius: '5px',
+                padding: '0px 5px',
+                fontSize: 'calc(7px + 0.8vmin)',
+              }}
+            >
+              Set Default
+            </Button>
+          </div>
+        )}
+        {saved ? (
+          <Button
+            onClick={() => handleDeleteClick(index)}
+            icon={'delete_forever'}
+          />
+        ) : (
+          <Button onClick={() => handleSaveClick(index)} icon={'sync'} />
         )}
       </div>
       <div style={styles.card}>
@@ -35,49 +95,37 @@ export default function AdressCard({
           type="text"
           label="First Name:"
           value={firstName}
-          onChange={(value) => {
-            console.log(value);
-          }}
+          onChange={handleFirstNameChange}
         />
         <Input
           type="text"
           label="Last Name:"
           value={lastName}
-          onChange={(value) => {
-            console.log(value);
-          }}
+          onChange={handleLastNameChange}
         />
         <Input
           type="text"
           label="Street:"
           value={street}
-          onChange={(value) => {
-            console.log(value);
-          }}
+          onChange={handleStreetChange}
         />
         <Input
           type="text"
           label="City:"
           value={city}
-          onChange={(value) => {
-            console.log(value);
-          }}
+          onChange={handleCityChange}
         />
         <Input
           type="text"
           label="Country:"
           value={country}
-          onChange={(value) => {
-            console.log(value);
-          }}
+          onChange={handleCountryChange}
         />
         <Input
           type="text"
           label="Postal Code:"
           value={postalCode}
-          onChange={(value) => {
-            console.log(value);
-          }}
+          onChange={handlePostalCodeChange}
         />
       </div>
     </div>
@@ -87,31 +135,8 @@ export default function AdressCard({
 AdressCard.propTypes = {
   address: PropTypes.object,
   index: PropTypes.number,
-  handleDelete: PropTypes.func,
+  handleDeleteClick: PropTypes.func,
+  handleSaveClick: PropTypes.func,
   handleChange: PropTypes.func,
-};
-
-const styles = {
-  cardParent: {
-    minWidth: '150px',
-    maxWidth: '400px',
-    width: '70vw',
-    margin: '10px',
-    padding: '5px',
-    border: 'solid 2px #DCDCDC',
-    borderRadius: '5px',
-    color: '#882aa2',
-    fontWeight: '500',
-  },
-  card: {
-    width: '90%',
-    margin: '0 5%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  divFlexRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-  },
+  setDefault: PropTypes.func,
 };

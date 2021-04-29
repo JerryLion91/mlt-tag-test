@@ -89,7 +89,7 @@ const styles = {
   cardParent: {
     fontSize: 'calc(8px + 1vmin)', //'calc(10px + 1vmin)' is in the body
     minWidth: '150px',
-    maxWidth: '350px',
+    maxWidth: '400px',
     width: '80vw',
     margin: '10px 0px 5px 0px',
     padding: '10px 5px 1px 10px',
@@ -100,8 +100,10 @@ const styles = {
     fontWeight: '600',
   },
   card: {
-    width: '80%',
-    margin: '15px 5px',
+    width: '90%',
+    margin: '5px 5%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   // user addresses page styles
 
