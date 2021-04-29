@@ -50,6 +50,15 @@ export default function TagConstructorParent() {
           />
         )}
       </Route>
+      <Route path="/tag-constructor/shiping">
+        <TagContructorPage TAGs={TAGs} />
+      </Route>
+      <Route path="/tag-constructor/payment">
+        <TagContructorPage TAGs={TAGs} />
+      </Route>
+      <Route path="/tag-constructor/submited">
+        <TagContructorPage TAGs={TAGs} />
+      </Route>
       <Route path="/tag-constructor">
         <TagContructorPage TAGs={TAGs} onAddTag={handleAddTag} />
       </Route>
