@@ -1,6 +1,9 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import TagContructorPage from '../pages/TagConstructorPage';
+import TagPaymentPage from '../pages/TagPaymentPage';
+import TagShippingPage from '../pages/TagShippingPage';
+import TagSubmitedPage from '../pages/TagSubmitedPage';
 import TagSumaryPage from '../pages/TagSumaryPage';
 
 export default function TagConstructorParent() {
@@ -51,13 +54,13 @@ export default function TagConstructorParent() {
         )}
       </Route>
       <Route path="/tag-constructor/shiping">
-        <TagContructorPage TAGs={TAGs} />
+        <TagShippingPage TAGs={TAGs} />
       </Route>
       <Route path="/tag-constructor/payment">
-        <TagContructorPage TAGs={TAGs} />
+        <TagPaymentPage TAGs={TAGs} />
       </Route>
       <Route path="/tag-constructor/submited">
-        <TagContructorPage TAGs={TAGs} />
+        <TagSubmitedPage TAGs={TAGs} />
       </Route>
       <Route path="/tag-constructor">
         <TagContructorPage TAGs={TAGs} onAddTag={handleAddTag} />

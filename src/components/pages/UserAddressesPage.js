@@ -16,7 +16,7 @@ export default function AddressesPage() {
   let history = useHistory();
   let { from } = location.state || { from: '/' };
 
-  const [addresses, setAddresses] = React.useState([
+  const INITIAL_STATE = [
     {
       firstName: 'Jerry',
       lastName: 'Lion',
@@ -35,7 +35,9 @@ export default function AddressesPage() {
       postalCode: '00000-000',
       saved: true,
     },
-  ]);
+  ];
+
+  const [addresses, setAddresses] = React.useState(INITIAL_STATE);
 
   const addNewAddress = () => {
     setAddresses((prevState) => {
@@ -50,15 +52,48 @@ export default function AddressesPage() {
       };
       return [...prevState, blankAddress];
     });
-    console.log('object');
   };
 
   const handleDelete = (index) => {
-    console.log(`${index}: address index delete button clicked`);
+    setAddresses((prevState) => {
+      const newAddressArray = prevState.filter((_, i) => {
+        return i !== index;
+      });
+      return newAddressArray;
+    });
   };
 
-  const handleChange = (index) => {
-    console.log(`${index}: address index change button clicked`);
+  const setDefault = (index) => {
+    setAddresses((prevState) => {
+      const newAddressArray = Array.from(prevState);
+
+      const newDefaultAddress = newAddressArray.splice(index, 1);
+
+      newAddressArray.unshift(newDefaultAddress[0]);
+
+      return newAddressArray;
+    });
+  };
+
+  const handleSave = (index) => {
+    setAddresses((prevState) => {
+      const newAddressArray = Array.from(prevState);
+
+      //PLACE TO CHANGE DATA BANK
+      newAddressArray[index].saved = true;
+
+      return newAddressArray;
+    });
+  };
+
+  const handleChange = (newAddress, index) => {
+    setAddresses((prevState) => {
+      const newAddressArray = Array.from(prevState);
+
+      newAddressArray[index] = newAddress;
+
+      return newAddressArray;
+    });
   };
 
   return (
@@ -74,8 +109,10 @@ export default function AddressesPage() {
               key={index}
               address={address}
               index={index}
-              handleDelete={handleDelete}
+              handleDeleteClick={handleDelete}
+              handleSaveClick={handleSave}
               handleChange={handleChange}
+              setDefault={setDefault}
             />
           );
         })}
@@ -83,7 +120,7 @@ export default function AddressesPage() {
           <Button
             onClick={addNewAddress}
             icon={'add_location'}
-            style={styles.btnUnfilledColor}
+            style={{ ...styles.btnUnfilledColor, margin: '10px 0px' }}
           >
             Add New Address
           </Button>

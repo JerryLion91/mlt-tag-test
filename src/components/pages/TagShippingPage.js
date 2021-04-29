@@ -7,7 +7,7 @@ import SettingsButton from '../SettingsButton';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
 
-export default function TagShipingPage() {
+export default function TagShippingPage() {
   const auth = useAuth();
   let location = useLocation();
   let history = useHistory();
