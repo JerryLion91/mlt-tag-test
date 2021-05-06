@@ -61,13 +61,13 @@ export default function TagConstructorPage({ onAddTag }) {
         </Button>
       </AppBody>
       {/* This empity <p> will load the fonts */}
-      <p style={{ fontFamily: 'Serif' }}></p>
-      <p style={{ fontFamily: 'Arial' }}></p>
-      <p style={{ fontFamily: 'Monospace' }}></p>
-      <p style={{ fontFamily: 'Chicle' }}></p>
-      <p style={{ fontFamily: 'Fredoka One' }}></p>
-      <p style={{ fontFamily: 'Lemon' }}></p>
-      <p style={{ fontFamily: 'Salsa' }}></p>
+      <p style={{ fontFamily: 'Serif', visibility: 'hidden' }}>Serif</p>
+      <p style={{ fontFamily: 'Arial', visibility: 'hidden' }}>Arial</p>
+      <p style={{ fontFamily: 'Monospace', visibility: 'hidden' }}>Monospace</p>
+      <p style={{ fontFamily: 'Chicle', visibility: 'hidden' }}>Chicle</p>
+      <p style={{ fontFamily: 'Fredoka One', visibility: 'hidden' }}>Fredoka</p>
+      <p style={{ fontFamily: 'Lemon', visibility: 'hidden' }}>Lemon</p>
+      <p style={{ fontFamily: 'Salsa', visibility: 'hidden' }}>Salsa</p>
       <Footer />
     </>
   );

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import AppBody from '../AppBody';
 import Footer from '../Footer';
 import Input from '../Input';
+import SummaryTable from '../SummaryTable';
 
 import styles from '../../styles/styles';
 
@@ -28,6 +29,10 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
   const handleDelete = (index) => {
     onRemove(index);
   };
+
+  const totalTagsQuantity = TAGs.reduce((acc, tag) => {
+    return acc + parseInt(tag.quantity);
+  }, 0);
 
   return (
     <>
@@ -88,6 +93,7 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
             </div>
           );
         })}
+        <SummaryTable totalTagsQuantity={totalTagsQuantity} />
         <div style={styles.divFlexRow}>
           <Button
             style={styles.btnFilledPurple}

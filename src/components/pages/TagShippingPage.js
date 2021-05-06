@@ -8,8 +8,10 @@ import { useAuth } from '../../helpers/use-auth';
 
 import styles from '../../styles/styles';
 import AdressCard from '../AdressCard';
+import SummaryTable from '../SummaryTable';
 
 export default function TagShippingPage({
+  TAGs,
   addressToShip,
   handleChangeAddress,
 }) {
@@ -19,6 +21,10 @@ export default function TagShippingPage({
   const handleChange = (newAddress, index) => {
     handleChangeAddress(newAddress);
   };
+
+  const totalTagsQuantity = TAGs.reduce((acc, tag) => {
+    return acc + parseInt(tag.quantity);
+  }, 0);
 
   return (
     <>
@@ -42,6 +48,7 @@ export default function TagShippingPage({
           </Button>
         </div>
         <AdressCard address={addressToShip} handleChange={handleChange} />
+        <SummaryTable totalTagsQuantity={totalTagsQuantity} shippingPrice={0} />
         <div style={styles.divFlexRow}>
           <Button
             style={styles.btnFilledPurple}
