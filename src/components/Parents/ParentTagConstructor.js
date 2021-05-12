@@ -19,8 +19,14 @@ export default function TagConstructorParent() {
 
   const [addressToShip, setAddressToShip] = React.useState(blankAddress);
 
+  const [shippingPrice, setShippingPrice] = React.useState(10);
+
   const handleChangeAddress = (newAddress) => {
     setAddressToShip(newAddress);
+  };
+
+  const handleChangeShippingPrice = (newPrice) => {
+    setShippingPrice(newPrice);
   };
 
   const [TAGs, setTAGs] = React.useState([]);
@@ -74,10 +80,12 @@ export default function TagConstructorParent() {
           TAGs={TAGs}
           addressToShip={addressToShip}
           handleChangeAddress={handleChangeAddress}
+          shippingPrice={shippingPrice}
+          handleChangeShippingPrice={handleChangeShippingPrice}
         />
       </Route>
       <Route path="/tag-constructor/payment">
-        <TagPaymentPage TAGs={TAGs} />
+        <TagPaymentPage TAGs={TAGs} shippingPrice={shippingPrice} />
       </Route>
       <Route path="/tag-constructor/submited">
         <TagSubmitedPage TAGs={TAGs} />

@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 
 import styles from '../styles/styles';
 
-export default function SummaryTable({ totalTagsQuantity, shippingPrice }) {
+export default function SummaryTable({ TAGs = [], shippingPrice }) {
+  const totalTagsQuantity = TAGs.reduce((acc, tag) => {
+    return acc + parseInt(tag.quantity);
+  }, 0);
   // price for 1 tag === 1,20 pound
   const tagsPrice = (totalTagsQuantity * 1.2).toFixed(2);
   const calculatedTotalPrice = (
@@ -128,6 +131,6 @@ export default function SummaryTable({ totalTagsQuantity, shippingPrice }) {
 }
 
 SummaryTable.propTypes = {
-  totalTagsQuantity: PropTypes.number.isRequired,
+  TAGs: PropTypes.array.isRequired,
   shippingPrice: PropTypes.number,
 };

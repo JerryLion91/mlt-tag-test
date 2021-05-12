@@ -1,9 +1,12 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 
+import { useHistory, useLocation } from 'react-router-dom';
+
 import { useAuth } from '../helpers/use-auth';
 
-import { useHistory, useLocation } from 'react-router-dom';
+import styles from '../styles/styles';
+
 import Button from './Button';
 
 export default function SettingsButton() {
@@ -124,23 +127,3 @@ export default function SettingsButton() {
     </>
   );
 }
-
-const styles = {
-  modalFlexColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    color: '#882aa2',
-    fontFamily: 'Asap',
-    fontWeight: '600',
-  },
-  button: {
-    margin: '50px',
-    padding: '12px',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'Asap , sans-serif',
-    backgroundColor: '#882aa2',
-  },
-};

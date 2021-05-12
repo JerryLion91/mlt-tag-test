@@ -6,7 +6,7 @@ import styles from '../styles/styles';
 
 import PropTypes from 'prop-types';
 
-export default function AdressCard({
+export default function AddressCard({
   address,
   index,
   handleDeleteClick,
@@ -152,7 +152,7 @@ export default function AdressCard({
   );
 }
 
-AdressCard.propTypes = {
+AddressCard.propTypes = {
   address: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   index: PropTypes.number,

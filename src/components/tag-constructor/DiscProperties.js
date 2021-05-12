@@ -107,7 +107,7 @@ export default function DiscProperties({ tag, onChange }) {
         onChange={handleSelectOutsideColor}
       >
         <option value="white">White</option>
-        <option value="Yellow">Yellow</option>
+        <option value="yellow">Yellow</option>
         <option value="gray">Gray</option>
       </select>
     </div>

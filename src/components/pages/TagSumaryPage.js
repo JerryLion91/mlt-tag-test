@@ -30,10 +30,6 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
     onRemove(index);
   };
 
-  const totalTagsQuantity = TAGs.reduce((acc, tag) => {
-    return acc + parseInt(tag.quantity);
-  }, 0);
-
   return (
     <>
       <Header subtitle="Designed Tags">
@@ -93,7 +89,7 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
             </div>
           );
         })}
-        <SummaryTable totalTagsQuantity={totalTagsQuantity} />
+        <SummaryTable TAGs={TAGs} />
         <div style={styles.divFlexRow}>
           <Button
             style={styles.btnFilledPurple}

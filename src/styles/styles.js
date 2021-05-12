@@ -47,7 +47,7 @@ const styles = {
   loadingGif: {
     margin: 'auto',
     width: '20vw',
-    maxWidth: '200px',
+    maxWidth: '180px',
   },
   // login page styles
   loginHeader: {
@@ -94,7 +94,7 @@ const styles = {
     margin: '10px 0px 5px 0px',
     padding: '10px 5px 1px 10px',
     border: 'solid 2px #DCDCDC',
-    borderRadius: '5px',
+    borderRadius: '20px',
     color: '#882aa2',
     fontFamily: 'Asap',
     fontWeight: '600',
@@ -108,6 +108,25 @@ const styles = {
   // user addresses page styles
 
   // user orders page styles
+
+  // modal styles
+  modalFlexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    color: '#882aa2',
+    fontFamily: 'Asap',
+    fontWeight: '600',
+  },
+  modalButton: {
+    margin: '50px',
+    padding: '12px',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: '500',
+    fontFamily: 'Asap , sans-serif',
+    backgroundColor: '#882aa2',
+  },
 };
 
 export default styles;

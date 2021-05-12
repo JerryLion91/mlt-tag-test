@@ -7,12 +7,16 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../helpers/use-auth';
 
 import styles from '../../styles/styles';
+import SummaryTable from '../SummaryTable';
 
-export default function TagPaymentPage() {
+export default function TagPaymentPage({ TAGs, shippingPrice }) {
   const auth = useAuth();
   let location = useLocation();
   let history = useHistory();
   let { from } = location.state || { from: '/' };
+
+  const [creditSelected, setCreditSelected] = React.useState(false);
+  const [paypalSelected, setPaypalSelected] = React.useState(false);
 
   return (
     <>
@@ -25,7 +29,41 @@ export default function TagPaymentPage() {
       </Header>
 
       <AppBody>
-        TagPaymentPage
+        <div style={styles.cardParent}>
+          <div style={{ ...styles.card, alignItems: 'flex-start' }}>
+            <Button
+              onClick={() => {
+                setCreditSelected(true);
+                setPaypalSelected(false);
+              }}
+              icon={
+                creditSelected
+                  ? 'radio_button_checked'
+                  : 'radio_button_unchecked'
+              }
+            >
+              CreditCard
+            </Button>
+          </div>
+        </div>
+        <div style={styles.cardParent}>
+          <div style={{ ...styles.card, alignItems: 'flex-start' }}>
+            <Button
+              onClick={() => {
+                setPaypalSelected(true);
+                setCreditSelected(false);
+              }}
+              icon={
+                paypalSelected
+                  ? 'radio_button_checked'
+                  : 'radio_button_unchecked'
+              }
+            >
+              Paypal
+            </Button>
+          </div>
+        </div>
+        <SummaryTable TAGs={TAGs} shippingPrice={shippingPrice} />
         <div style={styles.divFlexRow}>
           <Button
             style={styles.btnFilledPurple}
