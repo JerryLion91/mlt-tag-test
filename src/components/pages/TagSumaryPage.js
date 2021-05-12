@@ -12,8 +12,6 @@ import styles from '../../styles/styles';
 
 import PropTypes from 'prop-types';
 
-// comment
-
 export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
   let history = useHistory();
 
