@@ -9,8 +9,6 @@ import { useAuth } from '../../helpers/use-auth';
 import styles from '../../styles/styles';
 import SummaryTable from '../SummaryTable';
 
-// comment
-
 export default function TagPaymentPage({ TAGs, shippingPrice }) {
   const auth = useAuth();
   let location = useLocation();

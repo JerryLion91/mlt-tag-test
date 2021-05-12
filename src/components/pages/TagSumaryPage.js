@@ -58,24 +58,24 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
             >
               <Tag size={90} tag={tag} spaceBetween={0} startPosition={0} />
               <div style={styles.card}>
-                <p>
+                <span style={{ marginTop: '10px' }}>
                   Tag Name:{' '}
                   <span style={{ color: '#25292b' }}>{typedName}</span>
-                </p>
-                <p>
+                </span>
+                <span style={{ marginTop: '10px' }}>
                   Font Type:{' '}
                   <span style={{ color: '#25292b' }}>{fontFamily}</span>
-                </p>
-                <p>
+                </span>
+                <span style={{ marginTop: '10px' }}>
                   Colors:{' '}
                   <span style={{ color: '#25292b' }}>
                     {insideColor + ' & ' + outsideColor}
                   </span>
-                </p>
+                </span>
               </div>
               <div>
                 <Input
-                  width={40}
+                  width={30}
                   label={'Qtd'}
                   type={'number'}
                   value={quantity}
@@ -84,6 +84,7 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
                 <Button
                   onClick={() => handleDelete(index)}
                   icon={'delete_forever'}
+                  style={{ color: '#882aa2' }}
                 />
               </div>
             </div>
