@@ -158,7 +158,7 @@ export default function ProfilePage() {
                 margin: '0px 0px 35px 0px',
               }}
               onClick={handleUpdateEmail}
-              icon={'sync'}
+              icon={'save'}
             />
           ) : (
             <i
