@@ -9,6 +9,7 @@ import { useAuth } from '../../helpers/use-auth';
 import AddressCard from '../AddressCard';
 
 import styles from '../../styles/styles';
+import Input from '../Input';
 
 export default function AddressesPage() {
   const auth = useAuth();
@@ -25,6 +26,7 @@ export default function AddressesPage() {
       city: 'Varzea',
       postalCode: '13222-005',
       saved: true,
+      detailed: false,
     },
     {
       firstName: 'Lucas',
@@ -34,6 +36,7 @@ export default function AddressesPage() {
       city: 'Island 1',
       postalCode: '00000-000',
       saved: true,
+      detailed: false,
     },
   ];
 
@@ -49,6 +52,7 @@ export default function AddressesPage() {
         city: '',
         postalCode: '',
         saved: false,
+        detailed: true,
       };
       return [...prevState, blankAddress];
     });
@@ -96,6 +100,21 @@ export default function AddressesPage() {
     });
   };
 
+  const handleShowDetails = (index) => {
+    setAddresses((prevState) => {
+      const newAddressArray = Array.from(prevState);
+      newAddressArray[index].detailed = true;
+      return newAddressArray;
+    });
+  };
+  const handleHideDetails = (index) => {
+    setAddresses((prevState) => {
+      const newAddressArray = Array.from(prevState);
+      newAddressArray[index].detailed = false;
+      return newAddressArray;
+    });
+  };
+
   return (
     <>
       <Header subtitle="My Addresses">
@@ -105,15 +124,96 @@ export default function AddressesPage() {
       <AppBody>
         {addresses.map((address, index) => {
           return (
-            <AddressCard
-              key={index}
-              address={address}
-              index={index}
-              handleDeleteClick={handleDelete}
-              handleSaveClick={handleSave}
-              handleChange={handleChange}
-              setDefault={setDefault}
-            />
+            <>
+              {address.detailed ? (
+                <div style={styles.cardParent}>
+                  <AddressCard
+                    key={index}
+                    address={address}
+                    index={index}
+                    handleDeleteClick={handleDelete}
+                    handleSaveClick={handleSave}
+                    handleChange={handleChange}
+                    setDefault={setDefault}
+                  />
+                  <div style={styles.divFlexRow}>
+                    <Button
+                      onClick={() => handleHideDetails(index)}
+                      icon={'info'}
+                      style={{
+                        ...styles.btnUnfilledGray,
+                        fontSize: 'calc(6px + 0.8vmin)',
+                        margin: '10px 0px',
+                      }}
+                    >
+                      Hide details
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div style={styles.cardParent}>
+                  <div>
+                    <div style={styles.divFlexRow}>
+                      {index === undefined ? (
+                        <span style={{ alignSelf: 'center', margin: '10px' }}>
+                          Address Details
+                        </span>
+                      ) : index === 0 ? (
+                        <span style={{ alignSelf: 'center', margin: '10px' }}>
+                          Default Address
+                        </span>
+                      ) : (
+                        <div style={styles.divFlexRow}>
+                          <span style={{ alignSelf: 'center', margin: '10px' }}>
+                            Address {index + 1}
+                          </span>
+                          {setDefault !== undefined ? (
+                            <Button
+                              onClick={() => setDefault(index)}
+                              icon={''}
+                              style={{
+                                ...styles.btnUnfilledGray,
+                                border: '1px solid #7a7a7a',
+                                borderRadius: '5px',
+                                padding: '0px 5px',
+                                fontSize: 'calc(7px + 0.8vmin)',
+                              }}
+                            >
+                              Set Default
+                            </Button>
+                          ) : (
+                            ''
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <div style={styles.card}>
+                      <Input
+                        type="text"
+                        label="Street:"
+                        value={address.street}
+                        onChange={() => {
+                          console.log('street');
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div style={styles.divFlexRow}>
+                    <Button
+                      onClick={() => handleShowDetails(index)}
+                      icon={'info'}
+                      style={{
+                        ...styles.btnUnfilledGray,
+                        fontSize: 'calc(6px + 0.8vmin)',
+                        margin: '10px 0px',
+                      }}
+                    >
+                      Show details
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </>
           );
         })}
         <div style={styles.divFlexRow}>

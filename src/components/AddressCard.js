@@ -55,7 +55,7 @@ export default function AddressCard({
   };
 
   return (
-    <div style={styles.cardParent}>
+    <div>
       <div style={styles.divFlexRow}>
         {index === undefined ? (
           <span style={{ alignSelf: 'center', margin: '10px' }}>
@@ -103,7 +103,7 @@ export default function AddressCard({
         ) : (
           <>
             {handleSaveClick !== undefined ? (
-              <Button onClick={() => handleSaveClick(index)} icon={'sync'} />
+              <Button onClick={() => handleSaveClick(index)} icon={'save'} />
             ) : (
               ''
             )}

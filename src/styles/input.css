@@ -23,7 +23,7 @@
   background: transparent;
   width: 100%;
   padding: 8px 0 5px 0;
-  font-size: calc(12px + 1vmin);
+  font-size: calc(10px + 1vmin);
   color: #25292b;
   font-family: 'Asap';
   font-weight: 500;
@@ -38,7 +38,7 @@
 .input-container input:focus ~ label,
 .input-container input:valid ~ label {
   top: -20px;
-  font-size: calc(8px + 1vmin);
+  font-size: calc(6px + 1vmin);
 
   color: #882aa2;
 }
