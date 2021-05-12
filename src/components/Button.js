@@ -31,11 +31,11 @@ Button.propTypes = {
 
 const styles = {
   icon: {
-    fontSize: 'calc(13px + 1.5vmin)',
+    fontSize: '1.5em',
     margin: '3px',
+    color: 'grey',
   },
   button: {
-    color: 'grey',
     margin: '3px',
     padding: '3px',
     display: 'flex',

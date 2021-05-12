@@ -19,8 +19,9 @@ export default function SummaryTable({ TAGs = [], shippingPrice }) {
       <div
         style={{
           width: '100%',
-          textAlign: 'center',
+          textAlign: 'left',
           fontWeight: 'bold',
+          marginLeft: '10px',
         }}
       >
         Summary
@@ -35,21 +36,21 @@ export default function SummaryTable({ TAGs = [], shippingPrice }) {
         <span
           style={{
             width: '30%',
+            color: '#37474f',
           }}
         >
-          Total Tags:
+          {totalTagsQuantity} Tags
         </span>
         <span
           style={{
             width: '20%',
           }}
-        >
-          {totalTagsQuantity}
-        </span>
+        ></span>
         <span
           style={{
             width: '50%',
             textAlign: 'right',
+            color: '#37474f',
           }}
         >
           {`${tagsPrice} `}&#163;
@@ -66,6 +67,7 @@ export default function SummaryTable({ TAGs = [], shippingPrice }) {
           <span
             style={{
               width: '30%',
+              color: '#37474f',
             }}
           >
             Shipping:
@@ -90,6 +92,7 @@ export default function SummaryTable({ TAGs = [], shippingPrice }) {
             style={{
               width: '50%',
               textAlign: 'right',
+              color: '#37474f',
             }}
           >
             {`${shippingPrice.toFixed(2)} `}&#163;
@@ -102,12 +105,14 @@ export default function SummaryTable({ TAGs = [], shippingPrice }) {
           display: 'flex',
           justifyContent: 'space-between',
           borderTop: '2px solid #DCDCDC',
+          paddingTop: '10px',
+          marginTop: '8px',
         }}
       >
         <span
           style={{
-            width: '30%',
-            textAlign: 'right',
+            width: '25%',
+            textAlign: 'left',
           }}
         >
           Total:
@@ -121,6 +126,7 @@ export default function SummaryTable({ TAGs = [], shippingPrice }) {
           style={{
             width: '50%',
             textAlign: 'right',
+            color: '#37474f',
           }}
         >
           {`${calculatedTotalPrice} `}&#163;

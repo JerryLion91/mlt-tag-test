@@ -64,11 +64,11 @@ export default function OrdersPage() {
           quantity: 40,
         },
         {
-          typedName: 'Francis',
+          typedName: 'A Francis',
           fontFamily: 'serif',
           insideColor: 'any',
           outsideColor: 'any',
-          quantity: 40,
+          quantity: 25,
         },
       ],
       orderStatus: 'Received',
@@ -89,21 +89,14 @@ export default function OrdersPage() {
                 {order.tags.map((tag, index) => {
                   const { typedName, quantity } = tag;
                   return (
-                    <div
-                      key={index}
-                      style={{
-                        ...styles.divFlexRow,
-                        ...styles.card,
-                      }}
-                    >
+                    <div key={index} style={styles.divFlexRow}>
                       <Tag tag={tag} size={60} spaceBetween={0} />
-                      <div style={styles.card}>
-                        <span>
+                      <div style={{ ...styles.card, flexDirection: 'row' }}>
+                        <span style={{ margin: '12px' }}>
                           Tag Name:{' '}
                           <span style={{ color: '#25292b' }}>{typedName}</span>
                         </span>
-                        <br />
-                        <span>
+                        <span style={{ margin: '12px' }}>
                           Quantity:{' '}
                           <span style={{ color: '#25292b' }}>{quantity}</span>
                         </span>
@@ -113,6 +106,24 @@ export default function OrdersPage() {
                 })}
               </div>
               <Status status={order.orderStatus} />
+              <div
+                style={{ ...styles.divFlexRow, fontSize: 'calc(6px + 1vmin)' }}
+              >
+                <Button
+                  icon={'call'}
+                  style={styles.btnUnfilledGray}
+                  onClick={() => alert('dispach support email')}
+                >
+                  Call suport in this order
+                </Button>
+                <Button
+                  icon={'delete'}
+                  style={styles.btnUnfilledGray}
+                  onClick={() => alert('dispach support email')}
+                >
+                  Delete this order
+                </Button>
+              </div>
             </div>
           );
         })}

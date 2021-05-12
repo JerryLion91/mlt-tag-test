@@ -118,7 +118,9 @@ export default function TagShippingPage({
             )}
           </Modal>
         </div>
-        <AddressCard address={addressToShip} handleChange={handleChange} />
+        <div style={styles.cardParent}>
+          <AddressCard address={addressToShip} handleChange={handleChange} />
+        </div>
         <SummaryTable TAGs={TAGs} shippingPrice={shippingPrice} />
         <div style={styles.divFlexRow}>
           <Button
