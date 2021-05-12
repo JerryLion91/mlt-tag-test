@@ -59,7 +59,7 @@ export default function TagPaymentPage({ TAGs, shippingPrice }) {
                   : 'radio_button_unchecked'
               }
             >
-              Paypal
+              <img src={'paypal-5-226456.png'} alt="Paypal" />
             </Button>
           </div>
         </div>
