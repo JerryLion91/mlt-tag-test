@@ -75,7 +75,15 @@ export default function TagSumaryPage({ TAGs, onChange, onRemove }) {
               </div>
               <div>
                 <Input
-                  width={30}
+                  width={
+                    quantity.length === 1
+                      ? 35
+                      : quantity.length === 2
+                      ? 42
+                      : quantity.length === 3
+                      ? 50
+                      : 65
+                  }
                   label={'Qtd'}
                   type={'number'}
                   value={quantity}
