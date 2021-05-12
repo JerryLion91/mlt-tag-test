@@ -6,7 +6,7 @@ import styles from '../styles/styles';
 
 export default function SummaryTable({ TAGs = [], shippingPrice }) {
   const totalTagsQuantity = TAGs.reduce((acc, tag) => {
-    return acc + parseInt(tag.quantity);
+    return acc + parseInt(tag.quantity) || 0;
   }, 0);
   // price for 1 tag === 1,20 pound
   const tagsPrice = (totalTagsQuantity * 1.2).toFixed(2);
