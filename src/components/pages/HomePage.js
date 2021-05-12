@@ -19,6 +19,8 @@ import styles from '../../styles/styles';
 export default function HomePage() {
   const history = useHistory();
 
+  // comment
+
   // Shortcut to 'Design your tag' Button
   useKeypress('Enter', () => history.push('/tag-constructor'));
 
