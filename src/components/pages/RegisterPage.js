@@ -8,7 +8,7 @@ import AddressCard from '../AddressCard';
 
 import styles from '../../styles/styles';
 
-import { useFirestore } from '../../helpers/use-firestore';
+import { useFirestore } from '../../service/use-firestore';
 
 export default function RegisterPage() {
   const auth = useAuth();
@@ -30,13 +30,7 @@ export default function RegisterPage() {
   const [userEmail, setUserEmail] = React.useState('');
   const handleEmailChange = (newEmail) => setUserEmail(newEmail);
 
-  const [addressInput, setAddressInput] = React.useState(false);
-  const handleDeleteAddress = () => {
-    setAddressInput(false);
-  };
-  const handleChangeAddress = () => {
-    setAddressInput(false);
-  };
+  const [showAddressInput, setShowAddressInput] = React.useState(false);
 
   const blankAddress = {
     firstName: '',
@@ -46,6 +40,12 @@ export default function RegisterPage() {
     city: '',
     postalCode: '',
     saved: false,
+    detailed: true,
+  };
+
+  const [address, setAddress] = React.useState(blankAddress);
+  const handleChangeAddress = (newAddress) => {
+    setAddress(newAddress);
   };
 
   const handleRegister = () => {
@@ -55,11 +55,12 @@ export default function RegisterPage() {
     auth
       .signup(userEmail, userPassword, userName)
       .then((user) => {
-        firestore.addUserDoc({
-          uid: user.uid,
+        firestore.addUserDoc(user.uid, {
           displayName: userName,
           email: user.email,
           photoUrl: user.photoURL,
+          addresses: [address],
+          phone: '',
         });
         history.push('/');
       })
@@ -116,17 +117,27 @@ export default function RegisterPage() {
           value={userEmail}
           onChange={handleEmailChange}
         />
-        {addressInput ? (
-          <AddressCard
-            address={blankAddress}
-            index={0}
-            handleDelete={handleDeleteAddress}
-            handleChange={handleChangeAddress}
-          />
+        {showAddressInput ? (
+          <div style={styles.cardParent}>
+            <AddressCard
+              address={address}
+              index={0}
+              handleChange={handleChangeAddress}
+            />
+            <div style={styles.divStyle}>
+              <Button
+                onClick={() => setShowAddressInput(false)}
+                icon={'edit_location'}
+                style={styles.btnUnfilledColor}
+              >
+                Inform address later
+              </Button>
+            </div>
+          </div>
         ) : (
           <div style={styles.divStyle}>
             <Button
-              onClick={() => setAddressInput(true)}
+              onClick={() => setShowAddressInput(true)}
               icon={'add_location'}
               style={styles.btnUnfilledColor}
             >

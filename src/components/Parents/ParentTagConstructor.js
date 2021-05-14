@@ -5,8 +5,11 @@ import TagPaymentPage from '../pages/TagPaymentPage';
 import TagShippingPage from '../pages/TagShippingPage';
 import TagSubmitedPage from '../pages/TagSubmitedPage';
 import TagSumaryPage from '../pages/TagSumaryPage';
+import { useFirestore } from '../../service/use-firestore';
 
 export default function TagConstructorParent() {
+  const firestore = useFirestore();
+
   const blankAddress = {
     firstName: '',
     lastName: '',
@@ -15,7 +18,23 @@ export default function TagConstructorParent() {
     city: '',
     postalCode: '',
     saved: false,
+    detailed: true,
   };
+
+  const [stadards, setStadards] = React.useState(null);
+  const getStandards = () => {
+    firestore
+      .getAvailability()
+      .then((data) => {
+        setStadards(data);
+      })
+      .catch((error) => {
+        console.error('Cannot retrive standards data' + error);
+      });
+  };
+  React.useEffect(() => {
+    getStandards();
+  }, []);
 
   const [addressToShip, setAddressToShip] = React.useState(blankAddress);
 

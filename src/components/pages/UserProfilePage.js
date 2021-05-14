@@ -17,8 +17,7 @@ export default function ProfilePage() {
   let { from } = location.state || { from: '/' };
 
   const auth = useAuth();
-  const { displayName, email, photoURL } = auth.user;
-  // const { uid } = auth.user;
+  const { displayName, email, photoURL, uid } = auth.user;
 
   const [userName, setUserName] = React.useState(displayName);
   const handleUsernameChange = (newName) => setUserName(newName);
@@ -65,7 +64,7 @@ export default function ProfilePage() {
   };
 
   const handleUpdateUserName = () => {
-    auth.updateUserName(userName).then(() => {
+    auth.updateUserName(uid, userName).then(() => {
       setUserName('');
       setUserName(auth.user.displayName);
     });
@@ -80,7 +79,8 @@ export default function ProfilePage() {
       })
       .catch((error) => {
         if (error.code === 'auth/requires-recent-login') {
-          alert(error.message + 'DEVELOPER IDEA: REDIRECT TO LOGIN PAGE');
+          alert(error.message);
+          history.push('/login');
         }
         if (error.com === 'auth/invalid-email') {
           alert(error.message);
@@ -114,25 +114,25 @@ export default function ProfilePage() {
             <Button
               style={{
                 color: 'grey',
-                fontSize: 'calc(15px + 1.5vmin)',
+                fontSize: 'calc(8px + 1vmin)',
                 position: 'absolute',
                 right: '0',
                 bottom: '0',
-                margin: '0px 0px 35px 0px',
+                margin: '0px 0px 20px 0px',
               }}
               onClick={handleUpdateUserName}
-              icon={'sync'}
+              icon={'save'}
             />
           ) : (
             <i
               style={{
                 width: '30px',
                 color: 'grey',
-                fontSize: 'calc(15px + 1.5vmin)',
+                fontSize: 'calc(15px + 1vmin)',
                 position: 'absolute',
                 right: '0',
                 bottom: '0',
-                margin: '0px 0px 35px 0px',
+                margin: '0px 0px 20px 0px',
               }}
               className="material-icons"
             >
@@ -151,11 +151,11 @@ export default function ProfilePage() {
             <Button
               style={{
                 color: 'grey',
-                fontSize: 'calc(15px + 1.5vmin)',
+                fontSize: 'calc(8px + 1vmin)',
                 position: 'absolute',
                 right: '0',
                 bottom: '0',
-                margin: '0px 0px 35px 0px',
+                margin: '0px 0px 20px 0px',
               }}
               onClick={handleUpdateEmail}
               icon={'save'}
@@ -165,11 +165,11 @@ export default function ProfilePage() {
               style={{
                 width: '30px',
                 color: 'grey',
-                fontSize: 'calc(15px + 1.5vmin)',
+                fontSize: 'calc(15px + 1vmin)',
                 position: 'absolute',
                 right: '0',
                 bottom: '0',
-                margin: '0px 0px 35px 0px',
+                margin: '0px 0px 20px 0px',
               }}
               className="material-icons"
             >

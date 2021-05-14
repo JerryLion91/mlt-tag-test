@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import firebase from 'firebase/app';
-import { useFirestore } from './use-firestore';
+import { useFirestore } from '../service/use-firestore';
 import 'firebase/auth';
 
 // Add your Firebase credentials
@@ -65,11 +65,23 @@ function useProvideAuth() {
                 return user.uid === element.uid;
               }) === -1
             ) {
-              firestore.addUserDoc({
-                uid: user.uid,
+              firestore.addUserDoc(user.uid, {
                 displayName: user.displayName,
                 email: user.email,
                 photoUrl: user.photoURL,
+                addresses: [
+                  {
+                    firstName: '',
+                    lastName: '',
+                    street: '',
+                    country: '',
+                    city: '',
+                    postalCode: '',
+                    saved: false,
+                    detailed: true,
+                  },
+                ],
+                phone: '',
               });
             }
           })
@@ -143,7 +155,7 @@ function useProvideAuth() {
       });
   };
 
-  const updateUserName = async (userName) => {
+  const updateUserName = async (uid, userName) => {
     return firebase
       .auth()
       .currentUser.updateProfile({
@@ -151,6 +163,16 @@ function useProvideAuth() {
       })
       .then(() => {
         setUser(firebase.auth().currentUser);
+        firestore.updateUserDoc(uid, {
+          displayName: userName,
+        }).then(() => {
+          // Email sent.
+        })
+        .catch((error) => {
+          // An error happened.
+          console.log(error.code);
+          console.log(error.message);
+        });;
       });
   };
 
