@@ -1,17 +1,24 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
+
+import styles from '../styles/styles';
 
 export default function Header({
   title = 'M.L.T. Designs',
   subtitle = '',
   children,
 }) {
-  const { h1heading, lineStyle, h3heading } = styles;
+  const {
+    divFlexColumn,
+    divFlexRow,
+    header,
+    h1heading,
+    h3heading,
+  } = localStyles;
   return (
-    <header style={styles.header}>
-      <div style={styles.divFlexRow}>{children}</div>
-      <div style={styles.divFlexColumn}>
+    <header style={header}>
+      <div style={divFlexRow}>{children}</div>
+      <div style={divFlexColumn}>
         <h1 style={h1heading}>{title}</h1>
         <div style={styles.lineStyle}></div>
         {subtitle && <h3 style={h3heading}>{subtitle}</h3>}
@@ -26,7 +33,7 @@ Header.propTypes = {
   children: PropTypes.node,
 };
 
-const styles = {
+const localStyles = {
   divFlexColumn: {
     display: 'flex',
     alignItems: 'center',
