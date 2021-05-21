@@ -18,6 +18,7 @@ import { ProvideAuth } from './helpers/use-auth.js';
 import { useAuth } from './helpers/use-auth.js';
 
 import HomeContactForm from './components/pages/HomeContactForm';
+import TagDisplay from './components/TagDisplay';
 
 export default function App() {
   // Get auth state and re-render anytime it changes

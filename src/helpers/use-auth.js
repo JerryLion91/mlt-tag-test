@@ -1,19 +1,9 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import firebase from 'firebase/app';
-import { useFirestore } from '../service/use-firestore';
-import 'firebase/auth';
+import firebase from '../firebase';
 
-// Add your Firebase credentials
-firebase.initializeApp({
-  apiKey: 'AIzaSyCjTrDI7DYucHsLIHrcLhnqIOxSuh5o7NQ',
-  authDomain: 'mlt-tag-test.firebaseapp.com',
-  databaseURL: 'https://mlt-tag-test-default-rtdb.firebaseio.com',
-  projectId: 'mlt-tag-test',
-  storageBucket: 'mlt-tag-test.appspot.com',
-  messagingSenderId: '852050339091',
-  appId: '1:852050339091:web:86038e2daf6b4a5ea966e6',
-  measurementId: 'G-JGSHJWHFVL',
-});
+// DataBank
+import { useFirestore } from '../service/use-firestore';
+import * as api from '../service/apiService';
 
 const authContext = createContext();
 
@@ -163,16 +153,18 @@ function useProvideAuth() {
       })
       .then(() => {
         setUser(firebase.auth().currentUser);
-        firestore.updateUserDoc(uid, {
-          displayName: userName,
-        }).then(() => {
-          // Email sent.
-        })
-        .catch((error) => {
-          // An error happened.
-          console.log(error.code);
-          console.log(error.message);
-        });;
+        firestore
+          .updateUserDoc(uid, {
+            displayName: userName,
+          })
+          .then(() => {
+            // Email sent.
+          })
+          .catch((error) => {
+            // An error happened.
+            console.log(error.code);
+            console.log(error.message);
+          });
       });
   };
 

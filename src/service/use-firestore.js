@@ -1,8 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-
-// import 'firebase/analytics';
-// const analytics = firebase.analytics();
+import firebase from '../firebase';
 
 export const useFirestore = () => {
   const db = firebase.firestore();
@@ -99,32 +95,24 @@ export const useFirestore = () => {
   };
 };
 
-// const thingsList = document.getElementById('thingsList');
-// const createThing = document.getElementById('createThing');
-
-// let thingsRef;
-// let unsubscribe;
-
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     const { serverTimestamp } = firebase.firestore.FieldValue;
-//     thingsRef = db.collection('things');
-//     createThing.onclick = () => {
-//       thingsRef.add({
-//         uid: user.uid,
-//         name: 'random name',
-//         createdAt: serverTimestamp(),
-//       });
-//     };
-//     unsubscribe = thingsRef
-//       .where('uid', '==', user.uid)
-//       .onSnapshot((querySnapshot) => {
-//         const itens = querySnapshot.docs.map((doc) => {
-//           return `<li>${doc.data().name}</li>`;
-//         });
-//         thingsList.innerHTML = itens.join('');
-//       });
-//   } else {
-//     unsubscribe && unsubscribe();
-//   }
-// });
+/**
+ *
+ * POST   /users?uid=  Complete User
+ * GET    /users/all
+ * GET    /users?uid=
+ * PUT    /users?uid= Field to Update
+ * DELETE /users?uid=
+ *
+ * POST   /users/address?uid=
+ * GET    /users/address?uid=
+ * PUT    /users/address?uid=_&&index=
+ * DELETE /users/address?uid=_&&index=
+ *
+ * POST   /orders
+ * GET    /orders/all
+ * GET    /orders?uid=
+ * PUT    /orders?id=
+ * DELETE /orders?id=
+ *
+ * GET /availability
+ */

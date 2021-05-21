@@ -2,8 +2,12 @@ import axios from 'axios';
 
 //Define a URL base da origem para consumo do servico
 export default axios.create({
-  baseURL: 'http://localhost:5001/mlt-tag-test/us-central1/app',
+  baseURL: 'http://localhost:5001/mlt-tag-back/us-central1/app',
+  withCredentials: false,
   headers: {
-    'Content-type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    // 'Content-type': 'application/json',
   },
+  responseType: 'json',
 });
