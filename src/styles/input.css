@@ -39,6 +39,5 @@
 .input-container input:valid ~ label {
   top: -20px;
   font-size: calc(6px + 1vmin);
-
   color: #882aa2;
 }

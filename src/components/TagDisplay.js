@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Button from './Button';
+import '../styles/slider.css';
 
-export default function TagDisplay() {
-  const TAGS = [
+export default function TagDisplay({
+  TAGS = [
     {
       description: 'Tag blue and yellow',
       src: 'Noah_BlueYellow.png',
@@ -15,45 +16,121 @@ export default function TagDisplay() {
       description: 'Tag yellow and black',
       src: 'Noah_YellowBlack.png',
     },
-  ];
-  const [selectedTagIndex, setSelectedTagIndex] = React.useState(0);
-
-  const toggleIndex = (type) => {
-    const maxIndex = TAGS.length - 1;
-    switch (type) {
-      case '-':
-        if (selectedTagIndex === 0) {
-          setSelectedTagIndex(maxIndex);
-        } else {
-          setSelectedTagIndex((prevIndex) => prevIndex - 1);
-        }
-        break;
-      case '+':
-        if (selectedTagIndex === maxIndex) {
-          setSelectedTagIndex(0);
-        } else {
-          setSelectedTagIndex((prevIndex) => prevIndex + 1);
-        }
-        break;
+  ],
+}) {
+  const handleImageChange = (state, action) => {
+    const maxIndex = state.array.length - 1;
+    switch (action.type) {
+      case 'Right':
+        return {
+          ...state,
+          preImg: state.preImg === maxIndex ? 0 : state.preImg + 1,
+          curImg: state.curImg === maxIndex ? 0 : state.curImg + 1,
+          nexImg: state.nexImg === maxIndex ? 0 : state.nexImg + 1,
+          change: 'Right',
+        };
+      case 'Left':
+        return {
+          ...state,
+          preImg: state.preImg === 0 ? maxIndex : state.preImg - 1,
+          curImg: state.curImg === 0 ? maxIndex : state.curImg - 1,
+          nexImg: state.nexImg === 0 ? maxIndex : state.nexImg - 1,
+          change: 'Left',
+        };
       default:
-        break;
+        throw new Error();
     }
   };
 
+  const [slides, dispatch] = React.useReducer(handleImageChange, {
+    array: TAGS,
+    preImg: 0,
+    curImg: 1,
+    nexImg: 2,
+    change: null,
+  });
+
+  if (!Array.isArray(TAGS) || TAGS.length <= 0) {
+    return null;
+  }
+
+  const nextImage = () => {
+    dispatch({ type: 'Right' });
+  };
+  const prevImage = () => {
+    dispatch({ type: 'Left' });
+  };
+
   return (
-    <div style={styles.divFlexRow}>
+    <div style={styles.slider}>
       <Button
-        onClick={() => toggleIndex('-')}
+        className="left-arrow"
+        style={{ zIndex: 10 }}
+        onClick={prevImage}
         icon={'keyboard_arrow_left'}
         text={''}
       />
-      <img
-        style={{ margin: 'auto', width: '75vw', maxWidth: '350px' }}
-        src={TAGS[selectedTagIndex].src}
-        alt={TAGS[selectedTagIndex].description}
-      />
+      {slides.array.map((slide, index) => {
+        return (
+          <Fragment key={index}>
+            {slides.change && (
+              <div
+                style={{ position: 'absolute' }}
+                className={
+                  index === slides.preImg && slides.change === 'Left'
+                    ? `slide previous SlideFrom${slides.change}Out`
+                    : 'slide'
+                }
+              >
+                {index === slides.preImg && (
+                  <img
+                    style={styles.image}
+                    src={slide.src}
+                    alt={slide.description}
+                  />
+                )}
+              </div>
+            )}
+            <div
+              className={
+                index === slides.curImg
+                  ? `slide current SlideFrom${slides.change}In`
+                  : 'slide'
+              }
+            >
+              {index === slides.curImg && (
+                <img
+                  style={styles.image}
+                  src={slide.src}
+                  alt={slide.description}
+                />
+              )}
+            </div>
+            {slides.change && (
+              <div
+                style={{ position: 'absolute' }}
+                className={
+                  index === slides.nexImg
+                    ? `slide next SlideFrom${slides.change}Out`
+                    : 'slide'
+                }
+              >
+                {index === slides.nexImg && (
+                  <img
+                    style={styles.image}
+                    src={slide.src}
+                    alt={slide.description}
+                  />
+                )}
+              </div>
+            )}
+          </Fragment>
+        );
+      })}
+
       <Button
-        onClick={() => toggleIndex('+')}
+        style={{ zIndex: 10 }}
+        onClick={nextImage}
         icon={'keyboard_arrow_right'}
         text={''}
       />
@@ -62,7 +139,7 @@ export default function TagDisplay() {
 }
 
 const styles = {
-  divFlexRow: {
+  slider: {
     margin: '20px',
     minWidth: '270px',
     maxWidth: '520px',
@@ -70,6 +147,11 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
+    position: 'relative',
+  },
+  image: {
+    margin: 'auto',
+    width: '75vw',
+    maxWidth: '350px',
   },
 };
