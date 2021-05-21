@@ -16,20 +16,11 @@ import { useKeypress } from '../../helpers/use-keypress';
 
 import styles from '../../styles/styles';
 
-import * as api from '../../service/apiService';
-
 export default function HomePage() {
   const history = useHistory();
 
   // Shortcut to 'Design your tag' Button
   useKeypress('Enter', () => history.push('/tag-constructor'));
-
-  const fetchUsers = async () => {
-    const users = await api.getAllUsers();
-    console.log(users);
-  };
-
-  fetchUsers();
 
   return (
     <>

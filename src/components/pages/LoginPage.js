@@ -9,6 +9,7 @@ import styles from '../../styles/styles';
 
 export default function LoginPage() {
   const auth = useAuth();
+  console.log(auth);
   let location = useLocation();
   let history = useHistory();
   let { from } = location.state || { from: { pathname: '/' } };

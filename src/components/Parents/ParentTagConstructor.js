@@ -5,7 +5,10 @@ import TagPaymentPage from '../pages/TagPaymentPage';
 import TagShippingPage from '../pages/TagShippingPage';
 import TagSubmitedPage from '../pages/TagSubmitedPage';
 import TagSumaryPage from '../pages/TagSumaryPage';
+
+// DataBank
 import { useFirestore } from '../../service/use-firestore';
+import * as api from '../../service/apiService';
 
 export default function TagConstructorParent() {
   const firestore = useFirestore();
@@ -22,16 +25,15 @@ export default function TagConstructorParent() {
   };
 
   const [stadards, setStadards] = React.useState(null);
-  const getStandards = () => {
-    firestore
-      .getAvailability()
-      .then((data) => {
-        setStadards(data);
-      })
-      .catch((error) => {
-        console.error('Cannot retrive standards data' + error);
-      });
+  const getStandards = async () => {
+    try {
+      const data = await firestore.getAvailability();
+      setStadards(data);
+    } catch (error) {
+      console.error('Cannot retrive standards data' + error);
+    }
   };
+
   React.useEffect(() => {
     getStandards();
   }, []);
