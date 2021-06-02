@@ -5,114 +5,230 @@ export const useFirestore = () => {
   const userColectionRef = db.collection('users');
   const availabilityColectionRef = db.collection('availability');
 
-  const addUserDoc = async (uid, userData) => {
-    userColectionRef
-      .doc(uid)
-      .set(userData)
-      .then((docRef) => {
-        console.log('User Document successfully added!');
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-      });
+  /**
+   *
+   */
+  const getServerRunning = async () => {
+    return 'server_running_OK';
   };
+  // End getServerRunning
 
-  const updateUserDoc = async (uid, update) => {
-    userColectionRef
-      .doc(uid)
-      .update(update)
-      .then((docRef) => {
-        console.log('User Document successfully updated!');
-      })
-      .catch((error) => {
-        console.error('Error updating document: ', error);
-      });
+  /**
+   *
+   * POST   /users?uid=  Complete User
+   * @param {String} uid
+   * @param {Object} userData
+   */
+  const postNewUser = async (uid, userData) => {
+    try {
+      const docRef = await userColectionRef.doc(uid).set(userData);
+      console.log('User Document successfully added!');
+      return docRef;
+    } catch (error) {
+      console.error('Error adding document: ', error);
+    }
   };
+  // End postNewUser
 
-  const getUserAdresses = async (uid) => {
+  /**
+   *
+   * GET    /users/all
+   */
+  const getAllUsers = async () => {
+    console.log('getAllUsers: NOT DEVELOPED');
+  };
+  // End getAllUsers
+
+  /**
+   *
+   * GET    /users?uid=
+   * @param {String} uid
+   */
+  const getUserByUid = async (uid) => {
+    console.log('getUserByUid: NOT DEVELOPED');
+  };
+  // End getUserByUid
+
+  /**
+   *
+   * PUT    /users?uid= Field to Update
+   * @param {String} uid
+   * @param {Object} update
+   */
+  const updateUserByUid = async (uid, update) => {
+    try {
+      const docRef = await userColectionRef.doc(uid).update(update);
+      console.log('User Document successfully updated!');
+      return docRef;
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
+  };
+  // End updateUserByUid
+
+  /**
+   *
+   * DELETE /users?uid=
+   * @param {String} uid
+   */
+  const deleteUserByUid = async (uid) => {
+    console.log('deleteUserByUid: NOT DEVELOPED');
+  };
+  // End deleteUserByUid
+
+  /**
+   *
+   * POST   /users/address?uid=
+   * @param {String} uid
+   * @param {Object} address
+   */
+  const postUserNewAddressesByUid = async (uid, address) => {
+    console.log('postUserNewAddressesByUid: NOT DEVELOPED');
+  };
+  // End postUserNewAddressesByUid
+
+  /**
+   *
+   * GET    /users/address?uid=
+   * @param {String} uid
+   */
+  const getUserAddressesByUid = async (uid) => {
     const docRef = userColectionRef.doc(uid);
-    let addresses = await docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const userDoc = doc.data();
-          return userDoc.addresses;
-        } else {
-          // doc.data() will be undefined in this case
-          console.log('User Document not found in the DataBank');
-        }
-      })
-      .catch((error) => {
-        console.error('Error getting address: ', error);
-      });
-    return addresses;
+    try {
+      const doc = await docRef.get();
+      if (doc.exists) {
+        const userDoc = doc.data();
+        return userDoc.addresses;
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('User Document not found in the DataBank');
+      }
+    } catch (error) {
+      console.error('Error getting address: ', error);
+    }
   };
+  // End getUserAddressesByUid
 
-  const updateUserAdresses = async (uid, newAddressArray) => {
+  /**
+   *
+   * PUT    /users/address?uid=_&&index=
+   * @param {String} uid
+   * @param {Number} index
+   * @param {Object} newAddress
+   */
+  const updateUserAddressByUidAndIndex = async (uid, index, newAddress) => {
     const docRef = userColectionRef.doc(uid);
-    let updated = docRef
-      .update({ addresses: newAddressArray })
-      .then(() => {
+    try {
+      await db.runTransaction(async (t) => {
+        const docData = await t.get(docRef);
+        const addressArray = docData.data();
+        const newAddressArray = addressArray.map((address, i) => {
+          if (i === index) {
+            return newAddress;
+          } else {
+            return address;
+          }
+        });
+        t.update(docRef, {
+          addresses: newAddressArray,
+        });
         console.log('User Document Address successfully updated!');
-        return newAddressArray;
-      })
-      .catch((error) => {
-        console.error('Error updating document: ', error);
+        return { addresses: newAddressArray };
       });
-    return updated;
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
   };
+  // End updateUserAddressByUidAndIndex
 
-  const getUsers = () => {
-    console.log('get Users: NOT DEVELOPED');
+  /**
+   *
+   * DELETE /users/address?uid=_&&index=
+   * @param {String} uid
+   * @param {Number} index
+   */
+  const deleteUserAddressByUidAndIndex = async (uid, index) => {
+    console.log('deleteUserAddressByUidAndIndex: NOT DEVELOPED');
   };
+  // End deleteUserAddressByUidAndIndex
 
+  /**
+   *
+   * POST   /orders
+   * @param {String} uid
+   * @param {Object} newOrder
+   */
+  const postNewOrder = async (uid, newOrder) => {};
+  // End postNewOrder
+
+  /**
+   *
+   * GET    /orders/all
+   */
+  const getAllOrders = async () => {};
+  // End getAllOrders
+
+  /**
+   *
+   * GET    /orders?uid=
+   * @param {String} uid
+   */
+  const getOrdersByUid = async (uid) => {};
+  // End getOrdersByUid
+
+  /**
+   *
+   * PUT    /orders?id=
+   * @param {String} id
+   * @param {Object} update
+   */
+  const updateOrdersById = async (id, update) => {};
+  // End updateOrdersById
+
+  /**
+   *
+   * DELETE /orders?id=
+   * @param {String} id
+   */
+  const deleteOrdersById = async (id) => {};
+  // End deleteOrdersById
+
+  /**
+   *
+   * GET /availability
+   */
   const getAvailability = async () => {
     const docRef = availabilityColectionRef.doc('standards');
-    let standards = await docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          return doc.data();
-        } else {
-          // doc.data() will be undefined in this case
-          console.log('Standards not found in the DataBank');
-        }
-      })
-      .catch((error) => {
-        console.error('Error getting document: ', error);
-      });
-    return standards;
+    try {
+      const document = await docRef.get();
+      if (document.exists) {
+        return document.data();
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('Standards not found in the DataBank');
+      }
+    } catch (error) {
+      console.error('Error getting document: ', error);
+    }
   };
+  // End getAvailability
 
   return {
-    addUserDoc,
-    updateUserDoc,
-    getUserAdresses,
-    updateUserAdresses,
-    // ==
-    getUsers,
+    getServerRunning,
+    postNewUser,
+    getAllUsers,
+    getUserByUid,
+    updateUserByUid,
+    deleteUserByUid,
+    postUserNewAddressesByUid,
+    getUserAddressesByUid,
+    updateUserAddressByUidAndIndex,
+    deleteUserAddressByUidAndIndex,
+    postNewOrder,
+    getAllOrders,
+    getOrdersByUid,
+    updateOrdersById,
+    deleteOrdersById,
     getAvailability,
   };
 };
-
-/**
- *
- * POST   /users?uid=  Complete User
- * GET    /users/all
- * GET    /users?uid=
- * PUT    /users?uid= Field to Update
- * DELETE /users?uid=
- *
- * POST   /users/address?uid=
- * GET    /users/address?uid=
- * PUT    /users/address?uid=_&&index=
- * DELETE /users/address?uid=_&&index=
- *
- * POST   /orders
- * GET    /orders/all
- * GET    /orders?uid=
- * PUT    /orders?id=
- * DELETE /orders?id=
- *
- * GET /availability
- */
