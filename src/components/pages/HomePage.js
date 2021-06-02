@@ -15,7 +15,6 @@ import SettingsButton from '../SettingsButton';
 import { useKeypress } from '../../helpers/use-keypress';
 
 import styles from '../../styles/styles';
-import axios from 'axios';
 
 export default function HomePage() {
   const history = useHistory();
@@ -23,10 +22,6 @@ export default function HomePage() {
   // Shortcut to 'Design your tag' Button
   useKeypress('Enter', () => history.push('/tag-constructor'));
 
-  const haaa = async () => {
-    const res = await axios.get('https://mlt-tag-back.herokuapp.com/api');
-    console.log(res);
-  };
   return (
     <>
       <Header>
@@ -42,19 +37,9 @@ export default function HomePage() {
           }}
           onClick={() => history.push('/tag-constructor')}
           icon={''}
+          text={'Design your tag'}
         >
           Design your tag
-        </Button>
-        <Button
-          style={{
-            ...styles.btnFilledPurple,
-            // this btn inst in a parent div with width, alignSelf is solution
-            alignSelf: 'center',
-          }}
-          onClick={haaa}
-          icon={''}
-        >
-          HAA
         </Button>
         <ExampleDisplay />
       </AppBody>
