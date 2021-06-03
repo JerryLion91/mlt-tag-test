@@ -21,21 +21,21 @@ export default function TagDisplay({
   const handleImageChange = (state, action) => {
     const maxIndex = state.array.length - 1;
     switch (action.type) {
-      case 'Right':
+      case 'Left':
         return {
           ...state,
-          preImg: state.preImg === maxIndex ? 0 : state.preImg + 1,
+          preImg: state.nexImg === maxIndex ? 0 : state.nexImg + 1,
           curImg: state.curImg === maxIndex ? 0 : state.curImg + 1,
-          nexImg: state.nexImg === maxIndex ? 0 : state.nexImg + 1,
-          change: 'Right',
+          nexImg: state.preImg === maxIndex ? 0 : state.preImg + 1,
+          change: 'Left',
         };
-      case 'Left':
+      case 'Right':
         return {
           ...state,
           preImg: state.preImg === 0 ? maxIndex : state.preImg - 1,
           curImg: state.curImg === 0 ? maxIndex : state.curImg - 1,
           nexImg: state.nexImg === 0 ? maxIndex : state.nexImg - 1,
-          change: 'Left',
+          change: 'Right',
         };
       default:
         throw new Error();
@@ -50,6 +50,7 @@ export default function TagDisplay({
     change: null,
   });
 
+  // prevent to work with TAGS no array
   if (!Array.isArray(TAGS) || TAGS.length <= 0) {
     return null;
   }
@@ -144,6 +145,7 @@ const styles = {
     minWidth: '270px',
     maxWidth: '520px',
     width: '36vw',
+    maxHeight: '280px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -152,6 +154,8 @@ const styles = {
   image: {
     margin: 'auto',
     width: '75vw',
+    height: '60vw',
     maxWidth: '350px',
+    maxHeight: '280px',
   },
 };
