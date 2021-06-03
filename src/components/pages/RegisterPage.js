@@ -154,7 +154,15 @@ export default function RegisterPage() {
           Register
         </Button>
       </div>
-      <Footer />
+      <Footer>
+        <Button onClick={() => history.push('/')}>Home</Button>
+        <Button onClick={() => history.push('/tag-constructor')}>
+          Tag Designer
+        </Button>
+        <Button onClick={() => history.push('/contact-form')}>
+          Contact Us
+        </Button>
+      </Footer>
     </>
   );
 }
