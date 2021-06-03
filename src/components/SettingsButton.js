@@ -16,17 +16,9 @@ export default function SettingsButton() {
   let history = useHistory();
   const [showModal, setShowModal] = React.useState(false);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   const onSignOut = () => {
     auth.signout(() => history.push('/'));
-    handleCloseModal();
+    setShowModal(false);
   };
 
   const handleUserButton = () => {
@@ -35,7 +27,7 @@ export default function SettingsButton() {
       state: { from: location.pathname },
     };
     history.push(userLocation);
-    handleCloseModal();
+    setShowModal(false);
   };
 
   // const handlePaymentsButton = () => {
@@ -44,7 +36,7 @@ export default function SettingsButton() {
   //     state: { from: location.pathname },
   //   };
   //   history.push(userLocation);
-  //   handleCloseModal();
+  //   setShowModal(false)
   // };
 
   const handleAdressesButton = () => {
@@ -53,7 +45,7 @@ export default function SettingsButton() {
       state: { from: location.pathname },
     };
     history.push(userLocation);
-    handleCloseModal();
+    setShowModal(false);
   };
 
   const handleOrdersButton = () => {
@@ -62,12 +54,12 @@ export default function SettingsButton() {
       state: { from: location.pathname },
     };
     history.push(userLocation);
-    handleCloseModal();
+    setShowModal(false);
   };
 
   return (
     <>
-      <Button onClick={handleOpenModal} icon={'settings'} />
+      <Button onClick={() => setShowModal(true)} icon={'settings'} />
       <Modal
         styles={{
           modal: {
@@ -77,7 +69,7 @@ export default function SettingsButton() {
           },
         }}
         open={showModal}
-        onClose={handleCloseModal}
+        onClose={() => setShowModal(false)}
         showCloseIcon={false}
       >
         {user ? (
