@@ -25,6 +25,11 @@ export default function Input({
       style={{ width: width, margin: '30px 0px 10px 0px' }}
     >
       <input
+        className={`${value !== '' ? 'hasValue' : null} ${
+          type === 'password' && value.length < 6 && value !== ''
+            ? 'invalidPassword'
+            : null
+        }`}
         type={type}
         value={value}
         onClick={handleFocus}
